@@ -13,6 +13,6 @@ sunset_colortemp: 3000
 stop_colortemp: 1900
 # brightness: 200
 disable_brightness_adjust: false
-mode: xy
+mode: mired
 transition: 30
 interval: 30

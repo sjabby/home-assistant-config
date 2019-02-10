@@ -1,0 +1,4 @@
+---
+platform: gitlab_ci
+gitlab_id: '10597975'
+token: !secret gitlab_token
