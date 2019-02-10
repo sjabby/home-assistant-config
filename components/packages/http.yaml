@@ -1,11 +1,11 @@
 ---
 http:
-  # api_password: !secret http_api_password
-  # base_url: !secret http_base_url
-  # server_port: !secret http_server_port
-  # cors_allowed_origins: !secret http_cors_allowed_origins
-  # trusted_networks: !secret http_trusted_networks
-  # use_x_forwarded_for: true
-  # trusted_proxies: !secret http_trusted_proxies
-  # ip_ban_enabled: true
-  # login_attempts_threshold: 5
+# api_password: !secret http_api_password
+# base_url: !secret http_base_url
+# server_port: !secret http_server_port
+# cors_allowed_origins: !secret http_cors_allowed_origins
+# trusted_networks: !secret http_trusted_networks
+# use_x_forwarded_for: true
+# trusted_proxies: !secret http_trusted_proxies
+# ip_ban_enabled: true
+# login_attempts_threshold: 5

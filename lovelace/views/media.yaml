@@ -21,9 +21,14 @@ cards:
       - type: 'custom:mini-media-player'
         entity: media_player.stue_2
         group: true
-        hide_power: true
-        show_source: true
-        sonos_grouping:
+        hide:
+          power: true
+          icon: true
+          progress: true
+        sonos:
+          show_group_count: true
+          # sync_volume: true
+          entities:
           - entity_id: media_player.stue_2
             name: Stue
           - entity_id: media_player.kjkken
@@ -38,9 +43,14 @@ cards:
       - type: 'custom:mini-media-player'
         entity: media_player.kjkken
         group: true
-        hide_power: true
-        show_source: true
-        sonos_grouping:
+        hide:
+          power: true
+          icon: true
+          progress: true
+        sonos:
+          show_group_count: true
+          # sync_volume: true
+          entities:
           - entity_id: media_player.stue_2
             name: Stue
           - entity_id: media_player.kjkken
@@ -55,9 +65,14 @@ cards:
       - type: 'custom:mini-media-player'
         entity: media_player.kontor
         group: true
-        hide_power: true
-        show_source: true
-        sonos_grouping:
+        hide:
+          power: true
+          icon: true
+          progress: true
+        sonos:
+          show_group_count: true
+          # sync_volume: true
+          entities:
           - entity_id: media_player.stue_2
             name: Stue
           - entity_id: media_player.kjkken
@@ -72,9 +87,14 @@ cards:
       - type: 'custom:mini-media-player'
         entity: media_player.bad
         group: true
-        hide_power: true
-        show_source: true
-        sonos_grouping:
+        hide:
+          power: true
+          icon: true
+          progress: true
+        sonos:
+          show_group_count: true
+          # sync_volume: true
+          entities:
           - entity_id: media_player.stue_2
             name: Stue
           - entity_id: media_player.kjkken
@@ -89,9 +109,14 @@ cards:
       - type: 'custom:mini-media-player'
         entity: media_player.soverom
         group: true
-        hide_power: true
-        show_source: true
-        sonos_grouping:
+        hide:
+          power: true
+          icon: true
+          progress: true
+        sonos:
+          show_group_count: true
+          # sync_volume: true
+          entities:
           - entity_id: media_player.stue_2
             name: Stue
           - entity_id: media_player.kjkken

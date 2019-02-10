@@ -25,3 +25,7 @@ cards:
         destination: Stavanger Sentrum
         icon: 'mdi:bus'
         entity: sensor.transport_tasta_senter_platform_48449
+
+  - type: iframe
+    url: https://embed.windy.com/embed2.html?lat=58.995&lon=5.867&zoom=8&level=surface&overlay=wind&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&detailLat=58.970&detailLon=5.730&metricWind=default&metricTemp=default&radarRange=-1
+    aspect_ratio: 75%

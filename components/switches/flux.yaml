@@ -1,3 +1,4 @@
+---
 platform: flux
 lights:
   - light.hue_iris_1

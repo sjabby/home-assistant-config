@@ -15,6 +15,13 @@ cards:
   - type: thermostat
     entity: climate.fibaro_system_fgt001_heat_controller_heating
 
+  - type: entities
+    title: Entities card sample
+    show_header_toggle: false
+    entities:
+      - climate.fibaro_system_fgt001_heat_controller_heating
+      - switch.flux
+
   - type: vertical-stack
     cards:
       - type: horizontal-stack
@@ -39,21 +46,189 @@ cards:
           graph: line
       - type: horizontal-stack
         cards:
-        - type: sensor
-          entity: sensor.fibaro_system_fgt001_heat_controller_temperature
-          name: Soverom
-          hours_to_show: 24
-          detail: 2
-          graph: line
-        - type: sensor
-          entity: sensor.fibaro_system_fgt001_heat_controller_temperature
-          name: Kjøkken
-          hours_to_show: 24
-          detail: 2
-          graph: line
-        - type: sensor
-          entity: sensor.fibaro_system_fgt001_heat_controller_temperature
-          name: Bod
-          hours_to_show: 24
-          detail: 2
-          graph: line
+        - type: custom:mini-graph-card
+          entities: sensor.fibaro_system_fgt001_heat_controller_temperature
+          name: Stue
+          location_icon: left
+          location_state: center
+          show:
+            fill: false
+            extrema: true
+          height: 75
+          animate: true
+          hour24: true
+          line_color: var(--primary-color)
+          line_color_above:
+            - value: 22
+              color: red
+          line_color_below:
+            - value: 19
+              color: white
+        - type: custom:mini-graph-card
+          entities: sensor.fibaro_system_fgt001_heat_controller_temperature
+          name: Kontor
+          location_icon: left
+          location_state: center
+          show:
+            fill: false
+            extrema: true
+          height: 75
+          animate: true
+          hour24: true
+          line_color: var(--primary-color)
+          line_color_above:
+            - value: 22
+              color: red
+          line_color_below:
+            - value: 19
+              color: white
+
+
+
+
+
+
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+        - type: picture-elements
+          image: /local/th.jpg
+          elements:
+            - entity: device_tracker.person1siphonex
+              type: state-label
+              style:
+                color: black
+                top: 93%
+                left: 20%
+            - entity: device_tracker.person1siphonex
+              type: state-label
+              style:
+                color: black
+                top: 93%
+                left: 55%
+            - entity: device_tracker.person1siphonex
+              type: state-label
+              style:
+                color: black
+                top: 93%
+                left: 90%
+        - type: picture-elements
+          image: /local/mh.jpg
+          elements:
+            - entity: device_tracker.person1siphonex
+              type: state-label
+              style:
+                color: white
+                top: 93%
+                left: 20%
+            - entity: device_tracker.person1siphonex
+              type: state-label
+              style:
+                color: white
+                top: 93%
+                left: 55%
+            - entity: device_tracker.person1siphonex
+              type: state-label
+              style:
+                color: white
+                top: 93%
+                left: 90%
+
+  - type: picture-elements
+    image: /local/roborock.jpeg
+    elements:
+    - type: icon
+      icon: mdi:bell-ring
+      tap_action:
+        action: call-service
+        service: vacuum.locate
+        service_data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+      style:
+        top: 80%
+        left: 80%
+        "--paper-item-icon-color": rgb(115, 122, 130)
+
+    - type: icon
+      icon: mdi:home
+      tap_action:
+        action: call-service
+        service: vacuum.return_to_base
+        service_data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+      style:
+        top: 80%
+        left: 65%
+        "--paper-item-icon-color": rgb(115, 122, 130)
+
+    - type: icon
+      icon: mdi:play
+      tap_action:
+        action: call-service
+        service: vacuum.start
+        service_data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+      style:
+        top: 80%
+        left: 50%
+        "--paper-item-icon-color": rgb(115, 122, 130)
+
+    - type: icon
+      icon: mdi:pause
+      tap_action:
+        action: call-service
+        service: vacuum.pause
+        service_data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+      style:
+        top: 80%
+        left: 35%
+        "--paper-item-icon-color": rgb(115, 122, 130)
+
+    - type: icon
+      icon: mdi:stop
+      tap_action:
+        action: call-service
+        service: vacuum.stop
+        service_data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+      style:
+        top: 80%
+        left: 20%
+        "--paper-item-icon-color": rgb(155, 122, 130)
+
+    - type: state-label
+      entity: sensor.rocky_status
+      style:
+        top: 10%
+        left: 5%
+        color: rgb(255, 255, 255)
+        transform: translate(0%,-50%)
+        pointer-events: none
+        text-shadow: 1px 1px black
+        font-family: Trebuchet MS
+        font-size: 90%
+        font-weight: bold
+        border-left-style: solid
+        border-color: rgb(34, 154, 210)
+        background-color: rgb(54, 65, 78)
+        opacity: 0.8
+
+    - type: state-label
+      entity: sensor.rocky_battery
+      style:
+        top: 10%
+        right: 5%
+        color: rgb(255, 255, 255)
+        transform: translate(0%,-50%)
+        pointer-events: none
+        text-shadow: 1px 1px black
+        font-family: Trebuchet MS
+        font-size: 90%
+        font-weight: bold
+        border-right-style: solid
+        border-color: rgb(34, 154, 210)
+        background-color: rgb(54, 65, 78)
+        opacity: 0.8
