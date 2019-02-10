@@ -1,0 +1,6 @@
+---
+homekit:
+  auto_start: false
+  name: Home Assistant
+  filter: !include_dir_merge_named ../../assistants/siri/filters
+  entity_config: !include_dir_merge_named ../../assistant/siri/entities

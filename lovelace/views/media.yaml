@@ -29,16 +29,16 @@ cards:
           show_group_count: true
           # sync_volume: true
           entities:
-          - entity_id: media_player.stue_2
-            name: Stue
-          - entity_id: media_player.kjkken
-            name: Kjøkken
-          - entity_id: media_player.kontor
-            name: Kontor
-          - entity_id: media_player.bad
-            name: Bad
-          - entity_id: media_player.soverom
-            name: Soverom
+            - entity_id: media_player.stue_2
+              name: Stue
+            - entity_id: media_player.kjkken
+              name: Kjøkken
+            - entity_id: media_player.kontor
+              name: Kontor
+            - entity_id: media_player.bad
+              name: Bad
+            - entity_id: media_player.soverom
+              name: Soverom
 
       - type: 'custom:mini-media-player'
         entity: media_player.kjkken
@@ -51,16 +51,16 @@ cards:
           show_group_count: true
           # sync_volume: true
           entities:
-          - entity_id: media_player.stue_2
-            name: Stue
-          - entity_id: media_player.kjkken
-            name: Kjøkken
-          - entity_id: media_player.kontor
-            name: Kontor
-          - entity_id: media_player.bad
-            name: Bad
-          - entity_id: media_player.soverom
-            name: Soverom
+            - entity_id: media_player.stue_2
+              name: Stue
+            - entity_id: media_player.kjkken
+              name: Kjøkken
+            - entity_id: media_player.kontor
+              name: Kontor
+            - entity_id: media_player.bad
+              name: Bad
+            - entity_id: media_player.soverom
+              name: Soverom
 
       - type: 'custom:mini-media-player'
         entity: media_player.kontor
@@ -73,16 +73,16 @@ cards:
           show_group_count: true
           # sync_volume: true
           entities:
-          - entity_id: media_player.stue_2
-            name: Stue
-          - entity_id: media_player.kjkken
-            name: Kjøkken
-          - entity_id: media_player.kontor
-            name: Kontor
-          - entity_id: media_player.bad
-            name: Bad
-          - entity_id: media_player.soverom
-            name: Soverom
+            - entity_id: media_player.stue_2
+              name: Stue
+            - entity_id: media_player.kjkken
+              name: Kjøkken
+            - entity_id: media_player.kontor
+              name: Kontor
+            - entity_id: media_player.bad
+              name: Bad
+            - entity_id: media_player.soverom
+              name: Soverom
 
       - type: 'custom:mini-media-player'
         entity: media_player.bad
@@ -95,16 +95,16 @@ cards:
           show_group_count: true
           # sync_volume: true
           entities:
-          - entity_id: media_player.stue_2
-            name: Stue
-          - entity_id: media_player.kjkken
-            name: Kjøkken
-          - entity_id: media_player.kontor
-            name: Kontor
-          - entity_id: media_player.bad
-            name: Bad
-          - entity_id: media_player.soverom
-            name: Soverom
+            - entity_id: media_player.stue_2
+              name: Stue
+            - entity_id: media_player.kjkken
+              name: Kjøkken
+            - entity_id: media_player.kontor
+              name: Kontor
+            - entity_id: media_player.bad
+              name: Bad
+            - entity_id: media_player.soverom
+              name: Soverom
 
       - type: 'custom:mini-media-player'
         entity: media_player.soverom
@@ -117,13 +117,13 @@ cards:
           show_group_count: true
           # sync_volume: true
           entities:
-          - entity_id: media_player.stue_2
-            name: Stue
-          - entity_id: media_player.kjkken
-            name: Kjøkken
-          - entity_id: media_player.kontor
-            name: Kontor
-          - entity_id: media_player.bad
-            name: Bad
-          - entity_id: media_player.soverom
-            name: Soverom
+            - entity_id: media_player.stue_2
+              name: Stue
+            - entity_id: media_player.kjkken
+              name: Kjøkken
+            - entity_id: media_player.kontor
+              name: Kontor
+            - entity_id: media_player.bad
+              name: Bad
+            - entity_id: media_player.soverom
+              name: Soverom
