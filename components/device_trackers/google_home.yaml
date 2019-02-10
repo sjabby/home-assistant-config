@@ -1,0 +1,5 @@
+---
+platform: googlehome
+host: 192.168.2.60
+new_device_defaults:
+  track_new_devices: false

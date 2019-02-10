@@ -128,7 +128,7 @@ automation:
            | truncate(19,True,'',0),'%Y-%m-%d %H:%M:%S:%f')) seconds since the last Z-Wave update"
 
   - alias: zwave_refresher
-    initial_state: 'off'
+    initial_state: 'on'
     trigger:
       - platform: time_pattern
         minutes: "/20"
