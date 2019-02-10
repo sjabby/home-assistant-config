@@ -1,0 +1,5 @@
+---
+host: !secret mediaplayer_appletv_host
+name: livingroom_appletv
+login_id: !secret mediaplayer_appletv_loginid
+start_off: true

@@ -1,0 +1,9 @@
+---
+homeassistant:
+  name: Hjem
+  latitude: !secret location_latitude
+  longitude: !secret location_longitude
+  elevation: 40
+  unit_system: metric
+  time_zone: Europe/Oslo
+  packages: !include_dir_named components/packages

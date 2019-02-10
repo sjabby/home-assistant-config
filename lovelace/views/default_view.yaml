@@ -1,0 +1,59 @@
+---
+path: default_view
+title: Home
+badges: []
+cards:
+  - type: custom:compact-custom-header
+    header: true
+    notification: false
+    voice: false
+    tabs: true
+    clock: options
+    clock_format: 24
+    dir: '/www/lovelace/cards/compact-custom-header/'
+
+  - type: thermostat
+    entity: climate.fibaro_system_fgt001_heat_controller_heating
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+        - type: sensor
+          entity: sensor.fibaro_system_fgt001_heat_controller_temperature
+          name: Stue
+          hours_to_show: 24
+          detail: 2
+          graph: line
+        - type: sensor
+          entity: sensor.fibaro_system_fgt001_heat_controller_temperature
+          name: Kontor
+          hours_to_show: 24
+          detail: 2
+          graph: line
+        - type: sensor
+          entity: sensor.fibaro_system_fgt001_heat_controller_temperature
+          name: Bad
+          hours_to_show: 24
+          detail: 2
+          graph: line
+      - type: horizontal-stack
+        cards:
+        - type: sensor
+          entity: sensor.fibaro_system_fgt001_heat_controller_temperature
+          name: Soverom
+          hours_to_show: 24
+          detail: 2
+          graph: line
+        - type: sensor
+          entity: sensor.fibaro_system_fgt001_heat_controller_temperature
+          name: Kjøkken
+          hours_to_show: 24
+          detail: 2
+          graph: line
+        - type: sensor
+          entity: sensor.fibaro_system_fgt001_heat_controller_temperature
+          name: Bod
+          hours_to_show: 24
+          detail: 2
+          graph: line

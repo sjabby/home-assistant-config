@@ -1,0 +1,175 @@
+---
+################################################################
+## Packages / Z-Wave
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'zwave'
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+
+    ###############################################
+    ## Sensor
+    ###############################################
+
+    sensor.zwave_health:
+      <<: *customize
+      friendly_name: "Z-Wave Mesh health"
+      icon: mdi:radio-tower
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.test_zwave_network:
+      <<: *customize
+      friendly_name: "Test ZWave Network"
+
+    automation.zwave_health_check:
+      <<: *customize
+      friendly_name: "ZWave Health Check"
+
+    automation.generate_z_wave_graph:
+      <<: *customize
+      friendly_name: "Generate Z-Wave graph"
+
+################################################
+## Z Wave support
+################################################
+
+# zwave:
+#   usb_path: /dev/ttyAMA0
+#   device_config: !include ../zwave_device_config.yaml
+
+################################################
+## Group
+################################################
+
+# group:
+#   zwave_health:
+#     control: hidden
+#     entities:
+#       - sensor.zwave_health
+#       - automation.test_zwave_network
+#       - automation.zwave_health_check
+#       - automation.generate_z_wave_graph
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: template
+    sensors:
+      zwave_health:
+        value_template: >-
+          {%- macro zwave_check() -%}
+          {% for item in states.zwave if ((as_timestamp(now())
+           | int) - as_timestamp(strptime(item.attributes.receivedTS
+           | string | truncate(19,True,'',0),'%Y-%m-%d %H:%M:%S:%f')) | int < 900 )%}
+          {{ item.name.ljust(40) }} - {{ (((as_timestamp(now())
+           | int) - as_timestamp(strptime(item.attributes.receivedTS | string
+           | truncate(19,True,'',0),'%Y-%m-%d %H:%M:%S:%f')) | int)) }} seconds ago
+          {%- endfor %}
+          {%- endmacro -%}
+          {% set output = zwave_check() %}
+          {% if output | trim == "" %}
+          false
+          {% else %}
+          true
+          {% endif %}
+
+###############################################################################
+# Automation:
+###############################################################################
+
+automation:
+  - alias: test_zwave_network
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '03:00:00'
+      - platform: time
+        at: '15:00:00'
+    action:
+      service: zwave.test_network
+
+  - alias: zwave_health_check
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: sensor.zwave_health
+      to: 'false'
+    action:
+      - service: notify.pushover
+        data:
+          message: "It's been {{ (as_timestamp(now())
+           | int) - ([ as_timestamp(strptime(states.zwave.aeotec_zw090_zstick_gen5_eu.attributes.receivedTS | string
+           | truncate(19,True,'',0),'%Y-%m-%d %H:%M:%S:%f')),
+           as_timestamp(strptime(states.zwave.fibaro_system_fgt001_heat_controller.attributes.receivedTS | string
+           | truncate(19,True,'',0),'%Y-%m-%d %H:%M:%S:%f')) seconds since the last Z-Wave update"
+
+  - alias: zwave_refresher
+    initial_state: 'off'
+    trigger:
+      - platform: time_pattern
+        minutes: "/20"
+    action:
+      - service: script.rescan_zwave
+
+  # - alias: generate_z_wave_graph
+  #   trigger:
+  #     platform: time
+  #     minutes: '/60'
+  #     seconds: 00
+  #   action:
+  #     - service: shell_command.z_wave_graph
+
+################################################
+## Shell Command
+################################################
+
+# shell_command:
+#   z_wave_graph: /srv/homeassistant/bin/python3 ~/bin/z-wave-graph.py
+
+################################################
+## Panel Iframe
+################################################
+
+# panel_iframe:
+#   z_wave_graph:
+#     title: 'Z-Wave Graph'
+#     icon: mdi:vector-square
+#     url: !secret z_wave_graph_url
+
+################################################
+## Script
+################################################
+
+script:
+  rescan_zwave:
+    alias: refresh_zwave
+    sequence:
+      - delay: '00:00:30'
+      - alias: refresh_zwave_node_3
+        service: zwave.refresh_node
+        data:
+          node_id: 3

@@ -1,0 +1,6 @@
+---
+platform: entur_public_transport
+name: Transport
+expand_platforms: true
+stop_ids:
+  - 'NSR:StopPlace:28163'

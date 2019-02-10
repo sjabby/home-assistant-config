@@ -1,0 +1,28 @@
+---
+platform: unifi
+host: !secret devicetracker_unify_host
+verify_ssl: false
+
+username: !secret devicetracker_unify_username
+password: !secret devicetracker_unify_password
+
+new_device_defaults:
+  track_new_devices: true
+  hide_if_away: false
+
+site_id: default
+
+person2itored_conditions:
+  - first_seen
+  - hostname
+  - idletime
+  - ip
+  - is_11r
+  - is_guest
+  - is_wired
+  - last_seen
+  - latest_assoc_time
+  - mac
+  - name
+  - powersave_enabled
+  - uptime

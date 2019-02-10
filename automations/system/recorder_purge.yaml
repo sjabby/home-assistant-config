@@ -1,0 +1,11 @@
+---
+initial_state: 'on'
+alias: recorder_purge
+trigger:
+  - platform: time
+    at: '01:00:00'
+action:
+  - service: recorder.purge
+    data:
+      keep_days: 3
+      repack: true

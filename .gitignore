@@ -1,0 +1,25 @@
+# Deny wildcard file/folder::
+.*
+*.log
+*.conf
+*__pycache__*
+
+# Deny spesific file/foler:
+/deps/
+entity_registry.yaml
+known_devices.yaml
+secrets.yaml
+ipbans.yaml
+init.sh
+push.sh
+sanitize.sh
+pyozw.sqlite
+*.old
+*.disabled
+options.xml
+home-assistant_v2.db
+bitbucket-pipelines.yml
+/www/
+
+# Accept spesific file:
+!.gitignore

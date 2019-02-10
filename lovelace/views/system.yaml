@@ -1,0 +1,107 @@
+---
+path: system_view
+title: system
+badges: []
+icon: 'mdi:wrench'
+cards:
+
+  - type: custom:compact-custom-header
+    header: true
+    notification: false
+    voice: false
+    tabs: true
+    clock: options
+    clock_format: 24
+    dir: '/www/lovelace/cards/compact-custom-header/'
+
+  - type: entities
+    title: Tema
+    show_header_toggle: false
+    entities:
+      - input_select.theme_select
+      - automation.set_theme
+      - automation.change_theme
+
+  - type: custom:tracker-card
+    title:
+    trackers:
+      - sensor.custom_card_tracker
+      - sensor.custom_component_tracker
+
+  - type: entities
+    title: Batteristatus
+    show_header_toggle: false
+    entities:
+      - sensor.fibaro_system_fgt001_heat_controller_battery
+
+  - type: entities
+    title: Batterivarsling
+    show_header_toggle: false
+    entities:
+      - input_boolean.low_batteries
+      - input_number.battery_alert_threshold_min
+      - input_number.battery_alert_threshold_max
+      - input_text.delete_battery_sensor
+      - input_text.notifier_name
+      - input_select.notifier_format
+      - automation.battery_persistent_notification
+      - automation.battery_persistent_notification_clear
+      - automation.battery_notification_default
+      - automation.battery_notification_slack
+      - automation.battery_sensor_from_attributes
+      - automation.update_battery_status_group_members
+      - automation.delete_battery_sensor
+
+  - type: entities
+    title: Batterivarsling
+    show_header_toggle: false
+    entities:
+      - group.battery_alert
+      - group.battery_status
+      - group.battery_view
+
+  - type: entities
+    title: Z-Wave
+    show_header_toggle: false
+    entities:
+      - zwave.aeotec_zw090_zstick_gen5_eu
+      - zwave.fibaro_system_fgt001_heat_controller
+
+  - type: 'custom:flex-table-card'
+    sort_by: battery_level+
+    strict: true
+    title: Battery Levels
+    entities:
+      exclude:
+        - unknown_device
+      include: zwave.*
+    columns:
+      - attr: node_id
+        name: NodeID
+      - name: Name
+        prop: name
+      - attr: battery_level
+        name: Reported Battery Level (%)
+
+  - type: 'custom:flex-table-card'
+    max_rows: 25
+    #sort_by: sentTS- # <--- for last sent msg-based sorting
+    sort_by: receivedTS-
+    title: Durations Since Last Message
+    clickable: true   # <--- allows to click on row to show entity-popup for more information
+    columns:
+      - attr: node_id
+        name: NodeID
+      - name: Name
+        prop: name
+      - attr: receivedTS
+        modify: Math.round((Date.now() - Date.parse(x)) / 36000.) / 100.
+        name: Recv. Age (h)
+      - attr: sentTS
+        modify: Math.round((Date.now() - Date.parse(x)) / 36000.) / 100.
+        name: Sent Age (h)
+    entities:
+      exclude:
+        - zwave.unknown_device_*
+        - zstick_gen5
+      include: zwave.*
