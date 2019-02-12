@@ -1,0 +1,4 @@
+---
+name: discord
+platform: discord
+token: !secret discord_token

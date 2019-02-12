@@ -1,0 +1,7 @@
+---
+name: discord_text
+platform: group
+services:
+  - service: discord
+    data:
+      target: !secret discord_target

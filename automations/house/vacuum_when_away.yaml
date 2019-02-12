@@ -1,0 +1,33 @@
+---
+alias: vacuum_when_away
+trigger:
+  - platform: state
+    entity_id: sensor.house_mode
+    to: 'away'
+    for:
+      minutes: 2
+  - platform: time
+    at: '08:01:00'
+condition:
+  condition: and
+  conditions:
+    - condition: time
+      after: '08:00:00'
+      before: '20:00:00'
+      weekday:
+        - tue
+        - fri
+    - condition: state
+      entity_id: sensor.house_mode
+      state: 'away'
+    - condition: template
+      value_template: '{{ now().day != states.automation.vacuum_when_away.attributes.last_triggered.day | default(0) }}'
+action:
+  - service: vacuum.start
+    entity_id: vacuum.rocky
+  # - service: notify.ios_person1s_iphonex
+  #   data_template:
+  #     message: "Rocky har startet å støvsuge..."
+  - service: notify.discord_text
+    data_template:
+      message: ":robot: Rocky har startet å støvsuge..."
