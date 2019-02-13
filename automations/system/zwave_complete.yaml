@@ -1,0 +1,10 @@
+---
+alias: zwave_complete
+initial_state: true
+trigger:
+  platform: event
+  event_type: zwave.network_complete
+action:
+  - service: notify.discord_text
+    data_template:
+      message: "Z-Wave network is complete"

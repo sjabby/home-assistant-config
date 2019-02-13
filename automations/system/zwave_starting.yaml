@@ -1,0 +1,10 @@
+---
+alias: zwave_starting
+initial_state: true
+trigger:
+  platform: event
+  event_type: zwave.network_start
+action:
+  - service: notify.discord_text
+    data_template:
+      message: "Z-Wave network is starting..."
