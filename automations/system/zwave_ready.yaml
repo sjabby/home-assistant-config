@@ -1,0 +1,10 @@
+---
+alias: zwave_ready
+initial_state: true
+trigger:
+  platform: event
+  event_type: zwave.network_ready
+action:
+  - service: notify.discord_text
+    data_template:
+      message: "Z-Wave network is ready!"
