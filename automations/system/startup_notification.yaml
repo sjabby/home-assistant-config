@@ -1,0 +1,18 @@
+---
+alias: startup_notification
+initial_state: true
+trigger:
+  platform: homeassistant
+  event: start
+action:
+  - service: notify.pushover
+    data_template:
+      title: "HASS Status"
+      message: "Home Assistant restarted successfully!"
+  - service: notify.discord_text
+    data_template:
+      message: "Home Assistant restarted successfully!"
+  # - service: notify.html5
+  #   data_template:
+  #    message: "Home Assistant restarted successfully!"
+  
