@@ -1,0 +1,8 @@
+---
+alias: clear_tts_cache
+initial_state: true
+trigger:
+  platform: time
+  at: '4:45:00'
+action:
+  service: tts.clear_cache
