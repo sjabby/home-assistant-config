@@ -15,4 +15,3 @@ action:
   # - service: notify.html5
   #   data_template:
   #    message: "Home Assistant restarted successfully!"
-  
