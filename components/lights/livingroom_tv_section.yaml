@@ -1,0 +1,7 @@
+---
+platform: flux_led
+devices:
+  192.168.2.211:
+    name: tv_seksjon
+    protocol: 'ledenet'
+    mode: 'rgbw'

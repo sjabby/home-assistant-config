@@ -1,0 +1,7 @@
+---
+platform: flux_led
+devices:
+  192.168.2.212:
+    name: seng
+    protocol: 'ledenet'
+    mode: 'rgbw'
