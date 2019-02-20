@@ -1,0 +1,9 @@
+---
+alias: Catch iOS action notification
+trigger:
+- event_type: ios.action_fired
+  platform: event
+action:
+- data_template:
+    message: 'Received action named {{ trigger.event.data.actionName }} from device {{ trigger.event.data.sourceDeviceID }} triggered from {{ trigger.event.data.triggerSource }}'
+  service: notify.discord_text

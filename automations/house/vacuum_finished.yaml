@@ -7,11 +7,12 @@ trigger:
 action:
   # - service: notify.ios_person1s_iphonex
   #   data_template:
-  #     message: >
-  #       Ferdig! Rocky har støvsugd {{states.vacuum.rocky.attributes.cleaned_area}} kvm på
-  #        {{states.vacuum.rocky.attributes.cleaning_time}} minutter!
+  #   message: >-
+  #     :robot: Ferdig! Rocky har støvsugd {{state_attr("vacuum.rocky", "cleaned_area")}} kvm
+  #     på {{state_attr("vacuum.rocky", "cleaning_time")}} minutter!
+
   - service: notify.discord_text
     data_template:
       message: >-
-        :robot: Ferdig! Rocky har støvsugd {{states.vacuum.rocky.attributes.cleaned_area}} kvm på
-         {{states.vacuum.rocky.attributes.cleaning_time}} minutter!
+        :robot: Ferdig! Rocky har støvsugd {{state_attr("vacuum.rocky", "cleaned_area")}} kvm
+        på {{state_attr("vacuum.rocky", "cleaning_time")}} minutter!

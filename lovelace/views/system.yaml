@@ -59,41 +59,69 @@ cards:
       - zwave.aeotec_zw090_zstick_gen5_eu
       - zwave.fibaro_system_fgt001_heat_controller
 
-# - type: 'custom:flex-table-card'
-#   sort_by: battery_level+
-#   strict: true
-#   title: Battery Levels
-#   entities:
-#     exclude:
-#       - unknown_device
-#     include: zwave.*
-#   columns:
-#     - attr: node_id
-#       name: NodeID
-#     - name: Name
-#       prop: name
-#     - attr: battery_level
-#       name: Battery Level (%)
+  - type: 'custom:flex-table-card'
+    sort_by: battery_level+
+    strict: true
+    title: Battery Levels
+    entities:
+      exclude:
+        - unknown_device
+      include: zwave.*
+    columns:
+      - attr: node_id
+        name: NodeID
+      - name: Name
+        prop: name
+      - attr: battery_level
+        name: Battery Level (%)
 
-# - type: 'custom:flex-table-card'
-#   max_rows: 25
-#   #sort_by: sentTS- # <--- for last sent msg-based sorting
-#   sort_by: receivedTS-
-#   title: Durations Since Last Message
-#   clickable: true   # <--- allows to click on row to show entity-popup for more information
-#   columns:
-#     - attr: node_id
-#       name: NodeID
-#     - name: Name
-#       prop: name
-#     - attr: receivedTS
-#       modify: Math.round((Date.now() - Date.parse(x)) / 36000.) / 100.
-#       name: Recv. Age (h)
-#     - attr: sentTS
-#       modify: Math.round((Date.now() - Date.parse(x)) / 36000.) / 100.
-#       name: Sent Age (h)
-#   entities:
-#     exclude:
-#       - zwave.unknown_device_*
-#       - zstick_gen5
-#     include: zwave.*
+  - type: 'custom:flex-table-card'
+    max_rows: 25
+    #sort_by: sentTS- # <--- for last sent msg-based sorting
+    sort_by: receivedTS-
+    title: Durations Since Last Message
+    clickable: true   # <--- allows to click on row to show entity-popup for more information
+    columns:
+      - attr: node_id
+        name: NodeID
+      - name: Name
+        prop: name
+      - attr: receivedTS
+        modify: Math.round((Date.now() - Date.parse(x)) / 36000.) / 100.
+        name: Recv. Age (h)
+      - attr: sentTS
+        modify: Math.round((Date.now() - Date.parse(x)) / 36000.) / 100.
+        name: Sent Age (h)
+    entities:
+      exclude:
+        - zwave.unknown_device_*
+        - zstick_gen5
+      include: zwave.*
+
+  - type: 'custom:flex-table-card'
+    sort_by: name
+    # strict: true
+    title: Sonoff Strømforbruk
+    entities:
+      exclude:
+        - unknown_device
+      include: sensor.sonoff*power*
+    columns:
+      - name: Name
+        prop: name
+      - prop: state
+        name: Strømtrekk (W)
+
+  - type: 'custom:flex-table-card'
+    sort_by: name
+    # strict: true
+    title: Sonoff Strømforbruk
+    entities:
+      exclude:
+        - unknown_device
+      include: sensor.sonoff*energy*
+    columns:
+      - name: Name
+        prop: name
+      - prop: state
+        name: Strømbruk (kWh)

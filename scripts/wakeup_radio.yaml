@@ -1,0 +1,20 @@
+---
+wakeup_radio:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.wakeup_radio
+      state: 'on'
+    - delay: '00:{{ states.input_number.wakeup_duration.state | int }}:00'
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.bad, media_player.soverom
+        volume_level: 0.3
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.bad, media_player.soverom
+        source: Radio Norge
+    - delay: '00:03:00'
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.bad, media_player.soverom
+        volume_level: 0.5

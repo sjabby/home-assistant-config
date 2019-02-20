@@ -1,0 +1,6 @@
+---
+platform: mqtt
+name: "Sonoff POW 04 Power"
+state_topic: "tele/SONOFF_POW4/SENSOR"
+value_template: '{{ value_json["ENERGY"]["Power"] }}'
+unit_of_measurement: "W"

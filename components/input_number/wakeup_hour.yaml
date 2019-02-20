@@ -1,0 +1,6 @@
+---
+wakeup_hour:
+  initial: 6
+  min: 0
+  max: 23
+  step: 1

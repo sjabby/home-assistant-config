@@ -1,0 +1,11 @@
+---
+path: weather_view
+title: Weather
+badges: []
+icon: 'mdi:weather-cloudy'
+panel: true
+cards:
+  - type: iframe
+    aspect_ratio: 100%
+    entity: null
+    url: 'https://embed.windy.com/embed2.html?lat=58.993&lon=5.707&zoom=11&level=surface&overlay=wind&menu=&message=true&marker=true&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=58.974&detailLon=5.728&metricWind=default&metricTemp=%C2%B0C&radarRange=-1'

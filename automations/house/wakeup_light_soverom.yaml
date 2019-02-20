@@ -1,0 +1,19 @@
+---
+alias: wakeup_light_soverom
+trigger:
+  platform: template
+  value_template: '{{ states.sensor.time.state == states.sensor.wakeup_start_time_lights.state }}'
+condition:
+  - condition: state
+    entity_id: input_boolean.wakeup
+    state: 'on'
+  - condition: or
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.wakeup_weekends
+        state: 'on'
+action:
+  service: script.wakeup_bedroom

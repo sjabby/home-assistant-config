@@ -1,0 +1,3 @@
+---
+guest_mode:
+  initial: false

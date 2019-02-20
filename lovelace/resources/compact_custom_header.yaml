@@ -1,3 +1,3 @@
 ---
-url: /local/lovelace/cards/compact-custom-header/compact-custom-header.js?v=0.0.2
-type: js
+url: /customcards/lovelace/cards/compact-custom-header/compact-custom-header.js
+type: module

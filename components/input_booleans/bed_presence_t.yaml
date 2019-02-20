@@ -1,0 +1,4 @@
+---
+bed_presence_t:
+  initial: false
+  icon: mdi:hotel

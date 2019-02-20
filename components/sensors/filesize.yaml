@@ -1,0 +1,6 @@
+---
+platform: filesize
+scan_interval: 3600
+file_paths:
+  - /home/homeassistant/.homeassistant/home-assistant_v2.db
+  - /home/homeassistant/.homeassistant/home-assistant.log

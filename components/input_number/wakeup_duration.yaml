@@ -1,0 +1,6 @@
+---
+wakeup_duration:
+  initial: 10
+  min: 5
+  max: 60
+  step: 5

@@ -1,0 +1,11 @@
+---
+platform: mqtt
+name: "Sonoff POW 06"
+command_topic: "cmnd/SONOFF_POW6/power"
+state_topic: "stat/SONOFF_POW6/POWER"
+qos: 1
+payload_on: "ON"
+payload_off: "OFF"
+availability_topic: "tele/SONOFF_POW6/LWT"
+payload_available: "Online"
+payload_not_available: "Offline"

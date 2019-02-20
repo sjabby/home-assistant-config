@@ -1,0 +1,9 @@
+---
+platform: history_stats
+name: sleep_t
+entity_id: input_boolean.bed_presence_t
+state: 'on'
+type: time
+end: '{{ now().replace(hour=14).replace(minute=0).replace(second=0) }}'
+duration:
+  hours: 24

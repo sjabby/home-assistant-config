@@ -1,0 +1,16 @@
+---
+alias: "System - Update Stats Sensors"
+initial_state: 'on'
+trigger:
+  platform: time_pattern
+  minutes: '/25'
+action:
+  - service: homeassistant.update_entity
+    entity_id:
+      - sensor.stats_sensors
+      - sensor.stats_automations
+      - sensor.stats_scripts
+      - sensor.stats_devicetrackers
+      - sensor.stats_switches
+      - sensor.stats_lights
+      - sensor.stats_zwave_devices

@@ -1,0 +1,27 @@
+---
+platform: template
+sensors:
+  wakeup_start_time_lights:
+    value_template: >-
+      {% if states.sensor.wakeup_alarm_time and states.input_number.wakeup_duration %}
+        {% set alarmtime = states('sensor.wakeup_alarm_time') %}
+        {% set alarm_hour = alarmtime.split(':')[0]|int %}
+        {% set alarm_min = alarmtime.split(':')[1]|int %}
+        {% set light_dur = states('input_number.wakeup_duration')|int %}
+        {% set alarm_min_light = alarm_min - light_dur %}
+
+        {% if alarm_min_light < 0 %}
+          {% set alarm_min_light = alarm_min_light + 60 %}
+          {% set alarm_hour_light = alarm_hour - 1 %}
+
+          {% if alarm_hour_light < 0 %}
+            {% set alarm_hour_light = 23 %}
+          {% endif %}
+
+          {% set alarm_hour = alarm_hour_light %}
+        {% endif %}
+
+        {{ (alarm_hour|string).zfill(2) }}:{{ (alarm_min_light|string).zfill(2) }}
+      {% else %}
+        ukjent
+      {% endif %}

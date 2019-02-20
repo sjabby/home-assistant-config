@@ -1,0 +1,5 @@
+---
+more_info_person1:
+  name: Enable more info card for person1
+  initial: false
+  icon: mdi:person

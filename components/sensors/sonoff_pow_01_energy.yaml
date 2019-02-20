@@ -1,0 +1,6 @@
+---
+platform: mqtt
+name: "Sonoff POW 01 Energy"
+state_topic: "tele/SONOFF_POW1/SENSOR"
+value_template: '{{ value_json["ENERGY"]["Today"] }}'
+unit_of_measurement: "kWh"
