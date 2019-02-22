@@ -13,14 +13,14 @@ clear:
   # Header
   primary-color: 'var(--text-color)'                                              # Background
   text-primary-color: '#FFF'                                                      # Text
-  
+
   # Left Menu
   paper-listbox-background-color: 'var(--background-color)'                       # Background
 
   # UI
   paper-card-header-color: 'var(--text-color)'                                    # Title in settings
   primary-background-color: 'var(--background-color)'                             # Background (also title background in left menu)
-  
+
   # Card
   paper-card-background-color: 'var(--background-card-color)'                     # Background
   dark-primary-color: 'var(--text-color)'
@@ -35,13 +35,13 @@ clear:
   # Icons
   paper-item-icon-color: 'var(--text-light-color)'                                # Off
   paper-item-icon-active-color: 'var(--accent-color)'                             # On
-  
+
   # Switches
   paper-toggle-button-checked-button-color: '#FFF'                                # Knob On
   paper-toggle-button-checked-bar-color: '#0077FF'                                # Background On
   paper-toggle-button-unchecked-button-color: '#FFF'                              # Knob Off
   paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)'           # Background Off
-  
+
   # Shadows
   shadow-elevation-2dp_-_box-shadow: 'inset 0px 0px 0px 1px var(--border-color)'
   shadow-elevation-4dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'

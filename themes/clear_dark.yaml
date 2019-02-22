@@ -15,7 +15,7 @@ clear_dark:
   # Header
   primary-color: '#363941'                                                        # Background
   text-primary-color: 'var(--text-color)'                                         # Text
-  
+
   # Left Menu
   paper-listbox-background-color: 'var(--background-color)'                       # Background
   sidebar-icon-color: 'var(--text-medium-color)'                                  # icons
@@ -26,7 +26,7 @@ clear_dark:
   paper-card-header-color: 'var(--text-color)'                                    # Title in settings
   primary-background-color: 'var(--background-color)'                             # Background (also title background in left menu)
   mdc-theme-primary: 'var(--accent-medium-color)'                                 # Action Buttons (save, restart etc.)
-  
+
   # Card
   paper-card-background-color: 'var(--background-card-color)'                     # Background
   dark-primary-color: 'var(--text-color)'
@@ -41,13 +41,13 @@ clear_dark:
   # Icons
   paper-item-icon-color: 'var(--text-dark-color)'                                 # Off
   paper-item-icon-active-color: 'var(--accent-color)'                             # On
-  
+
   # Switches
   paper-toggle-button-checked-button-color: 'var(--text-medium-light-color)'      # Knob On
   paper-toggle-button-checked-bar-color: '#009FFF'                                # Background On
   paper-toggle-button-unchecked-button-color: 'var(--text-medium-light-color)'    # Knob Off
   paper-toggle-button-unchecked-bar-color: '#767682'                              # Background Off
-  
+
   # Shadows
   shadow-elevation-2dp_-_box-shadow: 'inset 0px 0px 0px 1px var(--border-color)'
   shadow-elevation-4dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
