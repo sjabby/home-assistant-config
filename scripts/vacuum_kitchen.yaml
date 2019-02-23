@@ -1,0 +1,9 @@
+---
+vacuum_kitchen:
+  alias: "Støvsug kjøkken"
+  sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.rocky
+        command: app_zoned_clean
+        params: [[31194,21439,34294,24539,1]]

@@ -1,0 +1,9 @@
+---
+vacuum_bedroom:
+  alias: "Støvsug soverom"
+  sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.rocky
+        command: app_zoned_clean
+        params: [[34415,21029,37715,25929,1]]
