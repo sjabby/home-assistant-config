@@ -3,7 +3,7 @@ alias: vacuum_finished
 trigger:
   - platform: state
     entity_id: sensor.xiaomi_vacuum_cleaner_status
-    to: 'Charging'
+    to: 'Docked'
 action:
   # - service: notify.ios_person1s_iphonex
   #   data_template:

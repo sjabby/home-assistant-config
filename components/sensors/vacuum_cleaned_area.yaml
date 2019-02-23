@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  vacuum_cleaned_area:
+    friendly_name: "Areal"
+    unit_of_measurement: 'm2'
+    value_template: "{{ state_attr('vacuum.rocky', 'cleaned_area') }}"
+    icon_template: 'mdi:ruler'

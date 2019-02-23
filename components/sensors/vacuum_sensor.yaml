@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  vacuum_sensor:
+    friendly_name: "Sensor"
+    unit_of_measurement: 'h'
+    value_template: "{{ state_attr('vacuum.rocky', 'sensor_dirty_left') }}"
+    icon_template: 'mdi:screwdriver'

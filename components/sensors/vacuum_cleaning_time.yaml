@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  vacuum_cleaning_time:
+    friendly_name: "Tid"
+    unit_of_measurement: 'm'
+    value_template: "{{ state_attr('vacuum.rocky', 'cleaning_time') }}"
+    icon_template: 'mdi:timer'

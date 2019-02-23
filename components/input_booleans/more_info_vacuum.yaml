@@ -1,0 +1,5 @@
+---
+more_info_vacuum:
+  name: Enable more info card for Vacuum
+  initial: false
+  icon: mdi:vacuum

@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  vacuum_sidebrush:
+    friendly_name: "Sidebørste"
+    unit_of_measurement: 'h'
+    value_template: "{{ state_attr('vacuum.rocky', 'side_brush_left') }}"
+    icon_template: 'mdi:screwdriver'
