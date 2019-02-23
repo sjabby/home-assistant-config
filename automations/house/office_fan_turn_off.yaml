@@ -1,0 +1,22 @@
+---
+alias: office_fan_turn_off
+trigger:
+  - platform: state
+    entity_id: binary_sensor.kontor_multisensor_motion
+    to: 'off'
+    for: '00:10:00'
+  - platform: state
+    entity_id: sensor.house_mode
+    to: 'away'
+condition:
+  - condition: template
+    value_template: >-
+      "{{ not is_state('sensor.steam_76561198015754950', 'online') }}"
+  - condition: template
+    value_template: "{{ not is_state('sensor.playingonsteam', 'game') }}"
+  - condition: template
+    value_template: >-
+      "{{ not is_state('media_player.plex_sjabbyrogw8', 'playing') }}"
+action:
+  - service: homeassistant.turn_off
+    entity_id: fan.office
