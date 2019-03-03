@@ -1,0 +1,6 @@
+---
+platform: steam_online
+api_key: !secret steam_api
+accounts:
+  # sticky
+  - 76561198015754950

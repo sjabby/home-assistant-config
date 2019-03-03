@@ -1,0 +1,10 @@
+---
+alias: tablet_start_charging
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.tablet_battery_level
+    below: 21
+action:
+  - service: switch.turn_on
+    entity_id:
+      - switch.powerplug_tablet_switch

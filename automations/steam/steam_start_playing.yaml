@@ -1,0 +1,26 @@
+---
+alias: steam_start_playing
+trigger:
+  platform: state
+  entity_id: sensor.playingonsteam
+  to: 'game'
+  from: 'none'
+action:
+  - service: light.turn_on
+    entity_id: light.hue_iris_1
+    data:
+      brightness: 200
+      transition: 5
+      rgb_color: [255, 0, 50]
+  - service: light.turn_on
+    entity_id: light.hue_iris_2
+    data:
+      brightness: 200
+      transition: 5
+      rgb_color: [20, 85, 255]
+  - service: light.turn_on
+    entity_id: light.kontoret_taklampe
+    data:
+      brightness: 50
+      transition: 5
+      color_temp: 154

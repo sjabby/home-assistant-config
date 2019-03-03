@@ -1,0 +1,17 @@
+---
+platform: template
+sensors:
+  playingonsteam:
+    value_template: >-
+      {% if states.sensor.steam_76561198015754950.attributes.game -%}
+        {% if states.sensor.steam_76561198015754950.attributes.game |
+        lower == 'none' or
+          states.sensor.steam_76561198015754950.attributes.game|
+          lower == 'unknown' -%}
+          none
+        {% else %}
+          game
+        {% endif %}
+      {%- else -%}
+        none
+      {%- endif -%}

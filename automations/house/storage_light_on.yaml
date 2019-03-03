@@ -1,0 +1,10 @@
+---
+alias: storage_light_on
+initial_state: 'on'
+trigger:
+  - platform: state
+    entity_id: binary_sensor.multisensor_storage_sensor
+    to: 'on'
+action:
+  service: switch.turn_on
+  entity_id: switch.storage_switch_switch

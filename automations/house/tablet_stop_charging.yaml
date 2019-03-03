@@ -1,0 +1,10 @@
+---
+alias: tablet_stop_charging
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.tablet_battery_level
+    above: 89
+action:
+  - service: switch.turn_off
+    entity_id:
+      - switch.powerplug_tablet_switch

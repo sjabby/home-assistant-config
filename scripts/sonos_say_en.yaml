@@ -1,0 +1,31 @@
+---
+sonos_say_en:
+  alias: "Sonos TTS script English"
+  sequence:
+    - condition: and
+      conditions:
+        - condition: time
+          after: '06:00:00'
+          before: '21:00:00'
+    # - condition: state
+    #   entity_id: sensor.house_mode
+    #   state: 'home'
+    - service: media_player.sonos_snapshot
+      data_template:
+        entity_id: "{{ sonos_entity }}"
+    - service: media_player.sonos_unjoin
+      data_template:
+        entity_id: "{{ sonos_entity }}"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: "{{ sonos_entity }}"
+        volume_level: "{{ volume }}"
+    - service: tts.google_say
+      data_template:
+        entity_id: "{{ sonos_entity }}"
+        message: "{{ message }}"
+        language: 'en'
+    - delay: "{{ delay }}"
+    - service: media_player.sonos_restore
+      data_template:
+        entity_id: "{{ sonos_entity }}"
