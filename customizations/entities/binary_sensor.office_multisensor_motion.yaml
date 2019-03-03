@@ -1,0 +1,4 @@
+---
+binary_sensor.office_multisensor_motion:
+  device_class: motion
+  friendly_name: Kontor PIR

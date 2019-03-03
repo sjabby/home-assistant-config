@@ -1,0 +1,31 @@
+---
+alias: livingroom_ambientlight_off
+trigger:
+  - platform: time
+    at: '23:30:00'
+  - platform: state
+    entity_id: binary_sensor.tv
+    to: 'off'
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.tv
+    state: 'off'
+  - condition: time
+    after: '23:30:00'
+    before: '06:00:00'
+
+action:
+  - service: switch.turn_off
+    entity_id:
+      - switch.livingroom_moodlight_1_switch
+      - switch.livingroom_moodlight_2_switch
+      - switch.sonoff_pow_06
+
+  - service: light.turn_off
+    entity_id:
+      - light.tv_seksjon
+
+  - service: notify.discord_text
+    data_template:
+      message: "Bakgrunnslys i stuen er skrudd av."

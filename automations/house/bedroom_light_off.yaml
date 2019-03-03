@@ -1,0 +1,19 @@
+---
+alias: bedroom_light_off
+trigger:
+  - platform: state
+    entity_id: binary_sensor.bedroom_multisensor_motion
+    to: 'off'
+    for: '00:10:00'
+
+action:
+  - service: light.turn_off
+    entity_id:
+      - light.bedroom_bed_led
+      - light.soverom
+      - light.taklampe_1
+      - light.taklampe_2
+      - light.taklampe_3
+      - light.hue_color_lamp_1
+    data:
+      transition: 1

@@ -1,0 +1,8 @@
+---
+platform: command_line
+switches:
+  tablet_screen:
+    command_on: !secret tablet_screen_on
+    command_off: !secret tablet_screen_off
+    command_state: !secret tablet_screen_state
+    value_template: '{{ value == "on" }}'

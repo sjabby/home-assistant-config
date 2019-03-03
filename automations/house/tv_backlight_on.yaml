@@ -1,0 +1,35 @@
+---
+alias: tv_backlight_on
+
+trigger:
+  - platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  - platform: state
+    entity_id: sensor.house_mode
+    to: 'home'
+  - platform: state
+    entity_id: sensor.house_mode
+    to: 'guest'
+  - platform: state
+    entity_id: binary_sensor.tv
+    to: 'on'
+
+condition:
+  condition: and
+  conditions:
+    - condition: time
+      before: '23:30:00'
+    - condition: sun
+      after: sunset
+    - condition: state
+      entity_id: binary_sensor.tv
+      state: 'on'
+
+action:
+  service: light.turn_on
+  data_template:
+    entity_id: light.hue_lightstrip_plus_1
+    rgb_color: [205, 195, 255]
+    brightness_pct: 45
+    transition: 3

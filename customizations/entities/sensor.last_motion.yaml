@@ -1,0 +1,3 @@
+---
+sensor.last_motion:
+  friendly_name: Siste bevegelse

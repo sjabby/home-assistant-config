@@ -1,0 +1,47 @@
+---
+alias: livingroom_ambientlight_on
+trigger:
+  - platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  - platform: state
+    entity_id: sensor.house_mode
+    to: 'home'
+  - platform: state
+    entity_id: sensor.house_mode
+    to: 'guest'
+
+condition:
+  condition: and
+  conditions:
+    - condition: time
+      before: '23:30:00'
+    - condition: sun
+      before: sunset
+      before_offset: "00:40:00"
+    - condition: sun
+      after: sunset
+      after_offset: "-01:00:00"
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: sensor.house_mode
+          state: 'home'
+        - condition: state
+          entity_id: sensor.house_mode
+          state: 'guest'
+
+action:
+  - service: switch.turn_on
+    entity_id:
+      - switch.livingroom_moodlight_1_switch
+      - switch.livingroom_moodlight_2_switch
+      - switch.sonoff_pow_06
+
+  - service: light.turn_on
+    entity_id:
+      - light.tv_seksjon
+
+  - service: notify.discord_text
+    data_template:
+      message: "Det er kveld, bakgrunnslys i stuen er skrudd på."

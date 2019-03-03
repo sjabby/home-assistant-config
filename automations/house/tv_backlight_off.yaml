@@ -1,0 +1,12 @@
+---
+alias: tv_backlight_off
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.tv
+    to: 'off'
+
+action:
+  service: light.turn_off
+  data_template:
+    entity_id: light.hue_lightstrip_plus_1

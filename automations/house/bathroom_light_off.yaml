@@ -1,0 +1,16 @@
+---
+alias: bathroom_light_off
+initial_state: 'on'
+trigger:
+  - platform: state
+    entity_id: binary_sensor.bathroom_multisensor_motion
+    to: 'off'
+    for: '00:08:00'
+action:
+  - service: switch.turn_off
+    entity_id:
+      - switch.bathroom_switch_switch
+
+  - service: light.turn_off
+    entity_id:
+      - light.bathroom_dimmer_level

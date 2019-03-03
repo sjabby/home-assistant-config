@@ -1,0 +1,23 @@
+---
+platform: rest
+name: tablet
+json_attributes:
+  - batteryLevel
+  - kioskMode
+  - screenBrightness
+  - motionDetectorState
+  - maintenanceMode
+  - appFreeMemory
+  - appUsedMemory
+  - totalFreeMemory
+  - totalUsedMemory
+  - hostname4
+  - ip4
+  - mac
+  - locationLatitude
+  - locationLongitude
+  - locationAltitude
+  - startUrl
+  - currentPage
+resource: !secret tablet
+value_template: '{{ value_json.isScreenOn }}'

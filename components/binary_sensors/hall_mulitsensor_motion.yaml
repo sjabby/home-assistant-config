@@ -1,0 +1,10 @@
+---
+platform: template
+sensors:
+  hall_multisensor_motion:
+    value_template: >-
+      {%- if is_state("sensor.hall_multisensor_burglar", "8") -%}
+      true
+      {%- else -%}
+      false
+      {%- endif -%}

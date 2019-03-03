@@ -1,0 +1,23 @@
+---
+platform: template
+sensors:
+  last_motion:
+    icon_template: 'mdi:walk'
+    friendly_name: Siste bevegelse
+    entity_id:
+      - binary_sensor.office_multisensor_motion
+      - binary_sensor.hall_multisensor_motion
+      - binary_sensor.storage_multisensor_motion
+      - binary_sensor.bedroom_multisensor_motion
+      - binary_sensor.bathroom_multisensor_motion
+    value_template: >
+      {%- set sensors = [states.binary_sensor.hall_multisensor_motion,
+        states.binary_sensor.storage_multisensor_motion,
+        states.binary_sensor.bedroom_multisensor_motion,
+        states.binary_sensor.office_multisensor_motion,
+        states.binary_sensor.bathroom_multisensor_motion] %}
+      {% for sensor in sensors %}
+        {% if as_timestamp(sensor.last_changed) == as_timestamp(sensors | map(attribute='last_changed') | max) %}
+          {{ sensor.name }}
+        {% endif %}
+      {% endfor %}

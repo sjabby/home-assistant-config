@@ -3,7 +3,7 @@ alias: storage_light_off
 initial_state: 'on'
 trigger:
   - platform: state
-    entity_id: binary_sensor.multisensor_storage_sensor
+    entity_id: binary_sensor.storage_multisensor_motion
     to: 'off'
     for: '00:02:00'
 action:

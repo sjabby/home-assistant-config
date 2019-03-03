@@ -1,0 +1,21 @@
+---
+alias: hall_light_off
+trigger:
+  - platform: state
+    entity_id: binary_sensor.hall_multisensor_motion
+    to: 'off'
+    for: '00:8:00'
+action:
+  service: homeassistant.turn_off
+  data_template:
+    entity_id: group.gang_lys_kort
+    transition: >-
+      {% if is_state("input_select.home_mode", "Dag") %}
+      {{ states('input_number.home_mode_day_transition_value') | int }}
+      {% elif is_state("input_select.home_mode", "Kveld") %}
+      {{ states('input_number.home_mode_evening_transition_value') | int }}
+      {% elif is_state("input_select.home_mode", "Natt") %}
+      {{ states('input_number.home_mode_night_transition_value') | int }}
+      {% else %}
+        10
+      {% endif %}

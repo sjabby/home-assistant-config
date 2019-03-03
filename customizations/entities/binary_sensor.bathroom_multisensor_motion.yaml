@@ -1,0 +1,4 @@
+---
+binary_sensor.bathroom_multisensor_motion:
+  device_class: motion
+  friendly_name: Bad PIR

@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  tv:
+    friendly_name: "TV"
+    device_class: power
+    icon_template: mdi:television
+    value_template: "{{ states('sensor.powerplug_tv_power')|float > 2 }}"

@@ -1,0 +1,16 @@
+---
+alias: keyfob_square_short
+initial_state: true
+hide_entity: false
+trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.fibaro_keyfob
+      scene_id: 1
+      scene_data: 7680
+action:
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - fan.bedroom

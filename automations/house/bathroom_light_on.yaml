@@ -1,0 +1,40 @@
+---
+alias: bathroom_light_on
+trigger:
+  - platform: state
+    entity_id: binary_sensor.bathroom_multisensor_motion
+    to: 'on'
+action:
+  service: light.turn_on
+  data_template:
+    entity_id: light.bathroom_dimmer_level
+    color_temp: >-
+      {% if is_state("input_select.home_mode", "Dag") %}
+      {{ states('input_number.home_mode_day_color_temp_value') | int }}
+      {% elif is_state("input_select.home_mode", "Kveld") %}
+      {{ states('input_number.home_mode_evening_color_temp_value') | int }}
+      {% elif is_state("input_select.home_mode", "Natt") %}
+      {{ states('input_number.home_mode_night_color_temp_value') | int }}
+      {% else %}
+        180
+      {% endif %}
+    brightness_pct: >-
+      {% if is_state("input_select.home_mode", "Dag") %}
+      {{ states('input_number.home_mode_day_brightness_value') | int }}
+      {% elif is_state("input_select.home_mode", "Kveld") %}
+      {{ states('input_number.home_mode_evening_brightness_value') | int }}
+      {% elif is_state("input_select.home_mode", "Natt") %}
+      {{ states('input_number.home_mode_night_brightness_value') | int }}
+      {% else %}
+        100
+      {% endif %}
+    transition: >-
+      {% if is_state("input_select.home_mode", "Dag") %}
+      {{ states('input_number.home_mode_day_transition_value') | int }}
+      {% elif is_state("input_select.home_mode", "Kveld") %}
+      {{ states('input_number.home_mode_evening_transition_value') | int }}
+      {% elif is_state("input_select.home_mode", "Natt") %}
+      {{ states('input_number.home_mode_night_transition_value') | int }}
+      {% else %}
+        1
+      {% endif %}

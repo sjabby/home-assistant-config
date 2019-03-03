@@ -1,0 +1,66 @@
+sensor.bathroom_multisensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_multisensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_multisensor_ultraviolet:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_switch_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_switch_exporting_2:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_switch_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_switch_heat:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_switch_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_dimmer_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_dimmer_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_dimmer_heat:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_dimmer_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_dimmer_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_dimmer_system:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_dimmer_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_multisensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_switch_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_switch_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.bedroom_multisensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.bedroom_multisensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.bedroom_multisensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.bedroom_multisensor_ultraviolet:
+  ignored: true
+  polling_intensity: 0

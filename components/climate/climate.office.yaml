@@ -2,8 +2,9 @@
 platform: generic_thermostat
 name: office
 heater: switch.sonoff_pow_04
-target_sensor: sensor.fibaro_system_fgt001_heat_controller_temperature
+target_sensor: sensor.radiator_temperature
 target_temp: 19
 min_temp: 14
 max_temp: 28
-tolerance: 0.5
+min_cycle_duration:
+  seconds: 30
