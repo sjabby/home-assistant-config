@@ -6,9 +6,9 @@ trigger:
     to: 'off'
     for: '00:8:00'
 action:
-  service: homeassistant.turn_off
+  service: light.turn_off
   data_template:
-    entity_id: group.gang_lys_kort
+    entity_id: light.hue_gang_taklampe
     transition: >-
       {% if is_state("input_select.home_mode", "Dag") %}
       {{ states('input_number.home_mode_day_transition_value') | int }}
