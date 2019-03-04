@@ -1,0 +1,4 @@
+---
+energy_pc:
+  source: sensor.powerplug_pc_energy
+  cycle: daily

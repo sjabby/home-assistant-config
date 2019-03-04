@@ -1,0 +1,4 @@
+---
+energy_tv:
+  source: sensor.powerplug_tv_energy
+  cycle: daily
