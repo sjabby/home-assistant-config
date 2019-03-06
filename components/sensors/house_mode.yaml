@@ -8,13 +8,13 @@ sensors:
       - sensor.household
     value_template: >-
       {% if is_state('input_boolean.guest_mode', 'on') %}
-        gjest
+        guest
       {% elif is_state('sensor.household', 'home') %}
-        hjemme
+        home
       {% elif is_state('input_boolean.vacation_mode', 'on') %}
-        ferie
+        vacation
       {% else %}
-        borte
+        away
       {% endif %}
     icon_template: >-
       {% if is_state('input_boolean.guest_mode', 'on') %}
