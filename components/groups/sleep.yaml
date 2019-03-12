@@ -1,0 +1,5 @@
+---
+sleep:
+  entities:
+    - input_boolean.bed_presence_m
+    - input_boolean.bed_presence_t

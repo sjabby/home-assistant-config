@@ -1,0 +1,6 @@
+---
+home_mode:
+  options:
+    - Dag
+    - Kveld
+    - Natt

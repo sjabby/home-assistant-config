@@ -1,0 +1,6 @@
+---
+home_mode_evening_color_temp_value:
+  #    initial: 154
+  min: 154
+  max: 426
+  step: 1

@@ -1,0 +1,9 @@
+---
+platform: min_max
+type: mean
+round_digits: 1
+entity_ids:
+  - sensor.hall_multisensor_temperature
+  - sensor.bedroom_multisensor_temperature
+  - sensor.office_multisensor_temperature
+  - sensor.radiator_temperature

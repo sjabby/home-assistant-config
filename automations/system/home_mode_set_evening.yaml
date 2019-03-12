@@ -1,0 +1,12 @@
+---
+alias: home_mode_set_evening
+initial_state: true
+trigger:
+  - platform: sun
+    event: sunset
+    offset: "-01:00:00"
+action:
+  service: input_select.select_option
+  data:
+    entity_id: input_select.home_mode
+    option: Kveld

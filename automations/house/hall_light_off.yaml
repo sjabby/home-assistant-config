@@ -4,7 +4,7 @@ trigger:
   - platform: state
     entity_id: binary_sensor.hall_multisensor_motion
     to: 'off'
-    for: '00:8:00'
+    for: '00:08:00'
 action:
   service: light.turn_off
   data_template:
