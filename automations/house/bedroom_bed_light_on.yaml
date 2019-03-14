@@ -1,0 +1,13 @@
+---
+alias: bedroom_bed_light_on
+trigger:
+  - platform: state
+    entity_id: light.soverom
+    to: 'on'
+
+action:
+  - service: light.turn_on
+    entity_id:
+      - light.bedroom_bed_led
+    data:
+      transition: 1
