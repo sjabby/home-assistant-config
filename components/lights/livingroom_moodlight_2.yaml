@@ -1,0 +1,4 @@
+---
+platform: switch
+name: livingroom_moodlight_2
+entity_id: switch.livingroom_moodlight_2_switch

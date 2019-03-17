@@ -1,0 +1,4 @@
+---
+platform: switch
+name: bathroom_mirror
+entity_id: switch.bathroom_switch_switch

@@ -1,0 +1,4 @@
+---
+platform: switch
+name: livingroom_moodlight_3
+entity_id: switch.sonoff_pow_06
