@@ -6,4 +6,4 @@ vacuum_office:
       data:
         entity_id: vacuum.rocky
         command: app_zoned_clean
-        params: [[34478,26000,37828,28350,1]]
+        params: [[34478, 26000, 37828, 28350, 1]]

@@ -6,4 +6,4 @@ vacuum_hallway:
       data:
         entity_id: vacuum.rocky
         command: app_zoned_clean
-        params: [[32810,24587,34410,28337,1]]
+        params: [[32810, 24587, 34410, 28337, 1]]

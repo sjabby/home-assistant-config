@@ -1,3 +1,4 @@
+---
 household:
   entities:
     - device_tracker.person1siphonex

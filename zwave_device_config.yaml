@@ -1,3 +1,4 @@
+---
 sensor.bathroom_multisensor_alarm_type:
   ignored: true
   polling_intensity: 0

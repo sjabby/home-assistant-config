@@ -40,7 +40,7 @@ clear:
   paper-toggle-button-checked-button-color: '#FFF'                 # Knob On
   paper-toggle-button-checked-bar-color: '#0077FF'                 # Background On
   paper-toggle-button-unchecked-button-color: '#FFF'               # Knob Off
-  paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)' # Background Off
+  paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)'     # Background Off
 
   # Shadows
   shadow-elevation-2dp_-_box-shadow: 'inset 0px 0px 0px 1px var(--border-color)'
