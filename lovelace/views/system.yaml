@@ -14,6 +14,92 @@ cards:
     clock_format: 24
     dir: '/www/lovelace/cards/compact-custom-header/'
 
+  - type: vertical-stack
+    cards:
+      - type: glance
+        columns: 7
+        show_name: true
+        entities:
+          - entity: sensor.stats_sensors
+            name: Sensorer
+            icon: mdi:counter
+
+          - entity: sensor.stats_automations
+            name: Auto
+            icon: mdi:robot
+            hold_action:
+              action: call-service
+              service: automation.reload    # reloads automations when long-pressed
+
+          - entity: sensor.stats_scripts
+            name: Script
+            icon: mdi:script-text-outline
+            hold_action:
+              action: call-service
+              service: script.reload    # reloads scripts when long-pressed
+
+          - entity: sensor.stats_devicetrackers
+            name: Enheter
+            icon: mdi:cellphone-link
+
+          - entity: sensor.stats_switches
+            name: Switcher
+            icon: mdi:power-socket-us
+
+          - entity: sensor.stats_lights
+            name: Lys
+            icon: mdi:lightbulb-on
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/lights/
+
+          - entity: sensor.stats_zwave_devices
+            name: ZWave
+            icon: mdi:z-wave
+
+      - type: glance
+        columns: 5
+        show_name: true
+        entities:
+          - entity: sensor.home_assistant_v2_db
+            name: Database
+            icon: mdi:database
+            hold_action:
+              action: call-service
+              service: recorder.purge     # purges db keeping last 3 days only
+              data:
+                keep_days: 3
+                repack: true
+
+          - entity: sensor.home_assistant_log
+            name: Loggfil
+            icon: mdi:file-alert-outline
+            tap_action:
+              action: navigate
+              navigation_path: /dev-info    # goes to log in HA when tapped
+            hold_action:
+              action: call-service
+              service: system_log.clear     # clears log in HA when long-pressed
+
+          - entity: sensor.ozw_log_txt
+            name: Z-Wave log
+            icon: mdi:file-alert-outline
+            # tap_action:
+            #   action: navigate
+            #   navigation_path: /dev-info # goes to log in HA when tapped
+            # hold_action:
+            #   action: call-service
+            #   service: system_log.clear # clears log in HA when long-pressed
+
+          - entity: sensor.uptime
+            name: Uptime
+            hold_action:
+              action: call-service
+              service: homeassistant.restart    # restarts HA when long-pressed
+
+          - entity: sensor.current_version
+            name: Versjon
+
   - type: custom:tracker-card
     title:
     trackers:
@@ -52,12 +138,35 @@ cards:
       - group.battery_status
       - group.battery_view
 
-  - type: entities
-    title: Z-Wave
-    show_header_toggle: false
-    entities:
-      - zwave.aeotec_zw090_zstick_gen5_eu
-      - zwave.fibaro_system_fgt001_heat_controller
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      title: Z-Wave
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: zwave
+
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      title: Storage
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "*storage*"
+
+  - type: custom:auto-entities
+    show_empty: false
+    card:
+      type: entities
+      title: Storage
+      show_header_toggle: false
+    filter:
+      include:
+        - entity_id: "*powerplug*"
 
   - type: 'custom:flex-table-card'
     sort_by: battery_level+
@@ -77,7 +186,7 @@ cards:
 
   - type: 'custom:flex-table-card'
     max_rows: 25
-    #sort_by: sentTS- # <--- for last sent msg-based sorting
+    # sort_by: sentTS- # <--- for last sent msg-based sorting
     sort_by: receivedTS-
     title: Durations Since Last Message
     clickable: true   # <--- allows to click on row to show entity-popup for more information
