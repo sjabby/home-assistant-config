@@ -1,6 +1,7 @@
 ---
 path: default_view
 title: Home
+# background: center / cover no-repeat url("/local/bg/1.jpeg") fixed
 badges: []
 cards:
   - type: custom:compact-custom-header
@@ -12,131 +13,144 @@ cards:
     clock_format: 24
     dir: '/www/lovelace/cards/compact-custom-header/'
 
+  - type: custom:simple-weather-card
+    entity: weather.met_no
+    name: Tasta
+    backdrop:
+      day: "var(--primary-color)"
+      night: "var(--primary-color)"
+
+  - type: glance
+    # title: Bevegelse
+
+    show_header_toggle: false
+    entities:
+      - binary_sensor.office_multisensor_motion
+      - binary_sensor.hall_multisensor_motion
+      - binary_sensor.storage_multisensor_motion
+      - binary_sensor.bedroom_multisensor_motion
+      - binary_sensor.bathroom_multisensor_motion
+
   - type: vertical-stack
     cards:
-    - type: horizontal-stack
-      cards:
-        - type: picture-glance
-          title: person1
-          entities:
-            - person.person1
-          state_image:
-            "home": /local/t.png
-            "not_home": /local/t_away.png
-            "Work": /local/t_away.png
-          entity: person.person1
-          tap_action:
-            action: call-service
-            service: input_boolean.toggle
-            service_data:
-              entity_id: input_boolean.more_info_person1
-
-        - type: picture-glance
-          title: person2
-          entities:
-            - person.person2
-          state_image:
-            "home": /local/m.png
-            "not_home": /local/m_away.png
-          entity: device_tracker.person2s_iphone_x
-          tap_action:
-            action: call-service
-            service: input_boolean.toggle
-            service_data:
-              entity_id: input_boolean.more_info_person2
-
-    - type: conditional
-      conditions:
-        - entity: input_boolean.more_info_person1
-          state_not: "off"
-      card:
-        type: vertical-stack
+      - type: horizontal-stack
         cards:
-          - type: entities
+          - type: picture-glance
+            title: person1
             entities:
               - person.person1
-              - device_tracker.192_168_2_60_40_98_ad_8f_b7_9b
-              - device_tracker.person1siphonex
-              - device_tracker.person1s_iphone_x_beta
-              - sensor.person1s_iphone_x_battery_level
-              - sensor.person1s_iphone_x_battery_state
-              - entity: input_boolean.bed_presence_t
-                name: Sover
-              - entity: sensor.sleep_t
-                name: Søvn
-              - type: custom:mini-graph-card
-                entities:
-                  - sensor.sleep_t
-                name: Søvn
-                hours_to_show: 168
-                location_icon: left
-                location_state: center
-                show:
-                  group: true
-                  fill: true
-                # height: 75
-                animate: true
-                hour24: true
-                # line_width: 7
-                # line_color: var(--primary-color)
-                # # color_thresholds:
-                # #   - value: 0
-                # #     color: "#CCE5FF"
-                # #   - value: 10
-                # #     color: "#66B2FF"
-                # #   - value: 18
-                # #     color: "#0080FF"
-                # #   - value: 20
-                # #     color: "#87C087"
-                # #   - value: 21
-                # #     color: "#389638"
-                # #   - value: 23
-                # #     color: "#FF9932"
-                # #   - value: 24
-                # #     color: "#FF8000"
-                # #   - value: 25
-                # #     color: "#FF0000"
-                # color_thresholds:
-                #   - value: 22
-                #     color: "#f39c12"
-                #   - value: 23
-                #     color: "#d35400"
-                #   - value: 24
-                #     color: "#c0392b"
+            state_image:
+              "home": /local/t.png
+              "not_home": /local/t_away.png
+              "Work": /local/t_away.png
+            entity: person.person1
+            tap_action:
+              action: call-service
+              service: input_boolean.toggle
+              service_data:
+                entity_id: input_boolean.more_info_person1
 
-    - type: conditional
-      conditions:
-        - entity: input_boolean.more_info_person2
-          state_not: "off"
-      card:
-        type: vertical-stack
-        cards:
-          - type: entities
+          - type: picture-glance
+            title: person2
             entities:
               - person.person2
-              - device_tracker.person2s_iphone_x
-              - device_tracker.person2s_iphone_x_beta
-              - device_tracker.192_168_2_60_40_9c_28_55_1c_3b
-              - entity: input_boolean.bed_presence_m
-                name: Sover
-              - entity: sensor.sleep_m
-                name: Søvn
-              - type: custom:mini-graph-card
-                entities:
-                  - sensor.sleep_m
-                name: Søvn
-                hours_to_show: 168
-                location_icon: left
-                location_state: center
-                show:
-                  group: true
-                  fill: true
-                # height: 75
-                animate: true
-                hour24: true
+            state_image:
+              "home": /local/m.png
+              "not_home": /local/m_away.png
+            entity: device_tracker.person2s_iphone_x
+            tap_action:
+              action: call-service
+              service: input_boolean.toggle
+              service_data:
+                entity_id: input_boolean.more_info_person2
 
-  - type: thermostat
-    entity: climate.fibaro_system_fgt001_heat_controller_heating
+      - type: conditional
+        conditions:
+          - entity: input_boolean.more_info_person1
+            state_not: "off"
+        card:
+          type: vertical-stack
+          cards:
+            - type: entities
+              entities:
+                - person.person1
+                - device_tracker.person1siphonex
+                - device_tracker.person1s_iphone_x_beta
+                - sensor.person1s_iphone_x_battery_level
+                - sensor.person1s_iphone_x_battery_state
+                - entity: input_boolean.bed_presence_t
+                  name: Sover
+                - entity: sensor.sleep_t
+                  name: Søvn
+                - type: custom:mini-graph-card
+                  entities:
+                    - sensor.sleep_t
+                  name: Søvn
+                  hours_to_show: 168
+                  location_icon: left
+                  location_state: center
+                  show:
+                    group: true
+                    fill: true
+                  # height: 75
+                  animate: true
+                  hour24: true
+                  # line_width: 7
+                  # line_color: var(--primary-color)
+                  # # color_thresholds:
+                  # #   - value: 0
+                  # #     color: "#CCE5FF"
+                  # #   - value: 10
+                  # #     color: "#66B2FF"
+                  # #   - value: 18
+                  # #     color: "#0080FF"
+                  # #   - value: 20
+                  # #     color: "#87C087"
+                  # #   - value: 21
+                  # #     color: "#389638"
+                  # #   - value: 23
+                  # #     color: "#FF9932"
+                  # #   - value: 24
+                  # #     color: "#FF8000"
+                  # #   - value: 25
+                  # #     color: "#FF0000"
+                  # color_thresholds:
+                  #   - value: 22
+                  #     color: "#f39c12"
+                  #   - value: 23
+                  #     color: "#d35400"
+                  #   - value: 24
+                  #     color: "#c0392b"
+
+      - type: conditional
+        conditions:
+          - entity: input_boolean.more_info_person2
+            state_not: "off"
+        card:
+          type: vertical-stack
+          cards:
+            - type: entities
+              entities:
+                - person.person2
+                - device_tracker.person2s_iphone_x
+                - device_tracker.person2s_iphone_x_beta
+                - entity: input_boolean.bed_presence_m
+                  name: Sover
+                - entity: sensor.sleep_m
+                  name: Søvn
+                - type: custom:mini-graph-card
+                  entities:
+                    - sensor.sleep_m
+                  name: Søvn
+                  hours_to_show: 168
+                  location_icon: left
+                  location_state: center
+                  show:
+                    group: true
+                    fill: true
+                  # height: 75
+                  animate: true
+                  hour24: true
 
   - type: entities
     title: Modus
@@ -152,33 +166,62 @@ cards:
         name: Status
       - input_select.home_mode
 
+  - type: custom:simple-thermostat
+    entity: climate.radiator_heating
+    name: Stue
+
+  - type: custom:simple-thermostat
+    entity: climate.office
+    name: Kontor
+
+  - type: custom:mini-graph-card
+    entities:
+      - sensor.mean_sensor
+    name: Gjennomsnitt
+    location_icon: left
+    location_state: center
+    show:
+      fill: true
+    animate: true
+    hour24: true
+    line_width: 7
+    line_color: var(--primary-color)
+    color_thresholds:
+      - value: 23
+        color: "#f39c12"
+      - value: 24
+        color: "#d35400"
+      - value: 25
+        color: "#c0392b"
+
   - type: vertical-stack
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: sensor
-            entity: sensor.fibaro_system_fgt001_heat_controller_temperature
-            name: Stue
-            hours_to_show: 24
-            detail: 2
-            graph: line
-          - type: sensor
-            entity: sensor.fibaro_system_fgt001_heat_controller_temperature
-            name: Kontor
-            hours_to_show: 24
-            detail: 2
-            graph: line
-          - type: sensor
-            entity: sensor.fibaro_system_fgt001_heat_controller_temperature
-            name: Bad
-            hours_to_show: 24
-            detail: 2
-            graph: line
+      # - type: horizontal-stack
+      #   cards:
+      #   - type: custom:mini-graph-card
+      #     entities:
+      #       - sensor.mean_sensor
+      #     name: Gjennomsnitt
+      #     location_icon: left
+      #     location_state: center
+      #     show:
+      #       fill: true
+      #     animate: true
+      #     hour24: true
+      #     line_width: 7
+      #     line_color: var(--primary-color)
+      #     color_thresholds:
+      #       - value: 23
+      #         color: "#f39c12"
+      #       - value: 24
+      #         color: "#d35400"
+      #       - value: 25
+      #         color: "#c0392b"
       - type: horizontal-stack
         cards:
           - type: custom:mini-graph-card
             entities:
-              - sensor.fibaro_system_fgt001_heat_controller_temperature
+              - sensor.radiator_temperature
             name: Stue
             location_icon: left
             location_state: center
@@ -213,89 +256,138 @@ cards:
                 color: "#d35400"
               - value: 25
                 color: "#c0392b"
+
           - type: custom:mini-graph-card
             entities:
-              - sensor.fibaro_system_fgt001_heat_controller_temperature
+              - sensor.office_multisensor_temperature
             name: Kontor
             location_icon: left
             location_state: center
             show:
               fill: true
-            # height: 75
             animate: true
             hour24: true
+            line_width: 7
             line_color: var(--primary-color)
-            # color_thresholds:
-            #   - value: 0
-            #     color: "#CCE5FF"
-            #   - value: 10
-            #     color: "#66B2FF"
-            #   - value: 18
-            #     color: "#0080FF"
-            #   - value: 20
-            #     color: "#87C087"
-            #   - value: 21
-            #     color: "#389638"
-            #   - value: 23
-            #     color: "#FF9932"
-            #   - value: 24
-            #     color: "#FF8000"
-            #   - value: 25
-            #     color: "#FF0000"
             color_thresholds:
-              - value: 22
-                color: "#f39c12"
               - value: 23
-                color: "#d35400"
+                color: "#f39c12"
               - value: 24
+                color: "#d35400"
+              - value: 25
                 color: "#c0392b"
 
-  # - type: vertical-stack
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.storage_multisensor_temperature
+            name: Bod
+            location_icon: left
+            location_state: center
+            show:
+              fill: true
+            animate: true
+            hour24: true
+            line_width: 7
+            line_color: var(--primary-color)
+            color_thresholds:
+              - value: 23
+                color: "#f39c12"
+              - value: 24
+                color: "#d35400"
+              - value: 25
+                color: "#c0392b"
+
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.bathroom_multisensor_temperature
+            name: Bad
+            location_icon: left
+            location_state: center
+            show:
+              fill: true
+            animate: true
+            hour24: true
+            line_width: 7
+            line_color: var(--primary-color)
+            color_thresholds:
+              - value: 23
+                color: "#f39c12"
+              - value: 24
+                color: "#d35400"
+              - value: 25
+                color: "#c0392b"
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.bedroom_multisensor_temperature
+            name: Soverom
+            location_icon: left
+            location_state: center
+            show:
+              fill: true
+            animate: true
+            hour24: true
+            line_width: 7
+            line_color: var(--primary-color)
+            color_thresholds:
+              - value: 23
+                color: "#f39c12"
+              - value: 24
+                color: "#d35400"
+              - value: 25
+                color: "#c0392b"
+
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.hall_multisensor_temperature
+            name: Gang
+            location_icon: left
+            location_state: center
+            show:
+              fill: true
+            animate: true
+            hour24: true
+            line_width: 7
+            line_color: var(--primary-color)
+            color_thresholds:
+              - value: 23
+                color: "#f39c12"
+              - value: 24
+                color: "#d35400"
+              - value: 25
+                color: "#c0392b"
+
+  # - type: horizontal-stack
   #   cards:
-  #     - type: horizontal-stack
-  #       cards:
-  #         - type: picture-elements
-  #           image: /local/th.png
-  #           elements:
-  #             - entity: device_tracker.person1siphonex
-  #               type: state-label
-  #               style:
-  #                 color: black
-  #                 top: 93%
-  #                 left: 20%
-  #             - entity: device_tracker.person1siphonex
-  #               type: state-label
-  #               style:
-  #                 color: black
-  #                 top: 93%
-  #                 left: 55%
-  #             - entity: device_tracker.person1siphonex
-  #               type: state-label
-  #               style:
-  #                 color: black
-  #                 top: 93%
-  #                 left: 90%
-  #         - type: picture-elements
-  #           image: /local/mh.png
-  #           elements:
-  #             - entity: device_tracker.person1siphonex
-  #               type: state-label
-  #               style:
-  #                 color: white
-  #                 top: 93%
-  #                 left: 20%
-  #             - entity: device_tracker.person1siphonex
-  #               type: state-label
-  #               style:
-  #                 color: white
-  #                 top: 93%
-  #                 left: 55%
-  #             - entity: device_tracker.person1siphonex
-  #               type: state-label
-  #               style:
-  #                 color: white
-  #                 top: 93%
-  #                 left: 90%
+  #     - type: custom:mini-graph-card
+  #       entities:
+  #         - sensor.hall_multisensor_temperature
+  #         - sensor.bedroom_multisensor_temperature
+  #         - sensor.bathroom_multisensor_temperature
+  #         - sensor.storage_multisensor_temperature
+  #         - sensor.office_multisensor_temperature
+  #         - sensor.radiator_temperature
+  #       name: Gang
+  #       location_icon: left
+  #       location_state: center
+  #       show:
+  #         fill: true
+  #       animate: true
+  #       hour24: true
+  #       # line_width: 7
+  #       line_color: var(--primary-color)
+  #       color_thresholds:
+  #         - value: 23
+  #           color: "#f39c12"
+  #         - value: 24
+  #           color: "#d35400"
+  #         - value: 25
+  #           color: "#c0392b"
+
   - type: vertical-stack
     cards:
       - type: horizontal-stack
@@ -320,7 +412,7 @@ cards:
                   action: call-service
                   service: vacuum.locate
                   service_data:
-                    entity_id: vacuum.xiaomi_vacuum_cleaner
+                    entity_id: vacuum.rocky
                 style:
                   top: 90%
                   left: 80%
@@ -332,7 +424,7 @@ cards:
                   action: call-service
                   service: vacuum.return_to_base
                   service_data:
-                    entity_id: vacuum.xiaomi_vacuum_cleaner
+                    entity_id: vacuum.rocky
                 style:
                   top: 90%
                   left: 65%
@@ -344,7 +436,7 @@ cards:
                   action: call-service
                   service: vacuum.start
                   service_data:
-                    entity_id: vacuum.xiaomi_vacuum_cleaner
+                    entity_id: vacuum.rocky
                 style:
                   top: 90%
                   left: 50%
@@ -356,7 +448,7 @@ cards:
                   action: call-service
                   service: vacuum.pause
                   service_data:
-                    entity_id: vacuum.xiaomi_vacuum_cleaner
+                    entity_id: vacuum.rocky
                 style:
                   top: 90%
                   left: 35%
@@ -368,7 +460,7 @@ cards:
                   action: call-service
                   service: vacuum.stop
                   service_data:
-                    entity_id: vacuum.xiaomi_vacuum_cleaner
+                    entity_id: vacuum.rocky
                 style:
                   top: 90%
                   left: 20%
@@ -414,51 +506,48 @@ cards:
         card:
           type: vertical-stack
           cards:
-            - type: "custom:button-card"
-              color_type: label-card
-              color: auto
-              name: "Støvsug sone:"
+            - type: markdown
+              content: >
+                ### Støvsug sone:
             - type: horizontal-stack
               cards:
-                - type: "custom:button-card"
+                - type: entity-button
                   entity: script.vacuum_livingroom
                   icon: mdi:sofa
                   color: auto
                   name: Stue
-                - type: "custom:button-card"
+                - type: entity-button
                   entity: script.vacuum_kitchen
                   icon: mdi:stove
                   color: auto
                   name: Kjøkken
-                - type: "custom:button-card"
+                - type: entity-button
                   entity: script.vacuum_hallway
                   icon: mdi:glassdoor
                   color: auto
                   name: Gang
-                - type: "custom:button-card"
+                - type: entity-button
                   entity: script.vacuum_bedroom
                   icon: mdi:hotel
                   color: auto
                   name: Soverom
-                - type: "custom:button-card"
+                - type: entity-button
                   entity: script.vacuum_office
                   icon: mdi:desktop-mac
                   color: auto
                   name: Kontor
-            - type: "custom:button-card"
-              color_type: label-card
-              color: auto
-              name: "Siste rengjøring:"
+            - type: markdown
+              content: >
+                ### Siste rengjøring:
             - type: glance
               columns: 2
               show_name: true
               entities:
                 - entity: sensor.vacuum_cleaned_area
                 - entity: sensor.vacuum_cleaning_time
-            - type: "custom:button-card"
-              color_type: label-card
-              color: auto
-              name: "Vedlikehold"
+            - type: markdown
+              content: >
+                ### Vedlikehold
             - type: glance
               columns: 4
               show_name: true

@@ -1,0 +1,9 @@
+---
+zwave_refresh:
+  alias: zwave_refresh
+  sequence:
+    - delay: '00:00:30'
+    - alias: refresh_zwave_node_3
+      service: zwave.refresh_node
+      data:
+        node_id: 3

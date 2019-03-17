@@ -1,0 +1,54 @@
+---
+path: Housemode
+title: Housemode
+badges: []
+cards:
+  - type: custom:compact-custom-header
+    header: true
+    notification: false
+    voice: false
+    tabs: true
+    clock: options
+    clock_format: 24
+    dir: '/www/lovelace/cards/compact-custom-header/'
+
+  - type: entities
+    title: Modus
+    show_header_toggle: false
+    entities:
+      - entity: sensor.house_mode
+        name: Modus
+      - entity: input_boolean.guest_mode
+        name: Gjestemodus
+      - entity: input_boolean.vacation_mode
+        name: Feriemodus
+      - entity: sensor.household
+        name: Status
+      - input_select.home_mode
+
+  - type: horizontal-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: picture-glance
+            title: Modus
+            entities:
+              - sensor.house_mode
+            state_image:
+              "home": /local/t.png
+              "not_home": /local/t_away.png
+            entity: person.person1
+            tap_action:
+              action: call-service
+              service: input_boolean.toggle
+              service_data:
+                entity_id: input_boolean.more_info_person1
+
+      - type: vertical-stack
+        cards:
+          - type: entity-button
+            entity: input_boolean.guest_mode
+          - type: entity-button
+            entity: input_boolean.guest_mode
+          - type: entity-button
+            entity: input_boolean.guest_mode
