@@ -12,6 +12,3 @@ action:
   - service: notify.discord_text
     data_template:
       message: "Home Assistant restarted successfully!"
-  # - service: notify.html5
-  #   data_template:
-  #    message: "Home Assistant restarted successfully!"
