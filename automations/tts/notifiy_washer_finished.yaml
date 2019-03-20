@@ -1,0 +1,21 @@
+---
+alias: notifiy_washer_finished
+# initial_state: true
+trigger:
+  platform: state
+  entity_id: binary_sensor.washer
+  from: 'on'
+  to: 'off'
+  for:
+    seconds: 20
+action:
+  - service: notify.pushover
+    data_template:
+      title: 'Vaskemaskinen'
+      message: 'Vaskemaskinen er ferdig...'
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.kjkken
+      volume: 0.3
+      message: 'Vaskemaskinen er ferdig'
+      delay: '00:00:05'
