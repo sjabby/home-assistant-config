@@ -20,6 +20,7 @@ options.xml
 home-assistant_v2.db
 bitbucket-pipelines.yml
 /www/
+.mdlrc
 
 # Accept spesific file:
 !.gitignore
