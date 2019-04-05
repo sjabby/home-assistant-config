@@ -13,3 +13,5 @@ views:
   - !include lovelace/views/tablet.yaml
   - !include lovelace/views/system.yaml
   - !include lovelace/views/weather.yaml
+  - !include lovelace/views/house_mode.yaml
+  - !include lovelace/views/test.yaml

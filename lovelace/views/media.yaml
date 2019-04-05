@@ -71,7 +71,7 @@ cards:
           progress: true
         sonos:
           show_group_count: true
-          # sync_volume: true
+          sync_volume: true
           entities:
             - entity_id: media_player.stue_2
               name: Stue

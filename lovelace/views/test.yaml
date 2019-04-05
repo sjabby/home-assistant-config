@@ -1,0 +1,140 @@
+---
+path: test
+title: Test
+badges: []
+cards:
+  - type: custom:compact-custom-header
+    header: true
+    notification: false
+    voice: false
+    tabs: true
+    clock: options
+    clock_format: 24
+    dir: '/www/lovelace/cards/compact-custom-header/'
+  - type: entities
+    title: Combination
+    entities:
+      - type: custom:auto-entities
+        card:
+          type: custom:fold-entity-row
+          head:
+            type: section
+            label: All lights
+        filter:
+          include:
+            - domain: light
+      - type: custom:auto-entities
+        card:
+          type: custom:fold-entity-row
+          head:
+            type: section
+            label: All Switches
+        filter:
+          include:
+            - domain: switch
+      - type: custom:auto-entities
+        card:
+          type: custom:fold-entity-row
+          head:
+            type: section
+            label: All Automations
+        filter:
+          include:
+            - domain: automation
+      - type: custom:auto-entities
+        card:
+          type: custom:fold-entity-row
+          head:
+            type: section
+            label: All Sensors
+        filter:
+          include:
+            - domain: sensor
+      - type: custom:auto-entities
+        card:
+          type: custom:fold-entity-row
+          head:
+            type: section
+            label: All Binary Sensors
+        filter:
+          include:
+            - domain: binary_sensor
+
+  - type: entities
+    title: Entities card sample
+    show_header_toggle: false
+    entities:
+      - climate.fibaro_system_fgt001_heat_controller_heating
+      - climate.office
+      - switch.sonoff_pow_04
+      - switch.flux
+      - sensor.gitlab_ci_status
+      - input_boolean.bed_presence_t
+
+  - type: entities
+    title: Automations
+    show_header_toggle: false
+    entities:
+      - automation.vacuum_when_away
+      - automation.vacuum_finished
+      - automation.system_update_stats_sensors
+      - automation.ifttt
+
+  - type: entities
+    title: Lysmodus
+    show_header_toggle: false
+    entities:
+      - input_number.home_mode_day_brightness_value
+      - input_number.home_mode_day_color_temp_value
+      - input_number.home_mode_evening_brightness_value
+      - input_number.home_mode_evening_color_temp_value
+      - input_number.home_mode_night_brightness_value
+      - input_number.home_mode_night_color_temp_value
+      - input_select.home_mode
+
+  - type: entities
+    title: Wakeup
+    show_header_toggle: false
+    entities:
+      - entity: sensor.wakeup_alarm_time
+        name: Klokkeslett
+        icon: mdi:clock
+      - entity: sensor.wakeup_start_time_lights
+        name: Fade-in start tid
+        icon: mdi:clock
+      - entity: sensor.wakeup_fadein_duration
+        name: Fade-in varighet
+        icon: mdi:clock
+      - entity: input_number.wakeup_hour
+        name: Time
+        icon: mdi:clock-in
+      - entity: input_number.wakeup_minutes
+        name: Minutter
+        icon: mdi:clock-in
+      - entity: input_number.wakeup_duration
+        name: Lys fade-in varighet
+        icon: mdi:clock-in
+      - entity: input_boolean.wakeup
+        name: Aktiver wakeup lys
+        icon: mdi:power
+      - entity: input_boolean.wakeup_weekends
+        name: Wakeup helg
+        icon: mdi:power
+      - entity: binary_sensor.workday_sensor
+        name: Arbeidsdag
+        icon: mdi:clock
+      - entity: input_boolean.wakeup_radio
+        name: Radio Av/På
+        icon: mdi:radio
+      - automation.wakeup_light_soverom
+
+  - type: custom:auto-entities
+    show_empty: true
+    card:
+      type: entities
+      title: Magic batteries
+      show_header_toggle: false
+    filter:
+      include:
+        - attributes:
+          device_class: "battery"
