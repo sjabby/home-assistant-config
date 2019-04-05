@@ -5,12 +5,6 @@ trigger:
     entity_id: vacuum.rocky
     to: 'docked'
 action:
-  # - service: notify.ios_person1s_iphonex
-  #   data_template:
-  #   message: >-
-  #     :robot: Ferdig! Rocky har støvsugd {{state_attr("vacuum.rocky", "cleaned_area")}} kvm
-  #     på {{state_attr("vacuum.rocky", "cleaning_time")}} minutter!
-
   - service: notify.discord_text
     data_template:
       message: >-

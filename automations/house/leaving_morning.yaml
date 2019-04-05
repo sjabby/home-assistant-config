@@ -1,0 +1,43 @@
+---
+alias: leaving_morning
+trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_sensor
+    to: 'on'
+
+condition:
+  - condition: time
+    after: '02:30:00'
+    before: '09:00:00'
+  - condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.house_mode
+        state: 'home'
+      - condition: state
+        entity_id: sensor.house_mode
+        state: 'guest'
+action:
+  - service: switch.turn_off
+    entity_id:
+      - switch.sonoff_pow_06
+      - switch.livingroom_moodlight_1_switch
+      - switch.livingroom_moodlight_2_switch
+
+  - service: homeassistant.turn_off
+    entity_id:
+      - group.all_lights
+
+  - service: media_player.turn_off
+    data:
+      entity_id:
+        - media_player.bad
+        - media_player.soverom
+        - media_player.kontor
+        - media_player.kjkken
+        - media_player.stue
+
+  - service: notify.pushover
+    data_template:
+      title: "Status"
+      message: "Noen forlot huset, lys og musikk skrudd av."
