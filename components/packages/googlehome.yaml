@@ -1,0 +1,7 @@
+---
+googlehome:
+  devices:
+    - host: 192.168.2.60
+      device_types:
+        - 1
+        - 3
