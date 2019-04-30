@@ -1,5 +1,5 @@
 ---
-platform: google
+platform: google_translate
 language: 'no'
 cache: true
 cache_dir: /tmp/tts

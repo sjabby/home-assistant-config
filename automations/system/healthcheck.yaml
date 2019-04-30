@@ -1,0 +1,7 @@
+---
+alias: "System - HealthCheck Heartbeat"
+trigger:
+  platform: time_pattern
+  minutes: '/15'
+action:
+  - service: rest_command.healthcheck
