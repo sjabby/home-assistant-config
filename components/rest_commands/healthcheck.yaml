@@ -1,3 +1,3 @@
 ---
 healthcheck:
-  url: 'https://hc-ping.com/def51504-70a9-47ea-b8a6-553812b5e656'
+  url: !secret rest_hc_check
