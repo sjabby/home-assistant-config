@@ -8,6 +8,6 @@ action:
   - service: notify.discord_text
     data_template:
       message: "Z-Wave network is ready!"
-  - service: notify.ios_person1s_iphone_x_beta
+  - service: notify.mobile_app_person1s_iphone_x
     data_template:
       message: "Z-Wave network is ready!"

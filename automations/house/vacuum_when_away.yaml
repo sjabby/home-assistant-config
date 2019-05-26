@@ -25,7 +25,7 @@ condition:
 action:
   - service: vacuum.start
     entity_id: vacuum.rocky
-  # - service: notify.ios_person1s_iphonex
+  # - service: notify.mobile_app_person1s_iphonex
   #   data_template:
   #     message: "Rocky har startet å støvsuge..."
   - service: notify.discord_text
