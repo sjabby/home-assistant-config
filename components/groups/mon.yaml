@@ -2,4 +2,4 @@
 person2:
   entities:
     - device_tracker.person2s_iphone_x
-    - device_tracker.person2s_iphone_x_beta
+    - device_tracker.50e88354269042afa9df14f5603240ec
