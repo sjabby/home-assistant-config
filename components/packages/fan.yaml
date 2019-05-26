@@ -1,2 +1,2 @@
 ---
-fan: !include_dir_merge_named ../fans
+fan: !include_dir_list ../fans

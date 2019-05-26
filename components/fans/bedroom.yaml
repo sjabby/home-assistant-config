@@ -7,3 +7,6 @@ qos: 1
 payload_on: "ON"
 payload_off: "OFF"
 retain: true
+availability_topic: "tele/SONOFF_POW2/LWT"
+payload_available: "Online"
+payload_not_available: "Offline"
