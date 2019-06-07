@@ -2,6 +2,6 @@
 household:
   entities:
     - device_tracker.person1siphonex
-    - device_tracker.person1s_iphone_x_beta
+    - device_tracker.4728417e1df64a5498842089994346b8
     - device_tracker.person2s_iphone_x
-    - device_tracker.person2s_iphone_x_beta
+    - device_tracker.50e88354269042afa9df14f5603240ec
