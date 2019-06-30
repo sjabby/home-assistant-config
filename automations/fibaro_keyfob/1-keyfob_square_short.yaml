@@ -10,7 +10,7 @@ trigger:
       scene_id: 1
       scene_data: 7680
 action:
-  - service: homeassistant.turn_on
+  - service: homeassistant.toggle
     data:
       entity_id:
         - fan.bedroom
