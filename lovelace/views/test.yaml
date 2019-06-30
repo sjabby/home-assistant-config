@@ -3,14 +3,7 @@ path: test
 title: Test
 badges: []
 cards:
-  - type: custom:compact-custom-header
-    header: true
-    notification: false
-    voice: false
-    tabs: true
-    clock: options
-    clock_format: 24
-    dir: '/www/lovelace/cards/compact-custom-header/'
+
   - type: entities
     title: Combination
     entities:
@@ -59,6 +52,15 @@ cards:
         filter:
           include:
             - domain: binary_sensor
+      - type: custom:auto-entities
+        card:
+          type: custom:fold-entity-row
+          head:
+            type: section
+            label: All Fans
+        filter:
+          include:
+            - domain: fan
 
   - type: entities
     title: Entities card sample

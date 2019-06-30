@@ -5,15 +5,6 @@ badges: []
 icon: 'mdi:wrench'
 cards:
 
-  - type: custom:compact-custom-header
-    header: true
-    notification: false
-    voice: false
-    tabs: true
-    clock: options
-    clock_format: 24
-    dir: '/www/lovelace/cards/compact-custom-header/'
-
   - type: vertical-stack
     cards:
       - type: glance
