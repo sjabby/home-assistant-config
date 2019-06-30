@@ -72,7 +72,7 @@ cards:
               entities:
                 - person.person1
                 - device_tracker.person1siphonex
-                - device_tracker.4728417e1df64a5498842089994346b8
+                - device_tracker.person1s_iphone_x
                 - sensor.battery_level
                 - sensor.battery_state
                 - entity: input_boolean.bed_presence_t
@@ -130,7 +130,7 @@ cards:
               entities:
                 - person.person2
                 - device_tracker.person2s_iphone_x
-                - device_tracker.50e88354269042afa9df14f5603240ec
+                - device_tracker.person2s_iphone_x_2
                 - sensor.battery_level_2
                 - sensor.battery_state_2
                 - entity: input_boolean.bed_presence_m
@@ -509,8 +509,8 @@ cards:
               color_type: label-card
               name: 'Støvsug sone:'
               styles:
-               card:
-                - height: 15px
+                card:
+                  - height: 15px
             - type: horizontal-stack
               cards:
                 - type: "custom:button-card"
@@ -547,8 +547,8 @@ cards:
               color_type: label-card
               name: 'Siste rengjøring:'
               styles:
-               card:
-                - height: 15px
+                card:
+                  - height: 15px
             - type: glance
               columns: 2
               show_name: true
@@ -559,8 +559,8 @@ cards:
               color_type: label-card
               name: 'Vedlikehold:'
               styles:
-               card:
-                - height: 15px
+                card:
+                  - height: 15px
             - type: glance
               columns: 4
               show_name: true
