@@ -3,13 +3,16 @@ alias: livingroom_ambientlight_on
 trigger:
   - platform: sun
     event: sunset
-    offset: "-00:30:00"
+    offset: "-00:45:00"
   - platform: state
     entity_id: sensor.house_mode
     to: 'home'
   - platform: state
     entity_id: sensor.house_mode
     to: 'guest'
+  - platform: time
+    at: '20:00:00'
+
 
 condition:
   condition: and
@@ -18,7 +21,7 @@ condition:
       before: '23:30:00'
     - condition: sun
       before: sunset
-      before_offset: "00:40:00"
+      before_offset: "04:00:00"
     - condition: sun
       after: sunset
       after_offset: "-01:00:00"

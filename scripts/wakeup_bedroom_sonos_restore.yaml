@@ -1,0 +1,15 @@
+---
+wakeup_bedroom_sonos_restore:
+  sequence:
+    # - service: sonos.unjoin
+    #   data:
+    #     entity_id:
+    #       - media_player.bad
+    #       - media_player.soverom
+    #       - media_player.kjkken
+    - service: sonos.restore
+      data:
+        entity_id:
+          - media_player.bad
+          - media_player.soverom
+          - media_player.kjkken
