@@ -65,3 +65,255 @@ sensor.bedroom_multisensor_sourcenodeid:
 sensor.bedroom_multisensor_ultraviolet:
   ignored: true
   polling_intensity: 0
+sensor.bathroom_thermostat_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.bathroom_thermostat_voltage:
+  ignored: true
+  polling_intensity: 0
+sensor.front_door_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.front_door_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.hall_multisensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.hall_multisensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.hall_multisensor_general:
+  ignored: true
+  polling_intensity: 0
+sensor.hall_multisensor_seismic_intensity:
+  ignored: true
+  polling_intensity: 0
+sensor.hall_multisensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_1_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_1_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_1_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_1_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_1_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_1_system:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_2_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_2_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_2_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_2_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_2_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_dimmer_2_system:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_switch_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_switch_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_switch_exporting_2:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_switch_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_switch_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_switch_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_1_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_1_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_1_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_1_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_1_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_2_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_2_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_2_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_2_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.livingroom_moodlight_2_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.storage_multisensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.storage_multisensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.storage_multisensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.storage_multisensor_ultraviolet:
+  ignored: true
+  polling_intensity: 0
+sensor.office_multisensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.office_multisensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.office_multisensor_general:
+  ignored: true
+  polling_intensity: 0
+sensor.office_multisensor_seismic_intensity:
+  ignored: true
+  polling_intensity: 0
+sensor.office_multisensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_pc_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_pc_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_pc_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_pc_interval:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_pc_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_pc_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.radiator_alarm_level_2:
+  ignored: true
+  polling_intensity: 0
+sensor.radiator_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.radiator_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.radiator_alarm_type_2:
+  ignored: true
+  polling_intensity: 0
+sensor.radiator_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.radiator_power_management_2:
+  ignored: true
+  polling_intensity: 0
+sensor.radiator_sourcenodeid_2:
+  ignored: true
+  polling_intensity: 0
+sensor.radiator_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.radiator_system:
+  ignored: true
+  polling_intensity: 0
+sensor.switch_storage_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.switch_storage_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.switch_storage_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.switch_storage_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.switch_storage_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tablet_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tablet_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tablet_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tablet_interval:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tablet_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tablet_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tv_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tv_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tv_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tv_interval:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tv_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_tv_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_washer_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_washer_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_washer_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_washer_interval:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_washer_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.powerplug_washer_sourcenodeid:
+  ignored: true
+  polling_intensity: 0

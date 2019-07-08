@@ -91,12 +91,6 @@ cards:
           - entity: sensor.current_version
             name: Versjon
 
-  - type: custom:tracker-card
-    title:
-    trackers:
-      - sensor.custom_card_tracker
-      - sensor.custom_component_tracker
-
   - type: entities
     title: Batteristatus
     show_header_toggle: false

@@ -9,3 +9,8 @@ homeassistant:
   packages: !include_dir_named components/packages
   whitelist_external_dirs:
     - /home/homeassistant/.homeassistant/
+
+hacs:
+  token: !secret hacs_token
+  python_script: true
+  theme: true
