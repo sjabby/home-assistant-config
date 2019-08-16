@@ -3,7 +3,7 @@ alias: office_fan_turn_on
 
 trigger:
   platform: state
-  entity_id: binary_sensor.kontor_multisensor_motion
+  entity_id: binary_sensor.office_multisensor_motion
   to: 'on'
 
 condition:
@@ -11,9 +11,9 @@ condition:
   conditions:
     - condition: template
       value_template: >-
-        "{{ (states('sensor.multisensor_kontor_temperature')|default(0)|
+        {{ (states('sensor.office_multisensor_temperature')|default(0)|
         float) >= (states('input_number.office_fan_start_setpoint')|
-        default(0)|float) }}"
+        default(0)|float) }}
     - condition: state
       entity_id: sensor.house_mode
       state: 'home'
@@ -21,8 +21,8 @@ condition:
       entity_id: group.person1
       state: 'home'
     - condition: state
-      entity_id: sensor.pc
-      state: 'på'
+      entity_id: switch.wol_office_pc
+      state: 'on'
     - condition: state
       entity_id: fan.office
       state: 'off'
@@ -32,7 +32,6 @@ action:
     entity_id: fan.office
   - service: notify.discord_text
     data_template:
-      message: >-
-        "Kontoret - Viften ble skrudd på siden temperaturen er over
-          {{ (states('input_number.office_fan_start_setpoint')|
-        default(0)|float) }} °C"
+      message: >
+       "Kontoret - Viften ble skrudd på siden temperaturen er over
+         {{ (states('input_number.office_fan_start_setpoint')|default(0)|float) }} °C"
