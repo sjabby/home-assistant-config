@@ -2,7 +2,7 @@
 alias: hall_light_on
 trigger:
   - platform: state
-    entity_id: binary_sensor.hall_multisensor_motion
+    entity_id: binary_sensor.hall_multisensor_sensor
     to: 'on'
   - platform: state
     entity_id: binary_sensor.front_door_sensor
@@ -10,9 +10,9 @@ trigger:
 condition:
   condition: and
   conditions:
-    - condition: numeric_state
-      entity_id: 'sensor.hall_multisensor_luminance'
-      below: '50'
+    # - condition: numeric_state
+    #   entity_id: 'sensor.hall_multisensor_luminance'
+    #   below: '50'
     - condition: state
       entity_id: light.hue_gang_taklampe
       state: 'off'
