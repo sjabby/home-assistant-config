@@ -9,7 +9,7 @@ cards:
     entity: weather.met_no
     name: Tasta
 
-  - type: custom:entur-card
+  - type: 'custom:entur-card'
     title: Busstider
     entities:
       - name: Tasta Senter
