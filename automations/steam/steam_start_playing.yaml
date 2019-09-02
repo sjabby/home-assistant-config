@@ -24,3 +24,5 @@ action:
       brightness: 50
       transition: 5
       color_temp: 154
+  - service: switch.turn_off
+    entity_id: switch.flux_office

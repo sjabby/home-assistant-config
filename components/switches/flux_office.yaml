@@ -1,0 +1,17 @@
+---
+platform: flux
+lights:
+  - light.hue_iris_1
+  - light.hue_iris_2
+  - light.kontoret_taklampe
+name: Flux Office
+start_time: '06:00'
+stop_time: '23:59'
+start_colortemp: 4000
+sunset_colortemp: 3000
+stop_colortemp: 1900
+# brightness: 200
+disable_brightness_adjust: false
+mode: mired
+transition: 30
+interval: 30
