@@ -1,0 +1,3 @@
+---
+- sensor.bedroom_multisensor_relative_humidity
+- sensor.bedroom_multisensor_temperature

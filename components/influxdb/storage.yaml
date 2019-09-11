@@ -1,0 +1,3 @@
+---
+- sensor.storage_multisensor_relative_humidity
+- sensor.storage_multisensor_temperature

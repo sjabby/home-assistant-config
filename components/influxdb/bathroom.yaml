@@ -1,0 +1,3 @@
+---
+- sensor.bathroom_multisensor_relative_humidity
+- sensor.bathroom_multisensor_temperature
