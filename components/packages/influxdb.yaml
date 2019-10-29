@@ -9,5 +9,6 @@ influxdb:
   tags_attributes:
     - "device_class"
     - "node_id"
+    - "friendly_name"
   include:
     entities: !include_dir_merge_list ../influxdb

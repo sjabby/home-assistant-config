@@ -53,6 +53,8 @@ class HacsPythonScript(HacsRepository):
 
     async def update_repository(self):  # lgtm[py/similar-function]
         """Update."""
+        if self.github.ratelimits.remaining == 0:
+            return
         # Run comperson2 update steps.
         await self.comperson2_update()
 

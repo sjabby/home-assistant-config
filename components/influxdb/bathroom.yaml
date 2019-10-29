@@ -2,3 +2,10 @@
 - sensor.bathroom_multisensor_relative_humidity
 - sensor.bathroom_multisensor_temperature
 - sensor.bathroom_thermostat_floor_sensor
+- sensor.bathroom_dimmer_power
+- sensor.bathroom_dimmer_power_2
+- sensor.bathroom_switch_power
+- sensor.bathroom_switch_power_2
+- sensor.bathroom_thermostat_power
+- sensor.powerplug_washer_power
+- sensor.powerplug_washer_power_2

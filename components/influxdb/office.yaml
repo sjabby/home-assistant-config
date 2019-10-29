@@ -1,2 +1,4 @@
 ---
 - sensor.office_multisensor_temperature
+- sensor.powerplug_pc_power
+- sensor.powerplug_pc_power_2

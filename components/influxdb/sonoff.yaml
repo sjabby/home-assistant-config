@@ -1,0 +1,11 @@
+---
+- sensor.sonoff_pow_01_power
+- sensor.sonoff_pow_02_power
+- sensor.sonoff_pow_03_power
+- sensor.sonoff_pow_04_power
+- sensor.sonoff_pow_05_power
+- sensor.sonoff_pow_06_power
+- sensor.sonoff_pow_07_power
+- sensor.sonoff_pow_08_power
+- sensor.sonoff_pow_09_power
+- sensor.sonoff_pow_10_power

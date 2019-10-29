@@ -1,0 +1,9 @@
+---
+unifi:
+  controllers:
+    - host: !secret devicetracker_unify_host
+      site: default
+      # ssid_filter:
+      #   - 'StickyNet'
+      #   - 'StickySpeed'
+      #   - 'StickyGuest'

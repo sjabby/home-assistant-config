@@ -46,7 +46,7 @@ cards:
             state_image:
               "home": /local/m.png
               "not_home": /local/m_away.png
-            entity: device_tracker.person2s_iphone_x
+            entity: person.person2
             tap_action:
               action: call-service
               service: input_boolean.toggle
@@ -63,10 +63,11 @@ cards:
             - type: entities
               entities:
                 - person.person1
-                - device_tracker.person1siphonex
-                - device_tracker.person1s_iphone_x
-                - sensor.battery_level
-                - sensor.battery_state
+                - device_tracker.person1sone11pro_wifi
+                - device_tracker.person1sone11pro_ios
+                - sensor.person1sone11pro_battery_level
+                - sensor.person1sone11pro_battery_state
+                - sensor.person1sone11pro_last_update_trigger
                 - entity: input_boolean.bed_presence_t
                   name: Sover
                 - entity: sensor.sleep_t
@@ -121,10 +122,11 @@ cards:
             - type: entities
               entities:
                 - person.person2
-                - device_tracker.person2s_iphone_x
-                - device_tracker.person2s_iphone_x_2
-                - sensor.battery_level_2
-                - sensor.battery_state_2
+                - device_tracker.person2s_iphone_x_wifi
+                - device_tracker.person2s_iphone_x_ios
+                - sensor.person2s_iphone_x_battery_level
+                - sensor.person2s_iphone_x_battery_state
+                - sensor.person2s_iphone_x_last_update_trigger
                 - entity: input_boolean.bed_presence_m
                   name: Sover
                 - entity: sensor.sleep_m

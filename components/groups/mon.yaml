@@ -1,5 +1,5 @@
 ---
 person2:
   entities:
-    - device_tracker.person2s_iphone_x
-    - device_tracker.person2s_iphone_x_2
+    - device_tracker.person2s_iphone_x_wifi
+    - device_tracker.person2s_iphone_x_ios

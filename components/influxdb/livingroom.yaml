@@ -1,0 +1,5 @@
+---
+- sensor.livingroom_moodlight_2_power
+- sensor.livingroom_moodlight_2_power_2
+- sensor.powerplug_tv_power
+- sensor.powerplug_tv_power_2

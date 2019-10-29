@@ -1,0 +1,9 @@
+---
+- sensor.kitchen_dimmer_1_power
+- sensor.kitchen_dimmer_1_power_2
+- sensor.kitchen_dimmer_2_power
+- sensor.kitchen_dimmer_2_power_2
+- sensor.kitchen_switch_power
+- sensor.kitchen_switch_power_2
+- sensor.powerplug_tablet_power
+- sensor.powerplug_tablet_power_2

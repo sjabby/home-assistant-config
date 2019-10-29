@@ -1,7 +1,7 @@
 ---
 household:
   entities:
-    - device_tracker.person1siphonex
-    - device_tracker.person1s_iphone_x
-    - device_tracker.person2s_iphone_x
-    - device_tracker.person2s_iphone_x_2
+    - device_tracker.person1sone11pro_wifi
+    - device_tracker.person1sone11pro_ios
+    - device_tracker.person2s_iphone_x_wifi
+    - device_tracker.person2s_iphone_x_ios

@@ -1,3 +1,6 @@
 ---
 - sensor.storage_multisensor_relative_humidity
 - sensor.storage_multisensor_temperature
+- sensor.real_time_consumption_tastatunet_62
+- sensor.electricity_price_tastatunet_62
+- sensor.switch_storage_power
