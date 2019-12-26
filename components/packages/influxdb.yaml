@@ -10,5 +10,8 @@ influxdb:
     - "device_class"
     - "node_id"
     - "friendly_name"
+  default_measurement: state
   include:
     entities: !include_dir_merge_list ../influxdb
+    domains:
+      - automation

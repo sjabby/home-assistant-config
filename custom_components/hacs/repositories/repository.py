@@ -5,13 +5,14 @@ import json
 import os
 import tempfile
 import zipfile
-from distutils.version import LooseVersion
 from integrationhelper import Validate, Logger
 from aiogithubapi import AIOGitHubException
 from .manifest import HacsManifest
+from ..helpers.misc import get_repository_name
 from ..hacsbase import Hacs
 from ..hacsbase.backup import Backup
 from ..handler.download import async_download_file, async_save_file
+from ..helpers.misc import version_left_higher_then_right
 
 
 RERPOSITORY_CLASSES = {}
@@ -61,6 +62,7 @@ class RepositoryInformation:
     homeassistant_version = None
     last_updated = None
     uid = None
+    stars = 0
     info = None
     name = None
     topics = []
@@ -160,33 +162,19 @@ class HacsRepository(Hacs):
 
         if target is not None:
             if self.releases.releases:
-                if LooseVersion(self.system.ha_version) < LooseVersion(target):
+                if not version_left_higher_then_right(self.system.ha_version, target):
                     return False
         return True
 
     @property
     def display_name(self):
         """Return display name."""
-        name = None
-        if self.information.category == "integration":
-            if self.manifest:
-                name = self.manifest["name"]
-
-        if self.repository_manifest is not None:
-            name = self.repository_manifest.name
-
-        if name is not None:
-            return name
-
-        if self.information.name:
-            name = self.information.name.replace("-", " ").replace("_", " ").title()
-
-        if name is not None:
-            return name
-
-        name = self.information.full_name
-
-        return name
+        return get_repository_name(
+            self.repository_manifest,
+            self.information.name,
+            self.information.category,
+            self.manifest,
+        )
 
     @property
     def display_status(self):
@@ -242,7 +230,7 @@ class HacsRepository(Hacs):
     @property
     def display_version_or_commit(self):
         """Does the repositoriy use releases or commits?"""
-        if self.versions.installed is not None:
+        if self.releases.releases:
             version_or_commit = "version"
         else:
             version_or_commit = "commit"
@@ -322,6 +310,11 @@ class HacsRepository(Hacs):
         # Set topics
         self.information.topics = self.repository_object.topics
 
+        # Set stargazers_count
+        self.information.stars = self.repository_object.attributes.get(
+            "stargazers_count", 0
+        )
+
         # Set description
         if self.repository_object.description:
             self.information.description = self.repository_object.description
@@ -340,6 +333,11 @@ class HacsRepository(Hacs):
         # Update description
         if self.repository_object.description:
             self.information.description = self.repository_object.description
+
+        # Set stargazers_count
+        self.information.stars = self.repository_object.attributes.get(
+            "stargazers_count", 0
+        )
 
         # Update default branch
         self.information.default_branch = self.repository_object.default_branch
@@ -426,8 +424,7 @@ class HacsRepository(Hacs):
                     and self.information.full_name != "hacs/integration"
                 ):
                     await self.reload_custom_components()
-                else:
-                    self.pending_restart = True
+                self.pending_restart = True
 
             elif self.information.category == "theme":
                 try:
@@ -485,12 +482,18 @@ class HacsRepository(Hacs):
         """Download the content of a directory."""
         try:
             # Get content
-            if self.content.single:
-                contents = self.content.objects
-            else:
-                contents = await self.repository_object.get_contents(
-                    directory_path, self.ref
-                )
+            contents = []
+            if self.releases.releases:
+                for release in self.releases.objects:
+                    if self.status.selected_tag == release.tag_name:
+                        contents = release.assets
+            if not contents:
+                if self.content.single:
+                    contents = self.content.objects
+                else:
+                    contents = await self.repository_object.get_contents(
+                        directory_path, self.ref
+                    )
 
             for content in contents:
                 if content.type == "dir" and (
@@ -548,7 +551,9 @@ class HacsRepository(Hacs):
         """Get the content of the hacs.json file."""
         try:
             manifest = await self.repository_object.get_contents("hacs.json", self.ref)
-            self.repository_manifest = HacsManifest.from_dict(json.loads(manifest.content))
+            self.repository_manifest = HacsManifest.from_dict(
+                json.loads(manifest.content)
+            )
         except (AIOGitHubException, Exception):  # Gotta Catch 'Em All
             pass
 
@@ -567,30 +572,19 @@ class HacsRepository(Hacs):
             for file in root:
                 if file.name.lower() in info_files:
 
-                    info = await self.repository_object.get_rendered_contents(
+                    info = await self.repository_object.get_contents(
                         file.name, self.ref
                     )
                     break
             if info is None:
                 self.information.additional_info = ""
             else:
-                info = info.replace("&lt;", "<")
-                info = info.replace("<svg", "<disabled").replace("</svg", "</disabled")
-                info = info.replace("<h3>", "<h6>").replace("</h3>", "</h6>")
-                info = info.replace("<h2>", "<h5>").replace("</h2>", "</h5>")
-                info = info.replace("<h1>", "<h4>").replace("</h1>", "</h4>")
-                info = info.replace("<code>", "<code class='codeinfo'>")
+                info = info.content.replace("<svg", "<disabled").replace(
+                    "</svg", "</disabled"
+                )
                 info = info.replace(
                     '<a href="http', '<a rel="noreferrer" target="_blank" href="http'
                 )
-                info = info.replace("<li>", "<li style='list-style-type: initial;'>")
-
-                # Special changes that needs to be done:
-                info = info.replace(
-                    "<your", "<&#8205;your"
-                )  # for person1loven/hass-favicon
-
-                info += "</br>"
 
                 self.information.additional_info = render_template(info, self)
 

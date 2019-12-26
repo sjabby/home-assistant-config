@@ -6,7 +6,7 @@ icon: 'mdi:tablet'
 cards:
 
   - type: custom:weather-card
-    entity: weather.met_no
+    entity: weather.home
     name: Tasta
 
   - type: custom:entur-card
