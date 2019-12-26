@@ -2,4 +2,4 @@
 platform: wake_on_lan
 name: wol_office_pc
 host: 192.168.2.30
-mac_address: "08-60-6E-7B-AC-00"
+mac: "08-60-6E-7B-AC-00"

@@ -1,0 +1,21 @@
+---
+alias: office_media_idle
+initial_state: 'on'
+trigger:
+  - platform: state
+    entity_id: media_player.sjabbyrogw8
+    to: 'idle'
+action:
+
+  - service: light.turn_on
+    data_template:
+      entity_id:
+        - light.hue_iris_1
+        - light.hue_iris_2
+      rgb_color: [255, 207, 119]
+      brightness_pct: 80
+      transition: 1
+
+  - service: switch.turn_on
+    data_template:
+      entity_id: switch.flux_office

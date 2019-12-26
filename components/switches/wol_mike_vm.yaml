@@ -2,4 +2,4 @@
 platform: wake_on_lan
 name: wol_mike_vm
 host: 192.168.2.138
-mac_address: "08-60-6E-7B-AC-00"
+mac: "08-60-6E-7B-AC-00"
