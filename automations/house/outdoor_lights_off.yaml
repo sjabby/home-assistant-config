@@ -1,0 +1,10 @@
+---
+alias: winter_lights_off
+
+trigger:
+  - platform: sun
+    event: sunrise
+
+action:
+  service: light.turn_off
+  entity_id: light.winter_lights

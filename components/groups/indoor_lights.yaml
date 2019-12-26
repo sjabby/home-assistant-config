@@ -1,0 +1,39 @@
+---
+indoor_lights:
+  entities:
+    - light.badet
+    - light.bathroom_dimmer_level
+    - light.bathroom_dimmer_level_2
+    - light.boden
+    - light.entertainment_area_1
+    - light.gang
+    - light.hue_color_lamp_1
+    - light.hue_color_lamp_2
+    - light.hue_gang_taklampe
+    - light.hue_iris_1
+    - light.hue_iris_2
+    - light.hue_lightstrip_plus_1
+    - light.kitchen_dimmer_1_level
+    - light.kitchen_dimmer_1_level_2
+    - light.kitchen_dimmer_2_level
+    - light.kitchen_dimmer_2_level_2
+    - light.kjokken
+    - light.kontoret
+    - light.kontoret_taklampe
+    - light.soverom
+    - light.spisebord
+    - light.stue
+    - light.tv_2
+    - light.taklampe_1
+    - light.taklampe_2
+    - light.taklampe_3
+    - light.tv
+    - light.bathroom_mirror
+    - light.bedroom_bed_led
+    - light.kitchen_bench
+    - light.livingroom_moodlight_1
+    - light.livingroom_moodlight_2
+    - light.livingroom_moodlight_3
+    - light.office
+    - light.storage_ceiling
+    - light.tv_seksjon

@@ -10,10 +10,10 @@ trigger:
       scene_id: 7
 
 action:
-  - service: light.turn_off
+  - service: homassistant.turn_off
     data:
       entity_id:
-        - group.all_lights
+        - group.indoor_lights
 
   - service: switch.turn_off
     entity_id:
