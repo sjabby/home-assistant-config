@@ -1,2 +1,2 @@
 ---
-climate: !include_dir_merge_named ../climate
+climate: !include_dir_list ../climate

@@ -160,12 +160,13 @@ cards:
       - input_select.home_mode
 
   - type: custom:simple-thermostat
-    entity: climate.radiator_heating
+    entity: climate.radiator
     name: Stue
 
   - type: custom:simple-thermostat
-    entity: climate.office
+    entity: climate.kontoret
     name: Kontor
+    step_size: 1
 
   - type: custom:mini-graph-card
     entities:
