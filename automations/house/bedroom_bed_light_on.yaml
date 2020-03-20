@@ -2,7 +2,7 @@
 alias: bedroom_bed_light_on
 trigger:
   - platform: state
-    entity_id: light.soverom
+    entity_id: light.taklampe_1, light.taklampe_2, light.taklampe_3
     to: 'on'
 
 action:

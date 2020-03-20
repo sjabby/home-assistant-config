@@ -1,0 +1,14 @@
+---
+compact_mode: true
+# header: true
+# notification: false
+# voice_hide: false
+# tabs: true
+# options: clock
+# clock_format: 24
+# # dir: '/www/lovelace/cards/compact-custom-header/'
+exceptions:
+  - conditions:
+      device_id: 26a50129-4e19af92
+    config:
+      kiosk_mode: true

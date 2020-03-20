@@ -1,0 +1,2 @@
+---
+fullykiosk_restart_app: !secret fullykiosk_restart_app

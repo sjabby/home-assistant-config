@@ -1,0 +1,6 @@
+---
+platform: group
+name: computer
+entities:
+  - light.hue_iris_1
+  - light.hue_iris_2

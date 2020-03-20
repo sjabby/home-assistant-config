@@ -1,0 +1,7 @@
+---
+active_media_plex_recent:
+  entities:
+    - input_boolean.media_atv_livingroom
+    - input_boolean.media_sonos_livingroom
+    - input_boolean.media_sonos_bathroom
+    - input_boolean.media_sonos_office

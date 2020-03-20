@@ -1,0 +1,14 @@
+---
+platform: template
+sensors:
+  mediastatus_sonos_bathroom:
+    value_template: >
+      {% if is_state('media_player.bad','playing') %}
+      Spiller
+      {% elif is_state_attr('media_player.bad','media_title', 'No title') %}
+      Av
+      {% elif is_state('media_player.bad','paused') %}
+      Pause
+      {% else %}
+      Av
+      {% endif %}

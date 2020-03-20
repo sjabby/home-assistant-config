@@ -1,0 +1,9 @@
+---
+fullykiosk_brightness_slider:
+  name: Lysstyrke
+  icon: 'mdi:brightness-percent'
+  initial: 20
+  min: 0
+  max: 100
+  step: 1
+  unit_of_measurement: "%"

@@ -7,7 +7,7 @@ indoor_lights:
     - light.boden
     - light.entertainment_area_1
     - light.gang
-    - light.hue_color_lamp_1
+    - light.nightstand_person1
     - light.hue_color_lamp_2
     - light.hue_gang_taklampe
     - light.hue_iris_1

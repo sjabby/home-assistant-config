@@ -14,6 +14,6 @@ action:
       - light.taklampe_1
       - light.taklampe_2
       - light.taklampe_3
-      - light.hue_color_lamp_1
+      - light.nightstand_person1
     data:
       transition: 1

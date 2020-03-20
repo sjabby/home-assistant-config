@@ -25,7 +25,7 @@ action:
         - light.taklampe_1
         - light.taklampe_2
         - light.taklampe_3
-        - light.hue_color_lamp_1
+        - light.nightstand_person1
       color_temp: >-
         {% if is_state("input_select.home_mode", "Dag") %}
         {{ states('input_number.home_mode_day_color_temp_value') | int }}

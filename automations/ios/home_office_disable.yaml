@@ -1,0 +1,13 @@
+---
+alias: home_office_disable
+trigger:
+  platform: event
+  event_type: ios.notification_action_fired
+  event_data:
+    actionName: DISABLE_INPUTBOOL
+action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.home_office
+  - service: notify.discord_text
+    data_template:
+      message: ":man_office_worker: Hjemmekontormodus av.."

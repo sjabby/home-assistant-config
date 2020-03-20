@@ -1,5 +1,7 @@
 """Class for appdaeperson2 apps in HACS."""
+from aiogithubapi import AIOGitHubException
 from .repository import HacsRepository, register_repository_class
+from ..hacsbase.exceptions import HacsException
 
 
 @register_repository_class
@@ -26,7 +28,13 @@ class HacsAppdaeperson2(HacsRepository):
         await self.comperson2_validate()
 
         # Custom step 1: Validate content.
-        addir = await self.repository_object.get_contents("apps", self.ref)
+        try:
+            addir = await self.repository_object.get_contents("apps", self.ref)
+        except AIOGitHubException:
+            raise HacsException(
+                f"Repostitory structure for {self.ref.replace('tags/','')} is not compliant"
+            )
+
         if not isinstance(addir, list):
             self.validate.errors.append("Repostitory structure not compliant")
 

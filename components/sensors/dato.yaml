@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  dato:
+    value_template: >
+      {% set person2ths = ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"] %}
+      {{ strptime(states('sensor.date'), '%Y-%m-%d').day }}
+      {{ person2ths[now().person2th-1] }}

@@ -1,0 +1,6 @@
+---
+platform: template
+sensors:
+  light_bathroom_percent:
+    value_template: >-
+      {% if is_state('light.bathroom', 'on') %} {{ (state_attr('light.bathroom', 'brightness') / 2.54) | round }}{% endif %}

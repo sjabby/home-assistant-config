@@ -1,0 +1,8 @@
+---
+platform: group
+name: bedroom
+entities:
+  - light.taklampe_1
+  - light.taklampe_2
+  - light.taklampe_3
+  - light.bedroom_bed_led

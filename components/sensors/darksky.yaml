@@ -1,0 +1,6 @@
+---
+platform: darksky
+api_key: !secret darksky_api_key
+language: nb
+person2itored_conditions:
+  ['precip_probability', 'temperature', 'apparent_temperature', 'icon']

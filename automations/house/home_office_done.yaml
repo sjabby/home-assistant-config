@@ -1,0 +1,18 @@
+---
+alias: home_office_done
+trigger:
+  - platform: time
+    at: '16:00:00'
+condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: input_boolean.home_office
+      state: 'on'
+
+action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.home_office
+  - service: notify.discord_text
+    data_template:
+      message: ":man_office_worker: Hjemmekontormodus av.."

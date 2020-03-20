@@ -1,6 +1,6 @@
 ---
 frontend:
   javascript_version: latest
-  extra_html_url: []
+  extra_html_url: /local/custom-icons.html
   extra_html_url_es5: []
   themes: !include_dir_merge_named ../../themes

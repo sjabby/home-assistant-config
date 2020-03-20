@@ -1,0 +1,5 @@
+---
+platform: template
+sensors:
+  placeholder:
+    value_template: " "

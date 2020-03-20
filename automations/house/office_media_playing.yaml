@@ -3,7 +3,7 @@ alias: office_media_playing
 initial_state: 'on'
 trigger:
   - platform: state
-    entity_id: media_player.sjabbyrogw8
+    entity_id: media_player.plex_sjabby_rogw8
     to: 'playing'
 action:
   - service: switch.turn_off

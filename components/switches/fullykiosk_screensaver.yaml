@@ -1,0 +1,14 @@
+---
+platform: template
+switches:
+  fullykiosk_screensaver:
+    value_template: >-
+      {% if state_attr('sensor.fullykiosk', 'currentFragment') == 'screensaver' %}
+        on
+      {% else %}
+        off
+      {% endif %}
+    turn_on:
+      service: shell_command.fullykiosk_screensaver_on
+    turn_off:
+      service: shell_command.fullykiosk_screensaver_off

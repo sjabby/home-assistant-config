@@ -1,0 +1,9 @@
+---
+alias: status_atv_livingroom_playing
+trigger:
+  - platform: state
+    entity_id: sensor.mediastatus_livingroom
+    to: 'Spiller'
+action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.media_atv_livingroom

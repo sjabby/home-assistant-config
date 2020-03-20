@@ -1,7 +1,6 @@
 ---
 alias: keyfob_circle_short
 initial_state: true
-hide_entity: false
 trigger:
   - platform: event
     event_type: zwave.scene_activated

@@ -1,0 +1,16 @@
+---
+alias: status_sonos_office_idle
+trigger:
+  - platform: state
+    entity_id: sensor.mediastatus_sonos_office
+    to: 'Av'
+    for:
+      minutes: 15
+  - platform: state
+    entity_id: sensor.mediastatus_sonos_office
+    to: 'Pause'
+    for:
+      minutes: 15
+action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.media_sonos_office

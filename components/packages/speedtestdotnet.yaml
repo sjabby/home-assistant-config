@@ -1,0 +1,8 @@
+---
+speedtestdotnet:
+  scan_interval:
+    minutes: 60
+  person2itored_conditions:
+    - ping
+    - download
+    - upload

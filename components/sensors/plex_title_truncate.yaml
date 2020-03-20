@@ -1,0 +1,6 @@
+---
+platform: template
+sensors:
+  plex_title_truncate:
+    value_template: >
+      {{ states('sensor.plex_title') | truncate (32,true) }}

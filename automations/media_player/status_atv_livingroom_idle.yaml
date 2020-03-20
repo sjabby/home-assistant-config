@@ -1,0 +1,16 @@
+---
+alias: status_atv_livingroom_idle
+trigger:
+  - platform: state
+    entity_id: sensor.mediastatus_livingroom
+    to: 'Av'
+    for:
+      minutes: 15
+  - platform: state
+    entity_id: sensor.mediastatus_livingroom
+    to: 'Pause'
+    for:
+      minutes: 15
+action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.media_atv_livingroom

@@ -1,0 +1,6 @@
+---
+platform: template
+sensors:
+  round_darksky_temp:
+    value_template: >
+      {{ states('sensor.dark_sky_apparent_temperature') | round }}°

@@ -1,6 +1,6 @@
 ---
 platform: rest
-name: tablet
+name: fullykiosk
 json_attributes:
   - batteryLevel
   - kioskMode
@@ -19,5 +19,14 @@ json_attributes:
   - locationAltitude
   - startUrl
   - currentPage
+  - plugged
+  - deviceName
+  - deviceModel
+  - lastAppStart
+  - internalStorageFreeSpace
+  - internalStorageTotalSpace
+  - ramFreeMemory
+  - ramTotalMemory
+  - currentFragment
 resource: !secret tablet
 value_template: '{{ value_json.isScreenOn }}'
