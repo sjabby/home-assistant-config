@@ -1,0 +1,6 @@
+---
+light_bathroom:
+  name: Bad
+  entities:
+    - light.bathroom_dimmer_level
+    - light.bathroom_mirror

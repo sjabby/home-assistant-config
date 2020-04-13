@@ -16,7 +16,7 @@ condition:
     value_template: "{{ not is_state('sensor.playingonsteam', 'game') }}"
   - condition: template
     value_template: >-
-      "{{ not is_state('media_player.plex_sjabbyrogw8', 'playing') }}"
+      "{{ not is_state('media_player.plex_sjabby_w10', 'playing') }}"
 action:
   - service: homeassistant.turn_off
     entity_id: fan.office

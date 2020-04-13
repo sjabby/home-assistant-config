@@ -11,6 +11,8 @@ class Configuration:
     # Main configuration:
     appdaeperson2_path: str = "appdaeperson2/apps/"
     appdaeperson2: bool = False
+    netdaeperson2_path: str = "netdaeperson2/apps/"
+    netdaeperson2: bool = False
     config: dict = {}
     config_entry: dict = {}
     config_type: str = None

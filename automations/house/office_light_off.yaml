@@ -12,9 +12,7 @@ condition:
   - condition: template
     value_template: "{{ not is_state('sensor.playingonsteam', 'game') }}"
   - condition: template
-    value_template: "{{ not is_state('media_player.plex_sjabbyrogw8', 'playing') }}"
-  - condition: template
-    value_template: "{{ not is_state('media_player.plex_sjabby_rogw8', 'playing') }}"
+    value_template: "{{ not is_state('media_player.plex_sjabby_w10', 'playing') }}"
   - condition: state
     entity_id: input_boolean.home_office
     state: 'off'

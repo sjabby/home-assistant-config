@@ -1,0 +1,10 @@
+---
+theme_selector:
+  name: Theme Selector 
+  options:
+    - Auto Mode (Dark/Light)
+    - Dark Mode
+    - Light Mode
+    - Auto Mode (Black/White)
+    - Black Mode
+    - White Mode

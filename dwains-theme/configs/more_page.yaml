@@ -1,0 +1,10 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/more_page.html
+
+more_page:
+  addons:
+    - name: AdGuard
+      icon: far:chart-area
+      path: 'dwains-theme/addons/more_page/adguard/page.yaml'
+    - name: Covid-19
+      icon: fas:virus
+      path: 'dwains-theme/addons/more_page/coronavirus/page.yaml'

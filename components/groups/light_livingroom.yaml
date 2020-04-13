@@ -1,0 +1,8 @@
+---
+light_livingroom:
+  name: Stue
+  entities:
+    - light.livingroom_moodlight_1
+    - light.livingroom_moodlight_2
+    - light.livingroom_moodlight_3
+    - light.tv_seksjon

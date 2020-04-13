@@ -1,0 +1,7 @@
+---
+light_office:
+  name: Kontor
+  entities:
+    - light.hue_iris_1
+    - light.hue_iris_2
+    - light.kontoret_taklampe

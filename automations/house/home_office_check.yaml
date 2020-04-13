@@ -9,6 +9,9 @@ condition:
     - condition: state
       entity_id: sensor.house_mode
       state: 'home'
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
 action:
   service: notify.mobile_app_person1_sin_iphone_11_pro
   data:

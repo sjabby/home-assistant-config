@@ -1,0 +1,24 @@
+# # Do not change this file, only when you know what you are doing!
+# # Some dwains theme resources
+# - type: css
+#   url: 'https://fonts.googleapis.com/css?family=Open+Sans&display=swap'
+# - type: css
+#   url: /local/dwains-theme/style.css
+# - type: module
+#   url: /local/dwains-theme/plugins/dwains-weather-card/dwains-weather-card.js?v=0.0.1
+# - type: module
+#   url: /local/dwains-theme/plugins/dwains-notification-card/dwains-notification-card.js?v=0.0.1
+# - type: module
+#   url: /local/dwains-theme/plugins/dwains-cover-card/dwains-cover-card.js?v=0.0.1
+# - type: module
+#   url: /local/dwains-theme/plugins/dwains-flexbox-card/dwains-flexbox-card.js?v=0.1.2
+
+# # Plugins resources (required for dwains theme)
+
+
+# # Plugins resources which are not required if you dont have a rooted roborock or a house calendar
+# # you can comment these out
+# # - type: module
+# #   url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js    
+# # - type: module
+# #   url: /hacsfiles/atomic_calendar/atomic_calendar.js

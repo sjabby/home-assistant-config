@@ -1,0 +1,130 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/rooms.html
+
+rooms:
+  - name: Stue
+    icon: far:couch
+    light: group.light_livingroom
+    temperature: sensor.radiator_temperature
+    climate: climate.radiator
+    # humidity: sensor.halway_humidity
+    # motion: binary_sensor.storage_multisensor_motion
+    # door: binary_sensor.hallway_door_contact
+    # window: binary_sensor.hallway_window_contact
+    vacuum: 
+      entity: vacuum.rocky
+      # camera: camera.rockrobo_map
+    # plant: plant.hallway_plant
+    media_player: media_player.stue
+    # more_entities:
+    #   entities:
+    #     - entity: sensor.hallway_motion_battery_level
+    #     - entity: sensor.smokedetector_battery
+    addons:
+      - name: Sonos
+        icon: fal:speaker
+        path: 'dwains-theme/addons/rooms/livingroom/sonos/page.yaml'
+        button_path: 'dwains-theme/addons/rooms/livingroom/sonos/button.yaml'
+        data:
+          entity: media_player.stue_2
+
+  - name: Kjøkken
+    icon: far:utensils
+    light: group.light_kitchen
+    # temperature:  sensor.storage_multisensor_temperature
+    # motion: binary_sensor.storage_multisensor_motion
+    addons:
+      - name: Sonos
+        icon: fal:speaker
+        path: 'dwains-theme/addons/rooms/kitchen/sonos/page.yaml'
+        button_path: 'dwains-theme/addons/rooms/kitchen/sonos/button.yaml'
+        data:
+          entity: media_player.kjkken
+    page_entities:
+      entities:
+        - entity: light.kitchen_dimmer_1_level
+        - entity: light.kitchen_bench
+
+  - name: Bad
+    icon: far:toilet
+    light: group.light_bathroom
+    temperature: sensor.bathroom_multisensor_temperature
+    motion: binary_sensor.bathroom_multisensor_motion
+    humidity: sensor.bathroom_multisensor_relative_humidity
+
+  - name: Gang
+    icon: far:key-skeleton
+    light: light.hue_gang_taklampe
+    temperature: sensor.hall_multisensor_temperature
+    motion: binary_sensor.hall_multisensor_motion
+    door: binary_sensor.front_door_sensor
+    
+  - name: Kontor
+    icon: far:computer-speaker
+    light: group.light_office
+    temperature:  sensor.office_multisensor_temperature
+    climate: climate.office
+    # humidity: sensor.halway_humidity
+    motion: binary_sensor.office_multisensor_motion
+    # door: binary_sensor.hallway_door_contact
+    # window: binary_sensor.hallway_window_contact
+    # vacuum: 
+    #   entity: vacuum.rocky
+      # camera: camera.rockrobo_map
+    # plant: plant.hallway_plant
+    # media_player: media_player.kontor
+    # more_entities:
+    #   entities:
+    #     - entity: sensor.hallway_motion_battery_level
+    #     - entity: sensor.smokedetector_battery
+    addons:
+      - name: Sonos
+        icon: fal:speaker
+        path: 'dwains-theme/addons/rooms/office/sonos/page.yaml'
+        button_path: 'dwains-theme/addons/rooms/office/sonos/button.yaml'
+        data:
+          entity: media_player.kontor
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: fan.office
+#         - entity: sensor.name2
+
+  - name: Soverom
+    icon: far:bed-alt
+    light: group.light_bedroom
+    temperature: sensor.bedroom_multisensor_temperature
+    motion: binary_sensor.bedroom_multisensor_motion
+    humidity: sensor.bedroom_multisensor_relative_humidity
+
+  - name: Bod
+    icon: far:archive
+    light: light.storage_ceiling
+    temperature: sensor.storage_multisensor_temperature
+    motion: binary_sensor.storage_multisensor_motion
+    humidity: sensor.storage_multisensor_relative_humidity
+
+#   - name: Gang
+#     icon: far:garage
+#     light: group.garage_lights
+#     door: group.garage_doors
+#     addons:
+#       - name: Hello room
+#         icon: far:puzzle-piece
+#         path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#         button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#         data:
+#           some_data: 'This is some data parsed.'
+#           some_other_data: 'and some other data.'
+#           entity: vacuum.roborock
+#   - name: Bedroom
+#     icon: fal:bed
+#     more_entities:
+#       columns: 2 #optional
+#       entities:
+#         - entity: sensor.name1
+#         - entity: sensor.name2
+#     page_entities:
+#       columns: 1 #optional
+#       entities:
+#         - entity: sensor.name1
+#         - entity: sensor.name2

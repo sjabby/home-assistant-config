@@ -1,0 +1,6 @@
+---
+light_kitchen:
+  name: Kjøkken
+  entities:
+    - light.kitchen_dimmer_1_level
+    - light.kitchen_bench

@@ -1,0 +1,30 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/persons.html
+
+persons: 
+  - name: person1
+    track: person.person1
+    picture_path: 'images/persons/t.png'
+    page_entities:
+      # columns: 1 #optional
+      entities:
+        - entity: device_tracker.person1sone11pro_ios
+        - entity: device_tracker.person1sone11pro_wifi    
+  - name: person2
+    track: person.person2
+    picture_path: 'images/persons/m.png'
+    page_entities:
+      # columns: 1 #optional
+      entities:
+        - entity: device_tracker.person2s_iphone_x_ios
+        - entity: device_tracker.person2s_iphone_x_wifi   
+
+#     more_entities:
+#       columns: 1 #optional
+#       entities:
+#         - entity: device_tracker.person1sone11pro_ios
+#         - entity: device_tracker.person1sone11pro_wifi
+#     page_entities:
+#       columns: 2 #optional
+#       entities:
+#         - entity: sensor.steps
+#         - entity: sensor.steps

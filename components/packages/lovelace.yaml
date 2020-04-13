@@ -1,3 +1,18 @@
 ---
 lovelace:
   mode: yaml
+  # resources: !include_dir_merge_list ../../dwains-theme/resources/
+  resources: !include_dir_list ../../lovelace/resources
+  dashboards:
+    dwains-theme:
+      mode: yaml
+      title: Dwains Theme
+      icon: mdi:alpha-d-box
+      show_in_sidebar: true
+      filename: dwains-theme-lovelace.yaml
+    default-view:
+      mode: yaml
+      title: Home Assistant
+      # icon: mdi:alpha-d-box
+      show_in_sidebar: true
+      filename: lovelace-yaml.yaml
