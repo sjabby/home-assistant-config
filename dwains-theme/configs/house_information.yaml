@@ -1,13 +1,18 @@
 # https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/house_information.html
 
-#house_information:
-  # favorites:
-  #   - entity: binary_sensor.doorbell_button
-  #     icon_on: fas:bell
-  #     icon_off: fas:bell
-  #   - entity: binary_sensor.hallway_door_contact
-  #     icon_on: fas:door-open
-  #     icon_off: fas:door-closed
+house_information:
+  favorites:
+    - entity: input_boolean.guest_mode
+      icon_on: far:user
+      icon_off: far:user-slash
+    - entity: input_boolean.home_office
+      icon_on: far:store-alt
+      icon_off: far:store-alt-slash
+    - entity: input_boolean.vacation_mode
+      icon_on: far:plane
+      icon_off: far:plane-slash
+
+
 
   # calendar:
   #   - calendar.trash
