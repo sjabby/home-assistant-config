@@ -1,0 +1,5 @@
+---
+platform: template
+sensors:
+  vacuum_fan_speed:
+    value_template: "{{ state_attr('vacuum.rocky', 'fan_speed') }}"

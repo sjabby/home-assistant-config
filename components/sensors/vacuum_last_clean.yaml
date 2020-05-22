@@ -1,0 +1,18 @@
+---
+platform: template
+sensors:
+  vacuum_last_clean:
+    entity_id: sensor.time
+    friendly_name: Siste rengjøring
+    icon_template: 'mdi:clock'
+    value_template: >
+      {% set clean_stop = 
+      (as_timestamp(now()) - as_timestamp(state_attr('vacuum.rocky', 'clean_stop') | default(0))) %}
+      {% if clean_stop | timestamp_custom("%d") | int-1 == 1 %}{{ clean_stop | timestamp_custom("%d") | int-1}} dag siden
+      {% elif clean_stop | timestamp_custom("%d") | int-1 >= 2 %}{{ clean_stop | timestamp_custom("%d") | int-1}} dager siden
+      {% elif clean_stop | timestamp_custom("%H") | int-1 == 1 %}{{ clean_stop | timestamp_custom("%H") | int-1}} time siden
+      {% elif clean_stop | timestamp_custom("%H") | int-1 >= 2 %}{{ clean_stop | timestamp_custom("%H") | int-1}} timer siden
+      {% elif clean_stop | timestamp_custom("%M")|int == 1 %}{{ clean_stop | timestamp_custom("%M") | int}} minutt siden
+      {% elif clean_stop | timestamp_custom("%M")|int >= 2 %}{{ clean_stop | timestamp_custom("%M") | int}} minutter siden
+      {% else %}Mindre en 1 minutt siden
+      {% endif %}
