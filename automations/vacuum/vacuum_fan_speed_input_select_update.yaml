@@ -1,0 +1,17 @@
+---
+alias: vacuum_fan_speed_input_select_update
+initial_state: true
+trigger:
+  platform: state
+  entity_id: sensor.vacuum_fan_speed
+action:
+- service: input_select.select_option
+  data_template:
+    entity_id: input_select.vacuum_fan_speed
+    option: >-
+      {% if is_state('sensor.vacuum_fan_speed', 'Quiet') %} Stille
+      {% elif is_state('sensor.vacuum_fan_speed', 'Balanced') %} Balansert
+      {% elif is_state('sensor.vacuum_fan_speed', '75') %} Medium
+      {% elif is_state('sensor.vacuum_fan_speed', '100') %} Turbo
+      {% else %} Standard
+      {% endif %}

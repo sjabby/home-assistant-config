@@ -1,0 +1,5 @@
+---
+vacuum_zone:
+  initial: Ingen valgt
+  options:
+    ['Ingen valgt', 'Gang', 'Kjøkken','Stue', 'Kontor', 'Soverom']

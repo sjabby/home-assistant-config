@@ -1,0 +1,14 @@
+---
+alias: conditional_media_playing
+initial_state: true
+trigger:
+  - platform: state
+    entity_id: 
+      ['media_player.stue_2', 'media_player.kjkken', 
+        'media_player.bad', 'media_player.kontor']
+    to: playing
+action:
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.conditional_media
+      option: "{{ trigger.to_state.name }}"

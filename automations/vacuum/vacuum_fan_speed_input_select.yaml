@@ -1,0 +1,17 @@
+---
+alias: vacuum_fan_speed_input_select
+initial_state: true
+trigger:
+- platform: state
+  entity_id: input_select.vacuum_fan_speed
+action:
+- service: vacuum.set_fan_speed
+  data_template:
+    entity_id: vacuum.rocky
+    fan_speed: >-
+      {% if is_state('input_select.vacuum_fan_speed', 'Stille') %} Quiet
+      {% elif is_state('input_select.vacuum_fan_speed', 'Balansert') %} Balanced
+      {% elif is_state('input_select.vacuum_fan_speed', 'Medium') %} 75
+      {% elif is_state('input_select.vacuum_fan_speed', 'Turbo') %} 100
+      {% else %} Balanced
+      {% endif %}

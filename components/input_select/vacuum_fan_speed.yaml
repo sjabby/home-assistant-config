@@ -1,0 +1,6 @@
+---
+vacuum_fan_speed:
+  name: Styrke
+  options:
+    ['Stille', 'Balansert','Medium', 'Turbo']
+  icon: mdi:fan

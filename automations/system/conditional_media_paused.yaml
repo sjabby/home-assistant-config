@@ -1,0 +1,28 @@
+---
+alias: conditional_media_paused
+initial_state: true
+trigger:
+  - platform: state
+    entity_id: 
+      ['media_player.stue_2', 'media_player.kjkken', 
+        'media_player.bad', 'media_player.kontor']
+    to: paused
+    for:
+      minutes: 10
+action:
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.conditional_media
+      option: >-
+        {% set media_players = 
+          [states.media_player.stue_2, states.media_player.kjkken, 
+          states.media_player.bad, states.media_player.kontor] %}
+        {% if media_players | selectattr('state','eq','playing') | list | count == 0 %}
+          {% if media_players | selectattr('state','eq','paused') | list | count == 0 %}
+          Siste fra Plex
+          {% else %}
+          {{ media_players | selectattr('state','eq','paused') | map(attribute='name') | max }}
+          {% endif %}
+        {% else %}
+        {{ media_players | selectattr('state','eq','playing') | map(attribute='name') | max }}
+        {% endif %}

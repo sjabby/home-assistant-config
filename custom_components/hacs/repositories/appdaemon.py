@@ -1,5 +1,5 @@
 """Class for appdaeperson2 apps in HACS."""
-from aiogithubapi import AIOGitHubException
+from aiogithubapi import AIOGitHubAPIException
 from integrationhelper import Logger
 
 from .repository import HacsRepository
@@ -30,7 +30,7 @@ class HacsAppdaeperson2(HacsRepository):
         # Custom step 1: Validate content.
         try:
             addir = await self.repository_object.get_contents("apps", self.ref)
-        except AIOGitHubException:
+        except AIOGitHubAPIException:
             raise HacsException(
                 f"Repostitory structure for {self.ref.replace('tags/','')} is not compliant"
             )
@@ -50,8 +50,11 @@ class HacsAppdaeperson2(HacsRepository):
                     self.logger.error(error)
         return self.validate.success
 
-    async def registration(self):
+    async def registration(self, ref=None):
         """Registration."""
+        if ref is not None:
+            self.ref = ref
+            self.force_branch = True
         if not await self.validate_repository():
             return False
 
@@ -61,11 +64,9 @@ class HacsAppdaeperson2(HacsRepository):
         # Set local path
         self.content.path.local = self.localpath
 
-    async def update_repository(self):
+    async def update_repository(self, ignore_issues=False):
         """Update."""
-        if self.hacs.github.ratelimits.remaining == 0:
-            return
-        await self.comperson2_update()
+        await self.comperson2_update(ignore_issues)
 
         # Get appdaeperson2 objects.
         if self.repository_manifest:

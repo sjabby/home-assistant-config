@@ -4,6 +4,9 @@ trigger:
   - platform: numeric_state
     entity_id: sensor.tablet_battery_level
     below: 21
+  - platform: numeric_state
+    entity_id: sensor.lenovo_tab4_10_battery_level
+    below: 21
 action:
   - service: switch.turn_on
     entity_id:

@@ -1,0 +1,49 @@
+- id: '1586784472468'
+  name: Kontor Media Playing
+  entities:
+    light.hue_iris_1:
+      brightness: 127
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Hue iris 1
+      hs_color:
+      - 162
+      - 7.843
+      rgb_color:
+      - 235
+      - 255
+      - 249
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.305
+      - 0.337
+    light.hue_iris_2:
+      brightness: 127
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Hue iris 2
+      hs_color:
+      - 162
+      - 7.843
+      rgb_color:
+      - 235
+      - 255
+      - 249
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.305
+      - 0.337
+    light.kontoret_taklampe:
+      brightness: 76
+      color_temp: 154
+      friendly_name: Kontoret taklampe
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43

@@ -2,7 +2,7 @@
 alias: wakeup_light_soverom
 trigger:
   platform: template
-  value_template: '{{ states.sensor.time.state == states.sensor.wakeup_start_time_lights.state }}'
+  value_template: "{{ states('sensor.time') == states('sensor.wakeup_start_time_lights')  }}"
 condition:
   - condition: state
     entity_id: input_boolean.wakeup
@@ -16,4 +16,7 @@ condition:
         entity_id: input_boolean.wakeup_weekends
         state: 'on'
 action:
-  service: script.wakeup_bedroom
+  - service: script.wakeup_bedroom
+  - service: notify.discord_text
+    data_template:
+      message: ":zzz: Wakeup sequence started.."

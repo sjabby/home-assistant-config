@@ -2,10 +2,8 @@
 platform: template
 sensors:
   plex_title:
-    value_template: |
-      {% set data = state_attr('sensor.plex_recently_added', 'data') %}
-      {% if data | regex_findall_index('(?:"aired": ")(.*?)(?:,)') == '"' %}
-        {{ data | regex_findall_index('(?:"title": ")(.*?)(?:")') }} {{ data | regex_findall_index('(?:"number": ")(.*?)(?:")') }}
-      {% else %}
-        {{ data | regex_findall_index('(?:"title": ")(.*?)(?:")') }} ({{ data | regex_findall_index('(?:"aired": ")(.*?)(?:-)') }})
-      {% endif %}
+    value_template: >
+      {% set data = state_attr('sensor.plex_recently_added', 'data') %} 
+      {{ data[1].title }}
+      {% if data[1].number is none %} ({{ data[1].aired.split('-')[0] }})
+      {% else %} {{ data[1].number }} {% endif %}

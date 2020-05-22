@@ -1,0 +1,34 @@
+---
+alias: bedroom_fan_turn_on
+
+trigger:
+  platform: state
+  entity_id: group.bed_presence
+  to: 'on'
+
+condition:
+  condition: and
+  conditions:
+    - condition: template
+      value_template: >-
+        {{ (states('sensor.bedroom_multisensor_temperature')|default(0)|
+        float) >= (states('input_number.bedroom_fan_start_setpoint')|
+        default(0)|float) }}
+    - condition: state
+      entity_id: sensor.house_mode
+      state: 'home'
+    - condition: state
+      entity_id: group.person1
+      state: 'home'
+    - condition: state
+      entity_id: fan.bedroom
+      state: 'off'
+
+action:
+  - service: homeassistant.turn_on
+    entity_id: fan.bedroom
+  - service: notify.discord_text
+    data_template:
+      message: >
+       "Soverom - Viften ble skrudd på siden temperaturen er over
+         {{ (states('input_number.bedroom_fan_start_setpoint')|default(0)|float) }} °C"

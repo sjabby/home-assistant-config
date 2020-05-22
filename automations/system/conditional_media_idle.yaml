@@ -1,0 +1,15 @@
+---
+alias: conditional_media_idle
+initial_state: true
+trigger:
+  - platform: template
+    value_template: >
+      {{ is_state('media_player.stue_2', 'paused') and
+      is_state('media_player.kjkken', 'paused') and
+      is_state('media_player.bad', 'paused') and
+      is_state('media_player.kontor', 'paused') }}
+action:
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.conditional_media
+      option: Siste fra Plex

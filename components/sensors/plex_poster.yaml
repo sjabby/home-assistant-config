@@ -1,0 +1,7 @@
+---
+platform: template
+sensors:
+  plex_poster:
+    value_template: >
+      {% set data = state_attr('sensor.plex_recently_added', 'data') %} 
+      {{ data[1].fanart }}

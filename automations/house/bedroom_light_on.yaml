@@ -8,7 +8,7 @@ trigger:
 
 condition:
   - condition: state
-    entity_id: group.sleep
+    entity_id: group.bed_presence
     state: 'off'
   - condition: state
     entity_id: light.taklampe_3

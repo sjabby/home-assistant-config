@@ -1,0 +1,5 @@
+---
+bedroom_fan_start_setpoint:
+  min: 15
+  max: 30
+  step: 1

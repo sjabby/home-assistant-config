@@ -1,0 +1,5 @@
+---
+conditional_media:
+  initial: Siste fra Plex
+  options:
+    ['Siste fra Plex', 'TV', 'Kjøkken', 'Kontor', 'Bad']

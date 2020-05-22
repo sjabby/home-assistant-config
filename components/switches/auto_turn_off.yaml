@@ -1,0 +1,10 @@
+---
+platform: template
+switches:
+  auto_turn_off:
+    friendly_name: Skru av alt
+    value_template: "{{ states('script.auto_turn_off') }}"
+    turn_on:
+      service: script.auto_turn_off
+    turn_off:
+      service: script.auto_turn_off

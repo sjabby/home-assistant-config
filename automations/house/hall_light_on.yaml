@@ -17,7 +17,7 @@ condition:
       entity_id: light.hue_gang_taklampe
       state: 'off'
     - condition: state
-      entity_id: group.sleep
+      entity_id: group.bed_presence
       state: 'off'
 
 action:

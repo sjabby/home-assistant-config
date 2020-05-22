@@ -1,0 +1,12 @@
+---
+alias: bedroom_fan_turn_off
+trigger:
+  - platform: state
+    entity_id: group.bed_presence
+    to: 'off'
+  - platform: state
+    entity_id: sensor.house_mode
+    to: 'away'
+action:
+  - service: homeassistant.turn_off
+    entity_id: fan.bedroom
