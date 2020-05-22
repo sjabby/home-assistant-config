@@ -1,6 +1,6 @@
 ---
 platform: mqtt
-name: bedroom
+name: bedroom 
 command_topic: "cmnd/SONOFF_POW2/power"
 state_topic: "stat/SONOFF_POW2/POWER"
 qos: 1
