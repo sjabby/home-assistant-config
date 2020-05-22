@@ -1,0 +1,326 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                title: Lukk
+                deviceID: this
+                style:
+                  --ha-card-border-radius: 1em
+                  --more-info-header-color: rgba(255,255,255,0.6)
+                  background: none
+                  box-shadow: none
+                  width: 400px #calc(400px + 555px)
+                card:
+                  type: custom:layout-card
+                  column_num: 2
+                  column_width: [400, 555]
+                  layout: vertical
+                  cards:
+                    - type: custom:hui-vertical-stack-card
+                      cards:
+                        - type: entities
+                          title: Støvsuger
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              animation: pop-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: center;
+                              box-shadow: none; border-radius: 1em; padding: 0.3em 1.25em 0.4em 0.5em; 
+                              background: linear-gradient(180deg, rgba(48,52,52,1) 0%, rgba(48,52,52,1) 4.8em, rgba(34,38,39,1) 4.8em, rgba(34,38,39,1) 100%); }
+                            .card-header {
+                              margin: -0.4em 0 1.4em 0.4em; font-family: sf text; letter-spacing: 0.005em; font-size: 1.5em;}
+                            @keyframes pop-in {
+                              0% { transform: scale(0.6); opacity: 0; } 20% { opacity: 0; } 100% { transform: scale(1); opacity: 0.9; }}
+                          entities:
+
+                          - entity: sensor.rocky_status
+                            name: Status
+                          - entity: sensor.rocky_battery
+                            name: Batterinivå
+                          - entity: sensor.vacuum_last_clean
+
+                          - type: custom:bar-card
+                            entities:
+                              - entity: sensor.vacuum_filter
+                                name: Filter
+                                icon: 'mdi:filter-variant'
+                                tap_action:
+                                  action: call-service
+                                  service: homeassistant.update_entity
+                                  service_data:
+                                    entity_id: sensor.vacuum_filter
+                              - entity: sensor.vacuum_mainbrush
+                                name: Hovedbørste
+                                icon: 'mdi:broom'
+                                tap_action:
+                                  action: call-service
+                                  service: homeassistant.update_entity
+                                  service_data:
+                                    entity_id: sensor.vacuum_mainbrush
+                              - entity: sensor.vacuum_sidebrush
+                                name: Sidebørste
+                                icon: 'mdi:tools'
+                                tap_action:
+                                  action: call-service
+                                  service: homeassistant.update_entity
+                                  service_data:
+                                    entity_id: sensor.vacuum_sidebrush
+                              - entity: sensor.vacuum_sensor
+                                name: Sensorer
+                                icon: 'mdi:spray-bottle'
+                                tap_action:
+                                  action: call-service
+                                  service: homeassistant.update_entity
+                                  service_data:
+                                    entity_id: sensor.vacuum_sensor
+                            positions:
+                              icon: outside
+                              indicator: 'off'
+                              name: outside
+                            severity:
+                              - color: '#303435'
+                                from: 11
+                                to: 100
+                              - color: '#6d2525'
+                                from: 0
+                                to: 10
+                            decimal: 0
+                            entity_row: true
+                            style: |
+                              bar-card-iconbar {
+                                padding-left: 0.23em;
+                              }
+                              bar-card-name {
+                                padding-left: 0.25em;
+                              }
+                              bar-card-value {
+                                margin-right: auto;
+                                color: #e0e1e1;
+                                text-shadow: none;
+                                font-size: 1em;
+                                font-weight: 400;
+                                letter-spacing: 0.01em;
+                              }
+                              bar-card-background {
+                                background: radial-gradient(circle, rgba(52, 57, 58, 0.1) 0%, rgba(17,18,18,0.2) 75%);
+                                box-shadow: inset 0 0 25px #00000045;
+                                border-radius: 0.3em;
+                              }
+                              bar-card-backgroundbar {
+                                background: none;
+                              }
+                            unit_of_measurement: '%'
+                            height: 2em
+                            width: 55%
+
+                          - entity: input_select.vacuum_fan_speed
+
+                          - type: custom:hui-horizontal-stack-card
+                            style: |
+                              #root {
+                                justify-content: space-evenly;
+                                margin: 3.2em -0.7em 0.7em 0;
+                              }
+                            cards:
+
+                            - type: custom:button-card
+                              icon: mdi:play-pause
+                              triggers_update:
+                                ['vacuum.rocky']
+                              tap_action:
+                                action: call-service
+                                service: >
+                                  [[[ if (states['vacuum.rocky'].state === 'docked' || 
+                                  states['vacuum.rocky'].state === 'paused') 
+                                  return 'vacuum.start';
+                                  else return 'vacuum.pause'; ]]]
+                                service_data:
+                                  entity_id: vacuum.rocky
+                              styles:
+                                icon:
+                                  [width: 1.8em]
+                                card:
+                                  [width: 6em]
+                              template: icon_action
+
+                            - type: custom:button-card
+                              icon: mdi:home-map-marker
+                              color: '#9da0a2'
+                              tap_action:
+                                action: call-service
+                                service: vacuum.return_to_base
+                                service_data:
+                                  entity_id: vacuum.rocky
+                              template: icon_action
+
+                            - type: custom:button-card
+                              icon: mdi:map-marker-question
+                              color: '#9da0a2'
+                              tap_action:
+                                action: call-service
+                                service: vacuum.locate
+                                service_data:
+                                  entity_id: vacuum.rocky
+                              template: icon_action
+
+                    - break
+
+                    # - type: picture-elements
+                    #   title: Kartläggning
+                    #   image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' /%3E"
+                    #   style: |
+                    #     ha-card {
+                    #       animation: pop-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.05s; transform-origin: center;
+                    #       box-shadow: none; border-radius: 1em; padding: 0.3em 1.25em 0.4em 0.5em; 
+                    #       background: linear-gradient(180deg, rgba(48,52,52,1) 0%, rgba(48,52,52,1) 4.8em, rgba(34,38,39,1) 4.8em, rgba(34,38,39,1) 100%); }
+                    #     .card-header {
+                    #       margin: -0.4em 0 1.4em 0.4em; font-family: sf text; letter-spacing: 0.005em; font-size: 1.5em;}
+                    #     @keyframes pop-in {
+                    #       0% { transform: scale(0.6); opacity: 0; } 20% { opacity: 0; } 100% { transform: scale(1); opacity: 0.9; }}
+                    #   elements:
+
+                    #     - type: custom:valetudo-map-card
+                    #       entity: sensor.xiaomi_map
+                    #       title: null
+                    #       rotate: 0
+                    #       crop:
+                    #         top: 175
+                    #         bottom: 88
+                    #         left: 180
+                    #         right: 0
+                    #       min_height: 0
+                    #       map_scale: 2
+                    #       floor_color: '#2e3233'
+                    #       obstacle_weak_color: '#191e1e50'
+                    #       obstacle_strong_color: '#191e1e'
+                    #       no_go_area_color: '#ff000015'
+                    #       virtual_wall_color: '#ff000020'
+                    #       virtual_wall_width: 5
+                    #       path_color: '#1e5071'
+                    #       path_width: 1.5
+                    #       vacuum_icon: 'custom:roborock'
+                    #       vacuum_color: '#e0e0e0'
+                    #       style:
+                    #         top: 48%
+                    #         left: 50%
+                    #         width: 100%
+                    #         --ha-card-background: none
+                    #         --ha-card-box-shadow: none
+
+                    #     - type: image
+                    #       tap_action:
+                    #         action: call-service
+                    #         service: input_select.select_option
+                    #         service_data:
+                    #           entity_id: input_select.roborock_zone
+                    #           option: Ingen vald
+                    #       image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' /%3E"
+                    #       title: null
+                    #       style:
+                    #         top: 50%
+                    #         left: 50%
+                    #         width: 100%
+                    #         cursor: default
+
+                    #     - type: custom:button-card
+                    #       name: Sovrum
+                    #       tap_action:
+                    #         action: call-service
+                    #         service: input_select.select_option
+                    #         service_data:
+                    #           entity_id: input_select.roborock_zone
+                    #           option: Sovrum
+                    #       show_label: false
+                    #       show_icon: false
+                    #       styles: &button-card-styles
+                    #         card:
+                    #           [background: none, box-shadow: none, padding: 3em]
+                    #         name:
+                    #           [font-size: 0.83em, letter-spacing: 0.003em, color: '#aeb0b0', background: '#191c1d80', 
+                    #           padding: 0.41em 0.7em 0.4em 0.7em, border-radius: 0.6em, overflow: visible]
+                    #       style:
+                    #         left: 22.5%
+                    #         top: 76%
+
+                    #     - type: custom:button-card
+                    #       name: Kök
+                    #       tap_action:
+                    #         action: call-service
+                    #         service: input_select.select_option
+                    #         service_data:
+                    #           entity_id: input_select.roborock_zone
+                    #           option: Kök
+                    #       show_label: false
+                    #       show_icon: false
+                    #       styles: *button-card-styles
+                    #       style:
+                    #         left: 17%
+                    #         top: 51%
+
+                    #     - type: custom:button-card
+                    #       name: Studio
+                    #       tap_action:
+                    #         action: call-service
+                    #         service: input_select.select_option
+                    #         service_data:
+                    #           entity_id: input_select.roborock_zone
+                    #           option: Studio
+                    #       show_label: false
+                    #       show_icon: false
+                    #       styles: *button-card-styles
+                    #       style:
+                    #         left: 39.5%
+                    #         top: 22%
+
+                    #     - type: custom:button-card
+                    #       name: Vardagsrum
+                    #       tap_action:
+                    #         action: call-service
+                    #         service: input_select.select_option
+                    #         service_data:
+                    #           entity_id: input_select.roborock_zone
+                    #           option: Vardagsrum
+                    #       show_label: false
+                    #       show_icon: false
+                    #       styles: *button-card-styles
+                    #       style:
+                    #         left: 77%
+                    #         top: 9%
+
+                    #     - type: custom:button-card
+                    #       name: Hall
+                    #       tap_action:
+                    #         action: call-service
+                    #         service: input_select.select_option
+                    #         service_data:
+                    #           entity_id: input_select.roborock_zone
+                    #           option: Hall
+                    #       show_label: false
+                    #       show_icon: false
+                    #       styles: *button-card-styles
+                    #       style:
+                    #         left: 59%
+                    #         top: 49%
+
+                    #     - type: custom:button-card
+                    #       entity: input_select.roborock_zone
+                    #       name: Rengöringszon
+                    #       label: '[[[ return entity.state ]]]'
+                    #       show_label: true
+                    #       show_icon: false
+                    #       tap_action:
+                    #         action: call-service
+                    #         service: script.turn_on
+                    #         service_data:
+                    #           entity_id: script.zoned_cleanup
+                    #       styles:
+                    #         card:
+                    #           [background: '#FFFFFF10', border-radius: 0.6em, box-shadow: none]
+                    #         name:
+                    #           [font-size: 0.75em, color: '#FFFFFF40', margin-bottom: 0.05em]
+                    #         label:
+                    #           [font-size: 1.05em, padding: 0.02em 0.8em 0.6em 0.8em, 
+                    #           color: "[[[ if (states['input_select.roborock_zone'].state == 'Ingen vald') 
+                    #           return '#e0e1e170'; return '#e0e1e1';]]]"]
+                    #       style:
+                    #         left: 80%
+                    #         top: 88%
+                    #         width: 10.2em

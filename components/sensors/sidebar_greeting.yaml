@@ -1,0 +1,21 @@
+---
+platform: template
+sensors:
+  sidebar_greeting:
+    entity_id: sensor.time
+    value_template: >-
+      {% set t = now().hour %}
+      {% if t <= 1 %} God natt {{'\U0001F611'}}
+      {% elif t <= 3 %} God natt {{'\U0001F62A'}}
+      {% elif t <= 5 %} God natt {{'\U0001F634'}}
+      {% elif t <= 7 %} God morgen {{'\U0001F4A9'}}
+      {% elif t <= 9 %} God morgen {{'\u2615\uFE0F'}}
+      {% elif t <= 10.5 %} God morgen {{'\U0001F642'}}
+      {% elif t <= 13 %} God dag {{'\U0001F60A'}}
+      {% elif t <= 15 %} God dag {{'\U0001F60E'}}
+      {% elif t <= 17 %} God dag {{'\U0001F44B\U0001F3FB'}}
+      {% elif t <= 19 %} God kveld {{'\U0001F44B\U0001F3FB'}}
+      {% elif t <= 22 %} God kveld {{'\U0001F60C'}}
+      {% elif t <= 23 %} God kveld {{'\U0001F974'}}
+      {% else %} God kveld {{'\U0001F974'}}
+      {% endif %}

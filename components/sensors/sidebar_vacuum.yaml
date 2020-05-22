@@ -1,0 +1,10 @@
+---
+platform: template
+sensors:
+  sidebar_vacuum:
+    value_template: >-
+      {% if is_state('vacuum.rocky', 'cleaning') %}
+        Rocky støvsuger
+      {% elif is_state('vacuum.rocky', 'returning') %}
+        Rocky er ferdig
+      {% endif %}

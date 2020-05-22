@@ -1,0 +1,22 @@
+---
+platform: template
+sensors:
+  sidebar_weather:
+    value_template: >-
+      {% if states('sensor.dark_sky_temperature') == 'unknown' %}
+      Kan ikke lese værinformasjon...
+      {% else %}
+        {% if states('sensor.dark_sky_temperature') | float <= 0.0 %}
+        Føles som {{ states('sensor.dark_sky_apparent_temperature') | round }}° med 
+        {{ states('sensor.dark_sky_precip_probability') | round }}% sjanse for snø {{'\u2744\uFE0F'}}
+        {% elif states('sensor.dark_sky_temperature') | float > 0.0 %} 
+        Føles som {{ states('sensor.dark_sky_apparent_temperature') | round }}° med 
+        {{ states('sensor.dark_sky_precip_probability') | round }}% sjanse for regn 
+        {% if states('sensor.dark_sky_precip_probability') | float > 30.0 %} {{'\u2614\uFE0F' }}
+        {% endif %}
+        {% elif states('sensor.dark_sky_temperature') | float > 19.0 and 
+        states('sensor.dark_sky_precip_probability') | float < 5.0 %}
+        Føles som {{ states('sensor.dark_sky_apparent_temperature') | round }}° {{'\U0001F60E' }} med 
+        {{ states('sensor.dark_sky_precip_probability') | round }}% sjanse for regn
+        {% endif %}
+      {% endif %}

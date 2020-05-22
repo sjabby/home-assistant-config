@@ -1,0 +1,6 @@
+---
+platform: template
+sensors:
+  sidebar_buss:
+    value_template: >-
+        Neste buss: {{ states('sensor.transport_tasta_senter_platform_48449') }} min
