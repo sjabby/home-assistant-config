@@ -1,9 +1,10 @@
 """Class for appdaeperson2 apps in HACS."""
 from aiogithubapi import AIOGitHubAPIException
-from integrationhelper import Logger
 
-from .repository import HacsRepository
-from ..hacsbase.exceptions import HacsException
+from custom_components.hacs.helpers.classes.exceptions import HacsException
+from custom_components.hacs.helpers.functions.logger import getLogger
+
+from custom_components.hacs.helpers.classes.repository import HacsRepository
 
 
 class HacsAppdaeperson2(HacsRepository):
@@ -13,10 +14,11 @@ class HacsAppdaeperson2(HacsRepository):
         """Initialize."""
         super().__init__()
         self.data.full_name = full_name
+        self.data.full_name_lower = full_name.lower()
         self.data.category = "appdaeperson2"
         self.content.path.local = self.localpath
         self.content.path.remote = "apps"
-        self.logger = Logger(f"hacs.repository.{self.data.category}.{full_name}")
+        self.logger = getLogger(f"repository.{self.data.category}.{full_name}")
 
     @property
     def localpath(self):
@@ -49,20 +51,6 @@ class HacsAppdaeperson2(HacsRepository):
                 if not self.hacs.system.status.startup:
                     self.logger.error(error)
         return self.validate.success
-
-    async def registration(self, ref=None):
-        """Registration."""
-        if ref is not None:
-            self.ref = ref
-            self.force_branch = True
-        if not await self.validate_repository():
-            return False
-
-        # Run comperson2 registration steps.
-        await self.comperson2_registration()
-
-        # Set local path
-        self.content.path.local = self.localpath
 
     async def update_repository(self, ignore_issues=False):
         """Update."""

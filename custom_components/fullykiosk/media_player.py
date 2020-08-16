@@ -1,13 +1,10 @@
 """Fully Kiosk Browser media_player entity."""
-import json
 import logging
 
 from homeassistant.components.media_player import (
-    DEVICE_CLASS_SPEAKER,
     SUPPORT_PLAY_MEDIA,
-    MediaPlayerDevice,
+    MediaPlayerEntity,
 )
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
 
 from .const import DOMAIN, COORDINATOR, CONTROLLER
 
@@ -22,7 +19,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     async_add_entities([FullyMediaPlayer(coordinator, controller)], False)
 
 
-class FullyMediaPlayer(MediaPlayerDevice):
+class FullyMediaPlayer(MediaPlayerEntity):
+    """Representation of a Fully Kiosk Browser media player."""
+
     def __init__(self, coordinator, controller):
         self._name = f"{coordinator.data['deviceName']} Media Player"
         self.coordinator = coordinator
@@ -52,7 +51,6 @@ class FullyMediaPlayer(MediaPlayerDevice):
         return self._unique_id
 
     def play_media(self, media_type, media_id, **kwargs):
-        _LOGGER.warning("play media: %s :: %s", media_type, media_id)
         self.controller.playSound(media_id)
 
     async def async_added_to_hass(self):

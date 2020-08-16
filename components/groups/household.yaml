@@ -2,6 +2,6 @@
 household:
   entities:
     - device_tracker.person1sone11pro_wifi
-    - device_tracker.person1sone11pro_ios
+    - device_tracker.person1_sin_iphone_11_pro
     - device_tracker.person2s_iphone_x_wifi
     - device_tracker.person2s_iphone_x_ios

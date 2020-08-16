@@ -371,7 +371,7 @@ views:
               {% if is_state('sensor.norway_coronavirus_current', 
               'unavailable') %} {% else %}
               <font color='#6a7377'>
-              <b><ha-icon icon="custom:virus"></ha-icon> Coronavirus</b>
+              <b><ha-icon icon="custom:corona-virus"></ha-icon> <b>Coronavirus</b>
               ‍  ‍  ‍   ‍  ‍  ‍ <font color='#2f3436'>|‍</font>  ‍  ‍  ‍   ‍  ‍  ‍ 
               <b><ha-icon icon="mdi:emoticon-sad"></ha-icon> 
               {{ states('sensor.norway_coronavirus_current') }}</b> smittede
@@ -523,7 +523,7 @@ views:
           #################################################
 
           - type: icon
-            icon: custom:roborock
+            icon: custom:roborock-vacuum
             title: Støvsuger
             style:
               top: 87.41%
@@ -994,7 +994,7 @@ views:
             cards:
 
             - type: picture-elements
-              image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' /%3E"
+              image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' /%3E"
               elements:
 
                 ################################################

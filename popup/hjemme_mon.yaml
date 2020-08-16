@@ -63,15 +63,15 @@
                         "ha-card > div > div:nth-child(1)":
                           $: |
                             state-badge {
-                            color: {% if is_state('device_tracker.person2s_iphone_x_wifi', 'home') %} #35903b {% else %} #a33538 {% endif %};}
+                            color: {% if is_state('device_tracker.person2s_iphone_x_wifi', 'home') %} #3182b7 {% else %} #FFFFFF20 {% endif %};}
                         "ha-card > div > div:nth-child(2)":
                           $: |
                             state-badge {
-                            color: {% if is_state('device_tracker.person2s_iphone_x_ios', 'home') %} #35903b {% else %} #a33538 {% endif %};}
+                            color: {% if is_state('device_tracker.person2s_iphone_x_ios', 'home') %} #3182b7 {% else %} #FFFFFF20 {% endif %};}
                         "ha-card > div > div:nth-child(3)":
                           $: |
                             state-badge {
-                            color: {% if is_state('device_tracker.person2s_iphone_x_wifi', 'home') %} #35903b {% else %} #a33538 {% endif %};}
+                            color: {% if is_state('device_tracker.person2s_iphone_x_wifi', 'home') %} #3182b7 {% else %} #FFFFFF20 {% endif %};}
 
                     - type: map
                       entities:

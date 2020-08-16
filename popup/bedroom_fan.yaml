@@ -55,7 +55,7 @@
                             }
 
                         - entity: automation.bedroom_fan_turn_on
-                          icon: 'mdi:hotel'
+                          icon: 'mdi:bed'
                           name: Slå på om temp overstiger terskel
 
                     - type: custom:mini-graph-card

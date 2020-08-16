@@ -1,18 +1,15 @@
 """Fully Kiosk Browser sensor."""
 import logging
 
-from homeassistant.components.binary_sensor import BinarySensorDevice
-from homeassistant.const import DEVICE_CLASS_BATTERY
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.components.binary_sensor import BinarySensorEntity, DEVICE_CLASS_PLUG
 
-from .const import DOMAIN, COORDINATOR, CONTROLLER
+from .const import DOMAIN, COORDINATOR
 
 _LOGGER = logging.getLogger(__name__)
 
 SENSOR_TYPES = {
     "kioskMode": "Kiosk Mode",
-    "kioskLocked": "Kiosk Locked",
-    "plugged": "Pluggin In",
+    "plugged": "Plugged In",
     "isDeviceAdmin": "Device Admin",
 }
 
@@ -29,7 +26,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     async_add_entities(sensors, False)
 
 
-class FullyBinarySensor(BinarySensorDevice):
+class FullyBinarySensor(BinarySensorEntity):
+    """Representation of a Fully Kiosk Browser binary sensor."""
+
     def __init__(self, coordinator, sensor):
         self._name = f"{coordinator.data['deviceName']} {SENSOR_TYPES[sensor]}"
         self._sensor = sensor
@@ -46,8 +45,8 @@ class FullyBinarySensor(BinarySensorDevice):
 
     @property
     def device_class(self):
-        if self._sensor == "batteryLevel":
-            return DEVICE_CLASS_BATTERY
+        if self._sensor == "plugged":
+            return DEVICE_CLASS_PLUG
         return None
 
     @property

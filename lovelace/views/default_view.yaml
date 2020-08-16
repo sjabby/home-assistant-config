@@ -6,7 +6,7 @@ badges: []
 cards:
 
   - type: custom:simple-weather-card
-    entity: weather.met_no
+    entity: weather.home
     name: Tasta
     backdrop:
       day: "var(--primary-color)"
@@ -64,10 +64,10 @@ cards:
               entities:
                 - person.person1
                 - device_tracker.person1sone11pro_wifi
-                - device_tracker.person1sone11pro_ios
-                - sensor.person1sone11pro_battery_level
-                - sensor.person1sone11pro_battery_state
-                - sensor.person1sone11pro_last_update_trigger
+                - device_tracker.person1_sin_iphone_11_pro
+                - sensor.person1_sin_iphone_11_pro_battery_level
+                - sensor.person1_sin_iphone_11_pro_battery_state
+                - sensor.person1_sin_iphone_11_pro_last_update_trigger
                 - entity: input_boolean.bed_presence_t
                   name: Sover
                 - entity: sensor.sleep_t
@@ -529,7 +529,7 @@ cards:
                 - type: "custom:button-card"
                   color_type: card
                   entity: script.vacuum_bedroom
-                  icon: mdi:hotel
+                  icon: mdi:bed
                   color: auto
                   name: Soverom
                 - type: "custom:button-card"

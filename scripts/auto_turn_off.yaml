@@ -1,0 +1,34 @@
+auto_turn_off:
+  sequence:
+    - service: light.turn_off
+      entity_id: 
+        - light.kontoret
+        - light.gang
+        - light.kitchen
+        - light.bathroom
+        - light.badet
+        - light.storage_ceiling
+        - light.kitchen_dimmer_2_level
+    - service: fan.turn_off
+      entity_id: 
+        - fan.office
+        - fan.bedroom
+    # - service: switch.turn_off
+    #   entity_id: switch.wemo_person2itorer
+    # - service_template: >-
+    #     {% if is_state('switch.dator_template', 'on') %}
+    #     script.dator_off {% else %}
+    #     script.dummy {% endif %}
+    # - service_template: >-
+    #     {% if is_state('switch.playstation_template', 'on') %}
+    #     script.playstation_off {% else %}
+    #     script.dummy {% endif %}
+    # - service_template: >-
+    #     {% if is_state('switch.tv_template', 'on') %}
+    #     script.tv_off {% else %}
+    #     script.dummy {% endif %}
+    # - service_template: >-
+    #     {% if is_state('switch.tv2_template', 'on') %}
+    #     script.tv2_off {% else %}
+    #     script.dummy {% endif %}
+    - delay: '00:00:04'

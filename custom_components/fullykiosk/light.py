@@ -1,8 +1,11 @@
 """Fully Kiosk Browser light entity for controlling screen brightness & on/off."""
 import logging
 
-from homeassistant.components.light import ATTR_BRIGHTNESS, Light, SUPPORT_BRIGHTNESS
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.components.light import (
+    ATTR_BRIGHTNESS,
+    LightEntity,
+    SUPPORT_BRIGHTNESS,
+)
 
 from .const import DOMAIN, COORDINATOR, CONTROLLER
 
@@ -17,7 +20,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     async_add_entities([FullyLight(coordinator, controller)], False)
 
 
-class FullyLight(Light):
+class FullyLight(LightEntity):
+    """Representation of a Fully Kiosk Browser light."""
+
     def __init__(self, coordinator, controller):
         self._name = f"{coordinator.data['deviceName']} Screen"
         self.coordinator = coordinator
@@ -54,16 +59,19 @@ class FullyLight(Light):
     def unique_id(self):
         return self._unique_id
 
-    def turn_on(self, **kwargs):
-        self.controller.screenOn()
+    async def async_turn_on(self, **kwargs):
+        await self.hass.async_add_executor_job(self.controller.screenOn)
         brightness = kwargs.get(ATTR_BRIGHTNESS)
-        if brightness == None:
+        if brightness is None:
+            await self.coordinator.async_refresh()
             return
-        if brightness != self._brightness:
+        if brightness != self.coordinator.data["screenBrightness"]:
             self.controller.setScreenBrightness(brightness)
+        await self.coordinator.async_refresh()
 
-    def turn_off(self, **kwargs):
-        self.controller.screenOff()
+    async def async_turn_off(self, **kwargs):
+        await self.hass.async_add_executor_job(self.controller.screenOff)
+        await self.coordinator.async_refresh()
 
     async def async_added_to_hass(self):
         """Connect to dispatcher listening for entity data notifications."""

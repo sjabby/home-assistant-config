@@ -2,4 +2,4 @@
 person1:
   entities:
     - device_tracker.person1sone11pro_wifi
-    - device_tracker.person1sone11pro_ios
+    - device_tracker.person1_sin_iphone_11_pro

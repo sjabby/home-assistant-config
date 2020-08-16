@@ -49,10 +49,10 @@
                         - entity: device_tracker.person1sone11pro_wifi
                           name: Router
                           icon: 'mdi:router-wireless'
-                        - entity: device_tracker.person1sone11pro_ios
+                        - entity: device_tracker.person1_sin_iphone_11_pro
                           name: Bluetooth
                           icon: 'mdi:bluetooth'
-                        - entity: device_tracker.person1sone11pro_ios
+                        - entity: device_tracker.person1_sin_iphone_11_pro
                           name: iPhone GPS
                           icon: 'mdi:cellphone'
                       style:
@@ -63,19 +63,19 @@
                         "ha-card > div > div:nth-child(1)":
                           $: |
                             state-badge {
-                            color: {% if is_state('device_tracker.person1sone11pro_wifi', 'home') %} #35903b {% else %} #a33538 {% endif %};}
+                            color: {% if is_state('device_tracker.person1sone11pro_wifi', 'home') %} #3182b7 {% else %} #FFFFFF20 {% endif %};}
                         "ha-card > div > div:nth-child(2)":
                           $: |
                             state-badge {
-                            color: {% if is_state('device_tracker.person1sone11pro_ios', 'home') %} #35903b {% else %} #a33538 {% endif %};}
+                            color: {% if is_state('device_tracker.person1_sin_iphone_11_pro', 'home') %} #3182b7 {% else %} #FFFFFF20 {% endif %};}
                         "ha-card > div > div:nth-child(3)":
                           $: |
                             state-badge {
-                            color: {% if is_state('device_tracker.person1sone11pro_ios', 'home') %} #35903b {% else %} #a33538 {% endif %};}
+                            color: {% if is_state('device_tracker.person1_sin_iphone_11_pro', 'home') %} #3182b7 {% else %} #FFFFFF20 {% endif %};}
 
                     - type: map
                       entities:
-                        - device_tracker.person1sone11pro_ios
+                        - device_tracker.person1_sin_iphone_11_pro
                       default_zoom: 15
                       hours_to_show: 24
                       style: |
