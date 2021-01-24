@@ -4,9 +4,8 @@ title: Home
 # background: center / cover no-repeat url("/local/bg/1.jpeg") fixed
 badges: []
 cards:
-
   - type: custom:simple-weather-card
-    entity: weather.home
+    entity: weather.home_62
     name: Tasta
     backdrop:
       day: "var(--primary-color)"
@@ -14,10 +13,10 @@ cards:
 
   - type: glance
     entities:
-      - binary_sensor.office_multisensor_motion
+      - binary_sensor.office_multisensor_sensor
       - binary_sensor.hall_multisensor_motion
       - binary_sensor.storage_multisensor_motion
-      - binary_sensor.bedroom_multisensor_motion
+      - binary_sensor.bedroom_multisensor_home_security_motion_detected
       - binary_sensor.bathroom_multisensor_motion
 
   - type: vertical-stack
@@ -390,7 +389,6 @@ cards:
             # image: /local/roborock.jpeg
             image: /local/vacuum_docked.png
             elements:
-
               - type: image
                 entity: input_boolean.more_info_vacuum
                 tap_action:
@@ -502,7 +500,7 @@ cards:
           cards:
             - type: "custom:button-card"
               color_type: label-card
-              name: 'Støvsug sone:'
+              name: "Støvsug sone:"
               styles:
                 card:
                   - height: 15px
@@ -540,7 +538,7 @@ cards:
                   name: Kontor
             - type: "custom:button-card"
               color_type: label-card
-              name: 'Siste rengjøring:'
+              name: "Siste rengjøring:"
               styles:
                 card:
                   - height: 15px
@@ -552,7 +550,7 @@ cards:
                 - entity: sensor.vacuum_cleaning_time
             - type: "custom:button-card"
               color_type: label-card
-              name: 'Vedlikehold:'
+              name: "Vedlikehold:"
               styles:
                 card:
                   - height: 15px

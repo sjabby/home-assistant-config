@@ -1,0 +1,4 @@
+---
+platform: mqtt
+name: "Meater 1 Cook Name"
+state_topic: "meater/probe/1/cookName"

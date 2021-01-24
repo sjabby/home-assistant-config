@@ -1,0 +1,32 @@
+---
+platform: template
+sensors:
+  sidebar_active:
+    value_template: >-
+      {% set lights = [states.light.gang, states.light.golvlampa, states.light.fonsterlampa, states.light.datorlampa, 
+      states.light.vask_hoger, states.light.vask_vanster, states.light.taklampa, states.light.kladkammare_2, 
+      states.light.hallampa_1, states.light.hallampa_2, states.light.hallampa_3, states.light.mattias, states.light.sanja, 
+      states.light.spot_1, states.light.spot_2] %}
+      {% set lights_on = lights | selectattr('state','eq','on') | list %}
+      {% set lights_name = lights | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
+      {% set switches = [states.switch.wol_office_pc, states.binary_sensor.tv, states.fan.office, 
+      states.fan.bedroom] %}
+      {% set switches_on = switches | selectattr('state','eq','on') | list %} 
+      {% set switches_name = switches | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
+      {% if (lights_on | length ==0 ) and (switches_on | length > 0) %} 
+      {{ switches_name | regex_replace(',([^,]*)$',' og\\1') }} er på
+      {% elif (lights_on | length ==1) and (switches_on | length == 1) %}
+      {{ lights_name }} og {{switches_name }} er på
+      {% elif (lights_on | length ==1) and (switches_on | length > 1) %}
+      {{ lights_name }}, {{ switches_name | regex_replace(',([^,]*)$',' og\\1') }} er på
+      {% elif (lights_on | length > 1) and (switches_on | length == 1) %}
+      {{ lights_on | length }} lys og {{ switches_name }} er på
+      {% elif (lights_on | length > 1 ) and (switches_on | length > 1) %}
+      {{ lights_on | length }} lys, {{ switches_name | regex_replace(',([^,]*)$',' og\\1') }} er på
+      {% elif (lights_on | length ==1) and (switches_on | length ==0) %}
+      {{ lights_name }} er på
+      {% elif (lights_on | length >1 ) and (switches_on | length ==0) %}
+      {{ lights_on | length}} lys er på
+      {% else %} 
+      <font color='#6a7377'>Alt er av</font> 
+      {% endif %}

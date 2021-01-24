@@ -1,0 +1,8 @@
+---
+platform: mqtt
+name: ozw_network_status
+state_topic: OpenZWave/1/status/
+value_template: >
+  {{ "ON" if value_json.Status in ["driverAwakeNodesQueried", "driverAllNodesQueriedSomeDead", "driverAllNodesQueried"] else "OFF" }}
+json_attributes_topic: OpenZWave/1/status/
+device_class: "connectivity"

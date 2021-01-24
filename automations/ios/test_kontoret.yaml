@@ -1,0 +1,10 @@
+---
+alias: iOS turn on lights
+trigger:
+  - event_type: ios.action_fired
+    platform: event
+    event_data:
+      actionName: Test
+action:
+  service: media_player.toggle
+  entity_id: media_player.kontor

@@ -1,0 +1,6 @@
+---
+platform: mqtt
+name: ozw_network_notification
+state_topic: OpenZWave/1/event/notification/
+value_template: "{{ value_json.Event }}"
+json_attributes_topic: OpenZWave/1/event/notification/

@@ -3,6 +3,6 @@ platform: template
 sensors:
   outside_temperature:
     friendly_name: "Outside temperature"
-    unit_of_measurement: '°C'
-    value_template: "{{ state_attr('weather.met_no', 'temperature') }}"
-    icon_template: 'mdi-thermometer'
+    unit_of_measurement: "°C"
+    value_template: "{{ state_attr('weather.home_62', 'temperature') }}"
+    icon_template: mdi-thermometer

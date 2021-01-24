@@ -1,0 +1,21 @@
+---
+platform: template
+sensors:
+  hass_dev_release:
+    icon_template: mdi:dev-to
+    friendly_name_template: >
+      {% if ((as_timestamp(state_attr('calendar.home_assistant_devs', 
+      'start_time')) - as_timestamp(now())) / 86400) > 20 %}
+        Planlagt beta
+      {% else %}
+        {{ state_attr('calendar.home_assistant_devs','message') }}
+      {% endif %}
+    value_template: >
+      {% set dev = ((as_timestamp(state_attr('calendar.home_assistant_devs', 
+      'start_time')) - as_timestamp(now())) / 86400) %}
+      {% if dev < -1 %} Released
+      {% elif dev < 0 %} Idag
+      {% elif dev < 1 %} Imorgen
+      {% elif dev > 35 %} Ingen
+      {% else %} {{ dev | int + 1 }} dager
+      {% endif %}

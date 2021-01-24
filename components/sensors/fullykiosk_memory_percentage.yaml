@@ -3,6 +3,6 @@ platform: template
 sensors:
   fullykiosk_memory_percentage:
     friendly_name: Minne
-    icon_template: 'mdi:memory'
-    unit_of_measurement: '%'
-    value_template: "{{ 100 - ( state_attr('sensor.fullykiosk', 'ramFreeMemory') / state_attr('sensor.fullykiosk', 'ramTotalMemory') * 100 ) | int }}"
+    icon_template: "mdi:memory"
+    unit_of_measurement: "%"
+    value_template: "{{ 100 - ( state_attr('sensor.tablet', 'ramFreeMemory') / state_attr('sensor.tablet', 'ramTotalMemory') * 100 ) | int }}"

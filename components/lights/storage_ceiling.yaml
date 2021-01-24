@@ -1,4 +1,4 @@
 ---
 platform: switch
 name: storage_ceiling
-entity_id: switch.storage_switch_switch
+entity_id: switch.storage_ceiling_light

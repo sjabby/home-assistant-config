@@ -1,0 +1,10 @@
+---
+platform: template
+sensors:
+  hass_version:
+    icon_template: mdi:home-assistant
+    friendly_name_template: >
+      Installert {{ states('sensor.hass_version_installed') }}
+    value_template: >
+      {{ 'Siste' if states('sensor.hass_version_installed') == 
+      states('sensor.hass_version_latest') else states('sensor.hass_version_latest') }}

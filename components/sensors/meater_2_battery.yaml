@@ -1,0 +1,5 @@
+---
+platform: mqtt
+name: "Meater 2 Battery"
+state_topic: "meater/probe/2/battery"
+device_class: battery  

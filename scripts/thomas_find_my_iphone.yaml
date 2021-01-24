@@ -1,0 +1,18 @@
+---
+person1_find_my_iphone:
+  sequence:
+    - repeat:
+        count: 3
+        sequence:
+          - service: notify.mobile_app_person1_sin_iphone_11_pro
+            data:
+              title: Finn min iPhone
+              message: I'm here!
+              data:
+                push:
+                  sound:
+                    name: Ringtone_UK_Haptic.caf
+                    critical: 1
+                    volume: 1.0
+          - delay:
+              seconds: 4

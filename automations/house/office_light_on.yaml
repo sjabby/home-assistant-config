@@ -2,17 +2,17 @@
 alias: office_light_on
 trigger:
   platform: state
-  entity_id: binary_sensor.office_multisensor_motion
-  to: 'on'
+  entity_id: binary_sensor.office_multisensor_sensor
+  to: "on"
 condition:
   condition: and
   conditions:
     - condition: numeric_state
-      entity_id: 'sensor.office_multisensor_luminance'
-      below: '50'
+      entity_id: "sensor.office_multisensor_illuminance"
+      below: "50"
     - condition: state
       entity_id: light.kontoret
-      state: 'off'
+      state: "off"
 
 action:
   service: light.turn_on

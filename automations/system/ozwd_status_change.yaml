@@ -1,0 +1,27 @@
+---
+alias: ozwd_status_change
+initial_state: true
+
+trigger:
+  platform: state
+  entity_id:
+    - binary_sensor.ozw_network_status
+
+action:
+  - service: notify.discord_text
+    data_template:
+      message: >
+        {% if is_state("binary_sensor.ozw_network_status", "on") -%}
+          :white_check_mark: OZWD Network online
+        {%- else -%}
+          :warning: OZWD Network offline!
+        {%- endif %}
+
+  - service: notify.mobile_app_person1_sin_iphone_11_pro
+    data_template:
+      message: >
+        {% if is_state("binary_sensor.ozw_network_status", "on") -%}
+          OZWD Network online
+        {%- else -%}
+          OZWD Network offline!
+        {%- endif %}

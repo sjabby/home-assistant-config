@@ -1,4 +1,4 @@
 ---
 platform: switch
 name: kitchen_bench
-entity_id: switch.kitchen_switch_switch
+entity_id: switch.kitchen_switch_instance_1_switch

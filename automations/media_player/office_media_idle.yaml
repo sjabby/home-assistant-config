@@ -1,12 +1,11 @@
 ---
 alias: office_media_idle
-initial_state: 'on'
+initial_state: on
 trigger:
   - platform: state
-    entity_id: media_player.plex_sjabby_w10
-    to: 'idle'
+    entity_id: media_player.plex_plex_for_windows_sjabbyw10
+    to: "idle"
 action:
-
   - service: light.turn_on
     data_template:
       entity_id:

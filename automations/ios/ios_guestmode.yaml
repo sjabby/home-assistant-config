@@ -1,0 +1,9 @@
+alias: ios_guestmode
+trigger:
+  - event_type: ios.action_fired
+    platform: event
+    event_data:
+      actionName: guestmode
+action:
+  service: input_boolean.toggle
+  entity_id: input_boolean.guest_mode

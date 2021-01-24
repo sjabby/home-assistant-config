@@ -2,7 +2,7 @@
 platform: template
 sensors:
   stats_zwave_devices:
-    entity_id: []
+    # entity_id: []
     value_template: >
       {%- set domains = ['zwave'] -%}
       {%- for domain in domains -%}

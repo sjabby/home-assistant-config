@@ -64,7 +64,7 @@ class HacsOverviewView(HacsViewBase):
                     if types[element_type]:
                         typedisplay = "{}S".format(element_type.upper())
                         if element_type == "appdaeperson2":
-                            typedisplay = "APPDAEMON APPS"
+                            typedisplay = "APPDAEperson2 APPS"
                         elif element_type == "python_script":
                             typedisplay = "PYTHON SCRIPTS"
                         if self.store.frontend_mode == "Table":

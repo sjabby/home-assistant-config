@@ -16,7 +16,7 @@ condition:
         entity_id: input_boolean.wakeup_weekends
         state: 'on'
 action:
-  - service: script.wakeup_bedroom
   - service: notify.discord_text
     data_template:
       message: ":zzz: Wakeup sequence started.."
+  - service: script.wakeup_bedroom

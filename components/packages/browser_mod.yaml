@@ -2,5 +2,6 @@
 browser_mod:
   prefix: "browser_"
   devices:
-    26a50129_4e19af92:
-      name: fullykiosk
+    26a50129-4e19af92:
+      name: tablet
+      camera: true

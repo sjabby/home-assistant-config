@@ -1,0 +1,10 @@
+---
+alias: on_tv
+trigger:
+  - platform: state
+    entity_id: sensor.on_tv
+action:
+  - service: notify.discord_text
+    data_template:
+      message: >-
+        TV Changed to: {{ state_attr('media_player.the_frame_75', 'media_title') }}

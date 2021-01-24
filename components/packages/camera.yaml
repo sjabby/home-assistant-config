@@ -1,2 +1,2 @@
-# ---
-# camera: !include_dir_list ../camera
+---
+camera: !include_dir_list ../camera

@@ -3,9 +3,9 @@ platform: template
 sensors:
   fullykiosk_motion_detector_state:
     friendly_name: Bevegelsesdetektor
-    icon_template: 'mdi:camera-front-variant'
+    icon_template: "mdi:camera-front-variant"
     value_template: >-
-      {% if state_attr('sensor.fullykiosk', 'motionDetectorState') == 0 %}
+      {% if state_attr('sensor.tablet', 'motionDetectorState') == 0 %}
       Av
       {% else %}
       På

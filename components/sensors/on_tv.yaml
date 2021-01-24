@@ -1,0 +1,6 @@
+---
+platform: template
+sensors:
+  on_tv:
+    value_template: >
+      {{ state_attr('media_player.the_frame_75', 'media_title') }}

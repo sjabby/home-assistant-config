@@ -1,0 +1,9 @@
+alias: ios_good_night
+trigger:
+  - event_type: ios.action_fired
+    platform: event
+    event_data:
+      actionName: goodnight
+action:
+  service: script.turn_on
+  entity_id: script.auto_turn_off

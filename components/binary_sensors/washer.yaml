@@ -5,4 +5,4 @@ sensors:
     friendly_name: "Vaskemaskin"
     device_class: power
     icon_template: mdi:washing-machine
-    value_template: "{{ states('sensor.powerplug_washer_power')|float > 2.5 }}"
+    value_template: "{{ states('sensor.powerplug_washer_power_2')|float > 2.5 }}"

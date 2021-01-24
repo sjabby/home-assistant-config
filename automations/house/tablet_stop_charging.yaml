@@ -10,4 +10,4 @@ trigger:
 action:
   - service: switch.turn_off
     entity_id:
-      - switch.powerplug_tablet_switch
+      - switch.powerplug_tablet_switch_3

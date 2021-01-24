@@ -2,6 +2,6 @@
 platform: filesize
 scan_interval: 3600
 file_paths:
-  - /home/homeassistant/.homeassistant/home-assistant_v2.db
-  - /home/homeassistant/.homeassistant/home-assistant.log
-  - /home/homeassistant/.homeassistant/OZW_Log.txt
+  - /config/home-assistant_v2.db
+  - /config/home-assistant.log
+  # - /config/OZW_Log.txt #enable when zwave is enabled again

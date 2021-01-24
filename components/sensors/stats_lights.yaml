@@ -2,7 +2,7 @@
 platform: template
 sensors:
   stats_lights:
-    entity_id: []
+    # entity_id: []
     value_template: >
       {%- set domains = ['light'] -%}
       {%- for domain in domains -%}

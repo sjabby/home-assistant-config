@@ -1,0 +1,11 @@
+---
+platform: samsungtv_tizen
+name: the_frame_75
+host: 192.168.2.165
+mac: "98:06:3c:5d:69:c3"
+update_method: websockets
+api_key: "a54a1bd3-8f6c-4fe8-8502-4c200f1c411f"
+device_id: "f24b2b38-dce5-002f-9859-dadaafd492f9"
+is_frame_tv: true
+source_list: '{"HDMI1": "HDMI2"}'
+app_list: '{"Netflix": "11101200001/org.tizen.netflix-app", "YouTube": "111299001912", "Plex": "3201512006963", "NRK": "cBI0ubFuo6.NRK", "TV2 Sumo": "PyZfkXAf88.tv2sumoTizen," "Dplay": "pIaMf8YZyZ.whiteLabelTal" }'

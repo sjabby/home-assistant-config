@@ -1,9 +1,9 @@
 ---
 alias: "System - Update Stats Sensors"
-initial_state: 'on'
+initial_state: on
 trigger:
   platform: time_pattern
-  minutes: '/25'
+  minutes: "/25"
 action:
   - service: homeassistant.update_entity
     entity_id:

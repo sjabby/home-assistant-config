@@ -2,12 +2,12 @@
 alias: office_fan_turn_off
 trigger:
   - platform: state
-    entity_id: binary_sensor.office_multisensor_motion
-    to: 'off'
-    for: '00:10:00'
+    entity_id: binary_sensor.office_multisensor_sensor
+    to: "off"
+    for: "00:10:00"
   - platform: state
     entity_id: sensor.house_mode
-    to: 'away'
+    to: "away"
 condition:
   - condition: template
     value_template: >-
@@ -16,7 +16,7 @@ condition:
     value_template: "{{ not is_state('sensor.playingonsteam', 'game') }}"
   - condition: template
     value_template: >-
-      "{{ not is_state('media_player.plex_sjabby_w10', 'playing') }}"
+      "{{ not is_state('media_player.plex_plex_for_windows_sjabbyw10', 'playing') }}"
 action:
   - service: homeassistant.turn_off
     entity_id: fan.office

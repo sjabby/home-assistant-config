@@ -2,9 +2,9 @@
 alias: bedroom_light_off
 trigger:
   - platform: state
-    entity_id: binary_sensor.bedroom_multisensor_motion
-    to: 'off'
-    for: '00:10:00'
+    entity_id: binary_sensor.bedroom_multisensor_home_security_motion_detected
+    to: "off"
+    for: "00:10:00"
 
 action:
   - service: light.turn_off

@@ -2,7 +2,7 @@
 platform: template
 sensors:
   stats_devicetrackers:
-    entity_id: []
+    # entity_id: []
     value_template: >
       {%- set domains = ['device_tracker'] -%}
       {%- for domain in domains -%}

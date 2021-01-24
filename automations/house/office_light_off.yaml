@@ -2,9 +2,9 @@
 alias: office_light_off
 trigger:
   platform: state
-  entity_id: binary_sensor.office_multisensor_motion
-  to: 'off'
-  for: '00:10:00'
+  entity_id: binary_sensor.office_multisensor_sensor
+  to: "off"
+  for: "00:10:00"
 
 condition:
   - condition: template
@@ -12,10 +12,10 @@ condition:
   - condition: template
     value_template: "{{ not is_state('sensor.playingonsteam', 'game') }}"
   - condition: template
-    value_template: "{{ not is_state('media_player.plex_sjabby_w10', 'playing') }}"
+    value_template: "{{ not is_state('media_player.plex_plex_for_windows_sjabbyw10', 'playing') }}"
   - condition: state
     entity_id: input_boolean.home_office
-    state: 'off'
+    state: "off"
 action:
   service: light.turn_off
   data_template:

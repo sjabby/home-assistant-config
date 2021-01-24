@@ -1,10 +1,10 @@
 ---
 alias: office_media_playing
-initial_state: 'on'
+initial_state: on
 trigger:
   - platform: state
-    entity_id: media_player.plex_sjabby_w10
-    to: 'playing'
+    entity_id: media_player.plex_plex_for_windows_sjabbyw10
+    to: "playing"
 action:
   - service: switch.turn_off
     data_template:

@@ -1,0 +1,10 @@
+---
+alias: kitchen_next_song
+trigger:
+  - platform: state
+    entity_id: binary_sensor.dummy
+    to: 'on'
+action:
+  service: media_player.media_next_track
+  data:
+    entity_id: media_player.kjkken

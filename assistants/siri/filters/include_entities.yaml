@@ -1,3 +1,6 @@
 ---
 include_entities:
   - switch.flux
+  - light.kitchen_bench
+  - light.kitchen_dimmer_instance_1_level_2
+  - light.kitchen_dimmer_2_instance_1_level_3

@@ -3,5 +3,5 @@ platform: template
 sensors:
   fullykiosk_device_name:
     friendly_name: Modell
-    icon_template: 'mdi:tablet'
-    value_template: "{{ state_attr('sensor.fullykiosk', 'deviceName') }} ({{ state_attr('sensor.fullykiosk', 'deviceModel') }})"
+    icon_template: "mdi:tablet"
+    value_template: "{{ state_attr('sensor.tablet', 'deviceName') }} ({{ state_attr('sensor.tablet', 'deviceModel') }})"

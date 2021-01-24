@@ -1,0 +1,12 @@
+---
+ozw_node_command:
+  alias: Send OZW Node Command
+  icon: mdi:refresh
+  mode: single
+  sequence:
+    - data_template:
+        payload:
+          '{{ "{" + "\"node\":" + states(''input_number.ozw_node_id'')|int|string
+          + "}" }}'
+        topic: OpenZWave/1/command/{{zw_command}}/
+      service: mqtt.publish

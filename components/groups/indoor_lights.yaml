@@ -13,10 +13,10 @@ indoor_lights:
     - light.hue_iris_1
     - light.hue_iris_2
     - light.hue_lightstrip_plus_1
-    - light.kitchen_dimmer_1_level
-    - light.kitchen_dimmer_1_level_2
-    - light.kitchen_dimmer_2_level
-    - light.kitchen_dimmer_2_level_2
+    - light.kitchen_dimmer_instance_1_level_2
+    - light.kitchen_dimmer_instance_1_level_2_2
+    - light.kitchen_dimmer_2_instance_1_level_3
+    - light.kitchen_dimmer_2_instance_1_level_3_2
     - light.kjokken
     - light.kontoret
     - light.kontoret_taklampe

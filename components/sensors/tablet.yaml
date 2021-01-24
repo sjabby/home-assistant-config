@@ -1,6 +1,6 @@
 ---
 platform: rest
-name: fullykiosk
+name: tablet
 json_attributes:
   - batteryLevel
   - kioskMode
@@ -29,4 +29,4 @@ json_attributes:
   - ramTotalMemory
   - currentFragment
 resource: !secret tablet
-value_template: '{{ value_json.isScreenOn }}'
+value_template: "{{ value_json.isScreenOn }}"

@@ -1,0 +1,15 @@
+---
+alias: Natti
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.bed_presence_m
+    to: 'on'
+
+action:
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.soverom
+      volume: 0.3
+      message: 'Natti natt vennen'
+      delay: '00:00:05'

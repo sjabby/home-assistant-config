@@ -1,0 +1,5 @@
+---
+zwave_entities:
+  name: Zwave Entities
+  options:
+    - Placeholder

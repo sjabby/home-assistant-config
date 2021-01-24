@@ -1,0 +1,6 @@
+---
+platform: mqtt
+name: "Meater 1 Meat"
+state_topic: "meater/probe/1/meat"
+device_class: temperature
+unit_of_measurement: '°C'  

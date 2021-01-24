@@ -1,0 +1,5 @@
+---
+withings:
+  client_id: !secret withings_person1_client_id
+  client_secret: !secret withings_person1_secret
+  use_webhook: true

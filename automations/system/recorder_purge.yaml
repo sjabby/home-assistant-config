@@ -1,9 +1,9 @@
 ---
-initial_state: 'on'
 alias: recorder_purge
+initial_state: on
 trigger:
   - platform: time
-    at: '01:00:00'
+    at: "01:00:00"
 action:
   - service: recorder.purge
     data:

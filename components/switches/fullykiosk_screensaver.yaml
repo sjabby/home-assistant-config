@@ -3,7 +3,7 @@ platform: template
 switches:
   fullykiosk_screensaver:
     value_template: >-
-      {% if state_attr('sensor.fullykiosk', 'currentFragment') == 'screensaver' %}
+      {% if state_attr('sensor.tablet', 'currentFragment') == 'screensaver' %}
         on
       {% else %}
         off

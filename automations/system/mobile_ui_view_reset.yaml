@@ -1,0 +1,14 @@
+---
+alias: mobile_ui_view_reset
+initial_state: true
+trigger:
+  - platform: template
+    value_template: >
+      {{ not is_state('input_select.mobile_ui_view', 'None') }} 
+    for:
+      minutes: 1
+action:
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.mobile_ui_view
+      option: None

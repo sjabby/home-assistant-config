@@ -2,7 +2,7 @@
 platform: template
 sensors:
   stats_scripts:
-    entity_id: []
+    # entity_id: []
     value_template: >
       {%- set domains = ['script'] -%}
       {%- for domain in domains -%}

@@ -2,5 +2,5 @@
 platform: group
 name: kitchen
 entities:
-  - light.kitchen_dimmer_1_level
+  - light.kitchen_dimmer_instance_1_level_2
   - light.kitchen_bench

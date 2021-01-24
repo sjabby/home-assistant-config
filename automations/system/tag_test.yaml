@@ -1,0 +1,16 @@
+---
+alias: Handle Tag Scan
+mode: single
+# Hide warnings when triggered while in delay.
+max_exceeded: silent
+trigger:
+  platform: event
+  event_type: tag_scanned
+# condition:
+#   # Test that we support this device and tag
+#   - "{{ trigger.event.data.tag_id in tags }}"
+#   - "{{ trigger.event.data.device_id in media_players }}"
+action:
+  - service: notify.discord_text
+    data_template:
+      message: "Tag scannet"

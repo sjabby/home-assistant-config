@@ -1,0 +1,4 @@
+---
+platform: mqtt
+name: "Meater Block Status"
+state_topic: "meater/block/status"

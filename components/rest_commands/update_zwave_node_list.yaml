@@ -1,0 +1,16 @@
+---
+update_zwave_node_list:
+  url: "http://192.168.2.9:8123/api/services/input_select/set_options"
+  method: POST
+  headers:
+    content-type: application/json
+    Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhNDU1NDkwMTkwNDA0MjY5YmFjY2EwMmRjNzA0MmRiOSIsImlhdCI6MTYwOTEwODYyNSwiZXhwIjoxOTI0NDY4NjI1fQ.uSS4RWlN8ezzuXbBXnROWJ0kRUoyq4ja7ZXJBOzhfEs
+  payload: >
+    {
+      "entity_id": "input_select.zwave_entities",
+      "options": [
+        {%- for item in (states | selectattr('attributes.node_id') | unique(attribute='attributes.node_id') | list ) %}
+        "{{item.attributes.friendly_name + ' ('+item.attributes.node_id|string+')' }}"{% if not loop.last %}, {% endif %}
+        {%- endfor %}
+        ]
+    }

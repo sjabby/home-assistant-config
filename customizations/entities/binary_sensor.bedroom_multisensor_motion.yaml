@@ -1,4 +1,4 @@
 ---
-binary_sensor.bedroom_multisensor_motion:
+binary_sensor.bedroom_multisensor_home_security_motion_detected:
   device_class: motion
   friendly_name: Soverom PIR

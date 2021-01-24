@@ -4,6 +4,6 @@ sensors:
   fullykiosk_plugged:
     friendly_name: Tilkoblet strøm
     value_template: >-
-      {% if state_attr('sensor.fullykiosk', 'plugged') == true %} Ja {% else %} Nei {% endif %}
+      {% if state_attr('sensor.tablet', 'plugged') == true %} Ja {% else %} Nei {% endif %}
     icon_template: >-
-      {% if state_attr('sensor.fullykiosk', 'plugged') == true %} mdi:power-plug {% else %} mdi:power-plug-off {% endif %}
+      {% if state_attr('sensor.tablet', 'plugged') == true %} mdi:power-plug {% else %} mdi:power-plug-off {% endif %}

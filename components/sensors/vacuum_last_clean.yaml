@@ -2,7 +2,7 @@
 platform: template
 sensors:
   vacuum_last_clean:
-    entity_id: sensor.time
+    # entity_id: sensor.time
     friendly_name: Siste rengjøring
     icon_template: 'mdi:clock'
     value_template: >

@@ -1,0 +1,6 @@
+---
+platform: mqtt
+name: "Meater 3 Ambient"
+state_topic: "meater/probe/3/ambient"
+device_class: temperature
+unit_of_measurement: '°C'   

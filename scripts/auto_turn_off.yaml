@@ -1,16 +1,16 @@
 auto_turn_off:
   sequence:
     - service: light.turn_off
-      entity_id: 
+      entity_id:
         - light.kontoret
         - light.gang
         - light.kitchen
         - light.bathroom
         - light.badet
         - light.storage_ceiling
-        - light.kitchen_dimmer_2_level
+        - light.kitchen_dimmer_2_instance_1_level_3
     - service: fan.turn_off
-      entity_id: 
+      entity_id:
         - fan.office
         - fan.bedroom
     # - service: switch.turn_off
@@ -31,4 +31,4 @@ auto_turn_off:
     #     {% if is_state('switch.tv2_template', 'on') %}
     #     script.tv2_off {% else %}
     #     script.dummy {% endif %}
-    - delay: '00:00:04'
+    - delay: "00:00:04"

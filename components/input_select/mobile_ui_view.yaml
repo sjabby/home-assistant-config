@@ -1,0 +1,14 @@
+---
+mobile_ui_view:
+  name: Mobile UI View Selector
+  initial: None
+  options:
+    - Livingroom
+    - Hall
+    - Kitchen
+    - Bathroom
+    - Storage
+    - Bedroom
+    - Office
+    - Modus
+    - None

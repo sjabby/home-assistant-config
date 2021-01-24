@@ -3,8 +3,8 @@ alias: office_fan_turn_on
 
 trigger:
   platform: state
-  entity_id: binary_sensor.office_multisensor_motion
-  to: 'on'
+  entity_id: binary_sensor.office_multisensor_sensor
+  to: "on"
 
 condition:
   condition: and
@@ -16,16 +16,16 @@ condition:
         default(0)|float) }}
     - condition: state
       entity_id: sensor.house_mode
-      state: 'home'
+      state: "home"
     - condition: state
       entity_id: group.person1
-      state: 'home'
+      state: "home"
     - condition: state
       entity_id: switch.wol_office_pc
-      state: 'on'
+      state: "on"
     - condition: state
       entity_id: fan.office
-      state: 'off'
+      state: "off"
 
 action:
   - service: homeassistant.turn_on
@@ -33,5 +33,5 @@ action:
   - service: notify.discord_text
     data_template:
       message: >
-       "Kontoret - Viften ble skrudd på siden temperaturen er over
-         {{ (states('input_number.office_fan_start_setpoint')|default(0)|float) }} °C"
+        "Kontoret - Viften ble skrudd på siden temperaturen er over
+          {{ (states('input_number.office_fan_start_setpoint')|default(0)|float) }} °C"

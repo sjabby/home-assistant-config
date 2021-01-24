@@ -2,7 +2,7 @@
 platform: template
 sensors:
   sidebar_greeting:
-    entity_id: sensor.time
+    # entity_id: sensor.time
     value_template: >-
       {% set t = now().hour %}
       {% if t <= 1 %} God natt {{'\U0001F611'}}
