@@ -2,11 +2,10 @@
 path: tablet_view
 title: Tablet
 badges: []
-icon: 'mdi:tablet'
+icon: "mdi:tablet"
 cards:
-
   - type: custom:weather-card
-    entity: weather.home
+    entity: weather.home_62
     name: Tasta
 
   - type: custom:entur-card
@@ -14,7 +13,7 @@ cards:
     entities:
       - name: Tasta Senter
         destination: Stavanger Sentrum
-        icon: 'mdi:bus'
+        icon: "mdi:bus"
         entity: sensor.transport_tasta_senter_platform_48449
 
   - type: iframe

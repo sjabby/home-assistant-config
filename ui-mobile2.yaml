@@ -1,0 +1,15 @@
+---
+# custom_header:
+#   kiosk_mode: false
+#   exceptions:
+#     - conditions:
+#         user_agent: Mobile
+#       config:
+#         kiosk_mode: false
+title: Mobile UI
+resources: !include_dir_list lovelace/resources
+# custom_header: !include lovelace/ch/settings.yaml
+views:
+  - !include lovelace/views/mobile_default.yaml
+  - !include lovelace/views/mobile_lights.yaml
+  - !include lovelace/views/mobile_media.yaml

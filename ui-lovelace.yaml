@@ -6,16 +6,17 @@
 # the tabs of the view in the UI.
 #
 title: Home Assistant
-resources: !include_dir_list lovelace/resources
-custom_header: !include lovelace/ch/settings.yaml
+resources: !include_dir_list lovelace/resources/
+# custom_header: !include lovelace/ch/settings.yaml
 views:
   - !include lovelace/views/default_view.yaml
   - !include lovelace/views/media.yaml
   - !include lovelace/views/tablet.yaml
   - !include lovelace/views/system.yaml
-  - !include lovelace/views/weather.yaml
+  # - !include lovelace/views/weather.yaml
   - !include lovelace/views/house_mode.yaml
   - !include lovelace/views/test.yaml
   - !include lovelace/views/adguard.yaml
-  - !include lovelace/views/WIP.yaml
+  - !include lovelace/views/ozw.yaml
   - !include lovelace/views/demo.yaml
+  - !include lovelace/views/meater.yaml

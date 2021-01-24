@@ -1,0 +1,113 @@
+---
+path: ozw
+title: OZW
+badges: []
+icon: "mdi:z-wave"
+panel: true
+cards:
+  - type: "custom:ozw-network-visualization-card"
+    integration: ozw
+
+  - cards:
+      - content: "## Z-Wave Operations"
+        type: markdown
+      - entities:
+          - entity: input_select.zwave_entities
+          - entity: input_number.ozw_node_id
+        #show_title: true
+        title: Node Selection
+        type: entities
+      - cards:
+          - cards:
+              - entity: script.ozw_node_command
+                name: Requst Dynamic
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.ozw_node_command
+                    variables:
+                      zw_command: requestnodedynamic
+                type: button
+              - entity: script.ozw_node_command
+                name: Refresh Node Info
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.ozw_node_command
+                    variables:
+                      zw_command: refreshnodeinfo
+                type: button
+              - entity: script.ozw_node_command
+                hold_action:
+                  action: none
+                name: Send  Node Info
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.ozw_node_command
+                    variables:
+                      zw_command: sendnodeinformation
+                type: button
+              - entity: script.ozw_node_command
+                name: Has Node Failed
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.ozw_node_command
+                    variables:
+                      zw_command: hasnodefailed
+                type: button
+            type: horizontal-stack
+          - entity: script.ozw_node_command
+            name: Remove Failed Node
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              service_data:
+                entity_id: script.ozw_node_command
+                variables:
+                  zw_command: removefailednode
+            icon: "mdi:delete"
+            type: button
+          - cards:
+              - entity: input_number.ozw_node_id
+                name: Refresh Node List
+                show_icon: false
+                show_name: true
+                tap_action:
+                  action: call-service
+                  service: rest_command.update_zwave_node_list
+                type: button
+            type: horizontal-stack
+        type: vertical-stack
+      - content: |-
+          ### Z-Wave Network Notifications
+          ```
+                 Node: {{ state_attr('sensor.ozw_network_notification', 'Node') }}
+            Timestamp: {{ state_attr('sensor.ozw_network_notification', 'TimeStamp')|timestamp_local}}
+                Event: {{ state_attr('sensor.ozw_network_notification', 'Event') }}
+          ```
+        type: markdown
+    type: vertical-stack
+  - content: >-
+      ## Z-Wave Network Status
+      ```
+            Status: {{ state_attr('binary_sensor.ozw_network_status', 'Status') }}
+                    {{ state_attr('binary_sensor.ozw_network_status', 'TimeStamp')|timestamp_local}}
+         OpenZWave: {{ state_attr('binary_sensor.ozw_network_status', 'OpenZWave_Version') }}
+      QT-OpenZWave: {{ state_attr('binary_sensor.ozw_network_status',
+      'QTOpenZWave_Version') }}
+         OZWDaeperson2: {{ state_attr('binary_sensor.ozw_network_status', 'OZWDaeperson2_Version') }}
+                QT: {{ state_attr('binary_sensor.ozw_network_status', 'QT_Version') }}
+            HomeID: {{ state_attr('binary_sensor.ozw_network_status', 'homeID') }}
+      ```
+    type: markdown

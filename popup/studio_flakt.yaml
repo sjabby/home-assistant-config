@@ -1,0 +1,72 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                title: Vifte
+                deviceID: this
+                card:
+                  type: custom:stack-in-card
+                  cards:
+                    - type: entities
+                      state_color: true
+                      show_header_toggle: false
+                      entities:
+
+                        - entity: fan.office
+                          name: Vifte
+                          secondary_info: last-changed
+
+                        - type: custom:slider-entity-row
+                          entity: input_number.office_fan_start_setpoint
+                          name: Terskel
+                          hide_state: false
+
+                        - entity: automation.office_fan_turn_on
+                          icon: 'mdi:sync'
+                          name: Slå på om temp overstiger terskel
+
+                    - type: custom:mini-graph-card
+                      entities:
+                        - color: '#385581'
+                          entity: sensor.office_multisensor_temperature
+                      line_width: 8
+                      hour24: true
+                      group: true
+                      align_icon: left
+                      align_state: right
+                      align_header: left
+                      hours_to_show: 24
+                      show:
+                        {fill: fade, icon: true, name: true, state: true, 
+                        name_adaptive_color: false, labels: hover, legend: false}
+                      style: |
+                        ha-card {
+                          border-radius: 0.35em;
+                          background: none;
+                          box-shadow: none;
+                          margin-top: -0.4em;
+                        }
+                        .name > span,
+                        .state > span.state__value.ellipsis,
+                        .state > span.state__uom.ellipsis {
+                          font-size: 14px !important;
+                          font-weight: 400 !important;
+                          opacity: 1 !important;
+                        }
+                        .name > span {
+                          margin-left: 16px !important;
+                        }
+                        .icon {
+                          margin-left: 31px !important;
+                        }
+                        .state {
+                          margin-top: -36px;
+                          margin-right: 33px;
+                        }
+                        .state > span.state__uom.ellipsis {
+                          margin-top: -3px;
+                        }
+                        .state > div {
+                          opacity: 0;
+                        }
+                      tap_action:
+                        action: none

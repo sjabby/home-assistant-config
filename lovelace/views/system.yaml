@@ -2,9 +2,8 @@
 path: system_view
 title: system
 badges: []
-icon: 'mdi:wrench'
+icon: "mdi:wrench"
 cards:
-
   - type: vertical-stack
     cards:
       - type: glance
@@ -20,14 +19,14 @@ cards:
             icon: mdi:robot
             hold_action:
               action: call-service
-              service: automation.reload    # reloads automations when long-pressed
+              service: automation.reload # reloads automations when long-pressed
 
           - entity: sensor.stats_scripts
             name: Script
             icon: mdi:script-text-outline
             hold_action:
               action: call-service
-              service: script.reload    # reloads scripts when long-pressed
+              service: script.reload # reloads scripts when long-pressed
 
           - entity: sensor.stats_devicetrackers
             name: Enheter
@@ -57,7 +56,7 @@ cards:
             icon: mdi:database
             hold_action:
               action: call-service
-              service: recorder.purge     # purges db keeping last 3 days only
+              service: recorder.purge # purges db keeping last 3 days only
               data:
                 keep_days: 3
                 repack: true
@@ -67,10 +66,10 @@ cards:
             icon: mdi:file-alert-outline
             tap_action:
               action: navigate
-              navigation_path: /dev-info    # goes to log in HA when tapped
+              navigation_path: /dev-info # goes to log in HA when tapped
             hold_action:
               action: call-service
-              service: system_log.clear     # clears log in HA when long-pressed
+              service: system_log.clear # clears log in HA when long-pressed
 
           - entity: sensor.ozw_log_txt
             name: Z-Wave log
@@ -86,42 +85,10 @@ cards:
             name: Uptime
             hold_action:
               action: call-service
-              service: homeassistant.restart    # restarts HA when long-pressed
+              service: homeassistant.restart # restarts HA when long-pressed
 
           - entity: sensor.current_version
             name: Versjon
-
-  - type: entities
-    title: Batteristatus
-    show_header_toggle: false
-    entities:
-      - sensor.fibaro_system_fgt001_heat_controller_battery
-
-  - type: entities
-    title: Batterivarsling
-    show_header_toggle: false
-    entities:
-      - input_boolean.low_batteries
-      - input_number.battery_alert_threshold_min
-      - input_number.battery_alert_threshold_max
-      - input_text.delete_battery_sensor
-      - input_text.notifier_name
-      - input_select.notifier_format
-      - automation.battery_persistent_notification
-      - automation.battery_persistent_notification_clear
-      - automation.battery_notification_default
-      - automation.battery_notification_slack
-      - automation.battery_sensor_from_attributes
-      - automation.update_battery_status_group_members
-      - automation.delete_battery_sensor
-
-  - type: entities
-    title: Batterivarsling
-    show_header_toggle: false
-    entities:
-      - group.battery_alert
-      - group.battery_status
-      - group.battery_view
 
   - type: custom:auto-entities
     show_empty: false
@@ -153,7 +120,7 @@ cards:
       include:
         - entity_id: "*powerplug*"
 
-  - type: 'custom:flex-table-card'
+  - type: "custom:flex-table-card"
     sort_by: battery_level+
     strict: true
     title: Battery Levels
@@ -169,12 +136,12 @@ cards:
       - attr: battery_level
         name: Battery Level (%)
 
-  - type: 'custom:flex-table-card'
+  - type: "custom:flex-table-card"
     max_rows: 25
     # sort_by: sentTS- # <--- for last sent msg-based sorting
     sort_by: receivedTS-
     title: Durations Since Last Message
-    clickable: true   # <--- allows to click on row to show entity-popup for more information
+    clickable: true # <--- allows to click on row to show entity-popup for more information
     columns:
       - attr: node_id
         name: NodeID
@@ -192,7 +159,7 @@ cards:
         - zstick_gen5
       include: zwave.*
 
-  - type: 'custom:flex-table-card'
+  - type: "custom:flex-table-card"
     sort_by: name
     # strict: true
     title: Sonoff Strømforbruk
@@ -206,7 +173,7 @@ cards:
       - prop: state
         name: Strømtrekk (W)
 
-  - type: 'custom:flex-table-card'
+  - type: "custom:flex-table-card"
     sort_by: name
     # strict: true
     title: Sonoff Strømforbruk
