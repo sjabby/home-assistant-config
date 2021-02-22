@@ -1,0 +1,170 @@
+---
+path: mobile_default
+title: Default Mobile
+# background: center / cover no-repeat url("/local/Fluid-20s-100px.svg") fixed
+badges: []
+cards:
+    - type: custom:hui-element
+      card_type: markdown
+      style: >
+          ha-card {
+            box-shadow: none;
+            height: 100%;
+            background: none;
+            font-weight: 700;
+            font-size: 2em;
+            line-height: 1em;
+            text-rendering: optimizeLegibility;
+            margin-left: -15px;
+          }
+      content: |
+          {{ states("sensor.sidebar_greeting") }}
+
+    - type: vertical-stack
+      cards:
+          - type: horizontal-stack
+            cards:
+                - type: "custom:button-card"
+                  entity: person.person1
+                  show_name: false
+                  aspect_ratio: 1/1
+                  size: 100%
+                  tap_action: !include ../../popup/hjemme_th.yaml
+                  show_entity_picture: yes
+                  state:
+                      - operator: template
+                        value: >
+                            [[[ return states['person.person1'].state === 'home' ]]]
+                      - operator: default
+                        styles:
+                            card:
+                                - filter: opacity(50%) brightness(50%)
+
+                - type: "custom:button-card"
+                  # # color_type: label-card
+                  icon: mdi:home
+                  name: Modus
+                  aspect_ratio: 1/1
+                  tap_action:
+                      action: navigate
+                      navigation_path: /lovelace/0
+                - type: "custom:button-card"
+                  entity: person.person2
+                  show_name: false
+                  aspect_ratio: 1/1
+                  size: 100%
+                  tap_action: !include ../../popup/hjemme_mh.yaml
+                  show_entity_picture: yes
+                  state:
+                      - operator: template
+                        value: >
+                            [[[ return states['person.person2'].state === 'home' ]]]
+                      - operator: default
+                        styles:
+                            card:
+                                - filter: opacity(50%) brightness(50%)
+
+    - type: horizontal-stack
+      cards:
+          - type: "custom:button-card"
+            # styles:
+            #   card:
+            #     - --paper-card-background-color: rgba(0, 0, 0, 0.0)
+            #     - box-shadow: 'none'
+            icon: mdi:lightbulb
+            name: Belysning
+            aspect_ratio: 1/1
+            tap_action:
+                action: navigate
+                navigation_path: /mobile-view2/mobile_lights
+
+          - type: "custom:button-card"
+            # # color_type: label-card
+            icon: mdi:home-thermometer-outline
+            name: Klima
+            aspect_ratio: 1/1
+            tap_action:
+                action: navigate
+                navigation_path: /lovelace/0
+          - type: "custom:button-card"
+            # color_type: label-card
+            icon: mdi:access-point
+            name: Sensorer
+            aspect_ratio: 1/1
+            tap_action:
+                action: navigate
+                navigation_path: /lovelace/0
+
+    - type: horizontal-stack
+      cards:
+          - type: "custom:button-card"
+            # color_type: label-card
+            icon: mdi:speaker
+            name: Musikk
+            aspect_ratio: 1/1
+            tap_action:
+                action: navigate
+                navigation_path: /lovelace/0
+          - type: "custom:button-card"
+            # color_type: label-card
+            icon: mdi:robot-vacuum
+            name: Støvsuger
+            aspect_ratio: 1/1
+            tap_action:
+                action: navigate
+                navigation_path: /mobile-view2/mobile_vacuum
+          - type: "custom:button-card"
+            # color_type: label-card
+            icon: mdi:wrench
+            name: System
+            aspect_ratio: 1/1
+            tap_action:
+                action: navigate
+                navigation_path: /lovelace/0
+
+    - type: custom:hui-element
+      card_type: markdown
+      style: >
+          ha-card {
+            box-shadow: none;
+            height: 100%;
+            background: none;
+            font-weight: 700;
+            font-size: 1em;
+            line-height: 1em;
+            text-rendering: optimizeLegibility;
+            margin-left: -15px;
+            margin-bottom: -20px;
+          }
+      content: |
+          {{ states("sensor.sidebar_active") }}
+
+          {{ states('sensor.sidebar_vacuum') }}
+          <br>
+          <br>
+          <br>
+
+    - type: custom:mini-graph-card
+      entities:
+          - entity: sensor.mean_sensor
+            name: Inne
+          - entity: sensor.outside_temperature
+            name: Ute
+      name: Inne/Ute Temperatur
+      location_state: center
+      show:
+          fill: true
+          # labels: false
+          icon: false
+          state: false
+      animate: true
+      # hour24: true
+      # line_width: 7
+      # line_color: var(--primary-color)
+      color_thresholds:
+          - value: 18
+            color: "#f39c12"
+          - value: 21
+            color: "#d35400"
+          - value: 24
+            color: "#c0392b"

@@ -1,0 +1,260 @@
+---
+path: mobile_lights
+title: Lys
+background: var(--background-image)
+badges: []
+cards:
+  - type: custom:hui-element
+    card_type: markdown
+    style: >
+      ha-card {
+        box-shadow: none;
+        height: 100%;
+        background: none;
+        font-weight: 700;
+        font-size: 1em;
+        line-height: 1em;
+        text-rendering: optimizeLegibility;
+      }
+    content: |
+      ## STUE
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        entity: light.stue
+        name: Taklampe
+        color_type: card
+        icon: "mdi:globe-light"
+        # aspect_ratio: 1/1
+      - type: custom:button-card
+        entity: light.tv_seksjon
+        name: TV
+        color_type: card
+        icon: "mdi:led-strip-variant"
+        # aspect_ratio: 1/1
+      - type: custom:button-card
+        entity: light.livingroom_moodlight_1, light.livingroom_moodlight_2, light.livingroom_moodlight_3
+        name: Stemningslys
+        color_type: card
+        icon: "mdi:lightbulb-cfl"
+        # aspect_ratio: 1/1
+
+  - type: custom:hui-element
+    card_type: markdown
+    style: >
+      ha-card {
+        box-shadow: none;
+        height: 100%;
+        background: none;
+        font-weight: 700;
+        font-size: 1em;
+        line-height: 1em;
+        text-rendering: optimizeLegibility;
+      }
+    content: |
+      ## KJØKKEN
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        entity: light.kitchen_dimmer_instance_1_level_2
+        name: Taklampe
+        color_type: card
+        icon: "mdi:wall-sconce-flat"
+        # aspect_ratio: 1/1
+      - type: custom:button-card
+        entity: light.kitchen_bench
+        name: Kjøkkenskap
+        color_type: card
+        icon: "mdi:led-strip-variant"
+        # aspect_ratio: 1/1
+      - type: custom:button-card
+        entity: light.kitchen_dimmer_2_instance_1_level_3
+        name: Spisebord
+        color_type: card
+        icon: "mdi:ceiling-light"
+        # aspect_ratio: 1/1
+
+  - type: custom:hui-element
+    card_type: markdown
+    style: >
+      ha-card {
+        box-shadow: none;
+        height: 100%;
+        background: none;
+        font-weight: 700;
+        font-size: 1em;
+        line-height: 1em;
+        text-rendering: optimizeLegibility;
+      }
+    content: |
+      ## GANG
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        entity: light.hue_gang_taklampe
+        name: Taklampe
+        color_type: card
+        icon: "mdi:wall-sconce-flat"
+        # aspect_ratio: 1/1
+      - type: "custom:button-card"
+        color_type: blank-card
+        # aspect_ratio: 1/1
+      - type: "custom:button-card"
+        color_type: blank-card
+        # aspect_ratio: 1/1
+
+  - type: custom:hui-element
+    card_type: markdown
+    style: >
+      ha-card {
+        box-shadow: none;
+        height: 100%;
+        background: none;
+        font-weight: 700;
+        font-size: 1em;
+        line-height: 1em;
+        text-rendering: optimizeLegibility;
+      }
+    content: |
+      ## BAD
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        entity: light.bathroom_dimmer_level
+        name: Takspotter
+        color_type: card
+        icon: "mdi:spotlight-beam"
+        # aspect_ratio: 1/1
+      - type: custom:button-card
+        entity: light.bathroom_mirror
+        name: Speil
+        color_type: card
+        icon: "mdi:mirror"
+        # aspect_ratio: 1/1
+      - type: "custom:button-card"
+        color_type: blank-card
+        # aspect_ratio: 1/1
+
+  - type: custom:hui-element
+    card_type: markdown
+    style: >
+      ha-card {
+        box-shadow: none;
+        height: 100%;
+        background: none;
+        font-weight: 700;
+        font-size: 1em;
+        line-height: 1em;
+        text-rendering: optimizeLegibility;
+      }
+    content: |
+      ## KONTOR
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        entity: light.kontoret_taklampe
+        name: Taklampe
+        color_type: card
+        icon: "mdi:wall-sconce-flat"
+        # aspect_ratio: 1/1
+      - type: custom:button-card
+        entity: light.hue_iris_1
+        name: Hue Iris 1
+        color_type: card
+        icon: "mdi:wall-sconce-round-variant"
+        # aspect_ratio: 1/1
+      - type: custom:button-card
+        entity: light.hue_iris_2
+        name: Hue Iris 2
+        color_type: card
+        icon: "mdi:wall-sconce-round-variant"
+        # aspect_ratio: 1/1
+
+  - type: custom:hui-element
+    card_type: markdown
+    style: >
+      ha-card {
+        box-shadow: none;
+        height: 100%;
+        background: none;
+        font-weight: 700;
+        font-size: 1em;
+        line-height: 1em;
+        text-rendering: optimizeLegibility;
+      }
+    content: |
+      ## SOVEROM
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        entity: light.soverom
+        name: Taklampe
+        color_type: card
+        icon: "mdi:wall-sconce-flat"
+        # aspect_ratio: 1/1
+      - type: custom:button-card
+        entity: light.nightstand_person1
+        name: Nattbord
+        color_type: card
+        icon: "mdi:desk-lamp"
+        # aspect_ratio: 1/1
+      - type: "custom:button-card"
+        color_type: blank-card
+        # aspect_ratio: 1/1
+
+  - type: custom:hui-element
+    card_type: markdown
+    style: >
+      ha-card {
+        box-shadow: none;
+        height: 100%;
+        background: none;
+        font-weight: 700;
+        font-size: 1em;
+        line-height: 1em;
+        text-rendering: optimizeLegibility;
+      }
+    content: |
+      ## BOD
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        entity: light.storage_ceiling
+        name: Taklampe
+        color_type: card
+        icon: "mdi:wall-sconce-flat"
+        # aspect_ratio: 1/1
+      - type: "custom:button-card"
+        color_type: blank-card
+        # aspect_ratio: 1/1
+      - type: "custom:button-card"
+        color_type: blank-card
+        # aspect_ratio: 1/1
+
+  - type: custom:hui-element
+    card_type: markdown
+    style: >
+      ha-card {
+        box-shadow: none;
+        height: 100%;
+        background: none;
+        font-weight: 700;
+        font-size: 1em;
+        line-height: 1em;
+        text-rendering: optimizeLegibility;
+      }
+    content: |
+      ## HOVEDBRYTER
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        entity: light.gang
+        name: Skru av alle lys
+        icon: "mdi:lightbulb-multiple-off-outline"
+      - type: custom:button-card
+        entity: light.gang
+        name: Skru på alle lys
+        icon: "mdi:lightbulb-multiple-outline"

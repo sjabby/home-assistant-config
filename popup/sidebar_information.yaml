@@ -28,7 +28,7 @@
 
                         - entity: sensor.current_version
 
-                        - entity: switch.watchtower
+                        - entity: switch.docker_watchtower
 
                         - entity: sensor.hass_dev_release
 

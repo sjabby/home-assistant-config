@@ -9,6 +9,7 @@ from custom_components.hacs.helpers.functions.version_to_install import (
     version_to_install,
 )
 from custom_components.hacs.operational.backup import Backup, BackupNetDaeperson2
+from custom_components.hacs.share import get_hacs
 
 
 class RepositoryMethodPreInstall(ABC):
@@ -18,7 +19,7 @@ class RepositoryMethodPreInstall(ABC):
     async def _async_pre_install(self) -> None:
         self.logger.info("Running pre installation steps")
         await self.async_pre_install()
-        self.logger.info("Pre installation steps competed")
+        self.logger.info("Pre installation steps completed")
 
 
 class RepositoryMethodInstall(ABC):
@@ -26,7 +27,7 @@ class RepositoryMethodInstall(ABC):
         await self._async_pre_install()
         self.logger.info("Running installation steps")
         await async_install_repository(self)
-        self.logger.info("Installation steps competed")
+        self.logger.info("Installation steps completed")
         await self._async_post_install()
 
 
@@ -42,11 +43,12 @@ class RepositoryMethodPostInstall(ABC):
             "hacs/repository",
             {"id": 1337, "action": "install", "repository": self.data.full_name},
         )
-        self.logger.info("Post installation steps competed")
+        self.logger.info("Post installation steps completed")
 
 
 async def async_install_repository(repository):
     """Comperson2 installation steps of the repository."""
+    hacs = get_hacs()
     persistent_directory = None
     await repository.update_repository()
     if repository.content.path.local is None:
@@ -65,8 +67,10 @@ async def async_install_repository(repository):
         repository.ref = f"tags/{version}"
 
     if repository.data.installed and repository.data.category == "netdaeperson2":
-        persistent_directory = BackupNetDaeperson2(repository)
-        persistent_directory.create()
+        persistent_directory = await hacs.hass.async_add_executor_job(
+            BackupNetDaeperson2, repository
+        )
+        await hacs.hass.async_add_executor_job(persistent_directory.create)
 
     elif repository.data.persistent_directory:
         if os.path.exists(
@@ -76,11 +80,11 @@ async def async_install_repository(repository):
                 f"{repository.content.path.local}/{repository.data.persistent_directory}",
                 tempfile.gettempdir() + "/hacs_persistent_directory/",
             )
-            persistent_directory.create()
+            await hacs.hass.async_add_executor_job(persistent_directory.create)
 
     if repository.data.installed and not repository.content.single:
         backup = Backup(repository.content.path.local)
-        backup.create()
+        await hacs.hass.async_add_executor_job(backup.create)
 
     if repository.data.zip_release and version != repository.data.default_branch:
         await repository.download_zip_files(repository)
@@ -91,14 +95,14 @@ async def async_install_repository(repository):
         for error in repository.validate.errors:
             repository.logger.error(error)
         if repository.data.installed and not repository.content.single:
-            backup.restore()
+            await hacs.hass.async_add_executor_job(backup.restore)
 
     if repository.data.installed and not repository.content.single:
-        backup.cleanup()
+        await hacs.hass.async_add_executor_job(backup.cleanup)
 
     if persistent_directory is not None:
-        persistent_directory.restore()
-        persistent_directory.cleanup()
+        await hacs.hass.async_add_executor_job(persistent_directory.restore)
+        await hacs.hass.async_add_executor_job(persistent_directory.cleanup)
 
     if repository.validate.success:
         if repository.data.full_name not in repository.hacs.comperson2.installed:

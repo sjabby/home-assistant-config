@@ -1,0 +1,18 @@
+---
+alias: ios_notify_hass_rc
+initial_state: true
+trigger:
+    - platform: state
+      entity_id: sensor.hass_version_latest_beta
+condition:
+    - condition: state
+      entity_id: sensor.hass_dev_release
+      state: ["Idag", "Released"]
+action:
+    - service: notify.mobile_app_person1_sin_iphone_11_pro
+      data:
+          title: >
+              Ny RC {{ states(trigger.entity_id) }} tilgjengelig
+          message: Trykk for å lese versjonsinformasjon
+          data:
+              url: https://rc.home-assistant.io/latest-release-notes/

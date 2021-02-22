@@ -26,12 +26,10 @@ class upnp:
 
     async def _SOAPrequest(self, action, arguments, protocole):
         headers = {
-            "SOAPAction": '"urn:schemas-upnp-org:service:{protocole}:1#{action}"'.format(
-                action=action, protocole=protocole
-            ),
+            "SOAPAction": f'"urn:schemas-upnp-org:service:{protocole}:1#{action}"',
             "content-type": "text/xml",
         }
-        body = """<?xml version="1.0" encoding="utf-8"?>
+        body = f"""<?xml version="1.0" encoding="utf-8"?>
                 <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
                     <s:Body>
                     <u:{action} xmlns:u="urn:schemas-upnp-org:service:{protocole}:1">
@@ -39,9 +37,7 @@ class upnp:
                         {arguments}
                     </u:{action}>
                     </s:Body>
-                </s:Envelope>""".format(
-            action=action, arguments=arguments, protocole=protocole
-        )
+                </s:Envelope>"""
         response = None
         try:
             with timeout(DEFAULT_TIMEOUT):
@@ -76,7 +72,7 @@ class upnp:
     async def async_set_volume(self, volume):
         await self._SOAPrequest(
             "SetVolume",
-            "<Channel>Master</Channel><DesiredVolume>{}</DesiredVolume>".format(volume),
+            f"<Channel>Master</Channel><DesiredVolume>{volume}</DesiredVolume>",
             "RenderingControl",
         )
 
@@ -102,9 +98,7 @@ class upnp:
         try:
             await self._SOAPrequest(
                 "SetAVTransportURI",
-                "<CurrentURI>{url}</CurrentURI><CurrentURIMetaData></CurrentURIMetaData>".format(
-                    url=url
-                ),
+                f"<CurrentURI>{url}</CurrentURI><CurrentURIMetaData></CurrentURIMetaData>",
                 "AVTransport",
             )
             await self._SOAPrequest("Play", "<Speed>1</Speed>", "AVTransport")

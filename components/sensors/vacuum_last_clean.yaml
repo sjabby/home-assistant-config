@@ -4,7 +4,7 @@ sensors:
   vacuum_last_clean:
     # entity_id: sensor.time
     friendly_name: Siste rengjøring
-    icon_template: 'mdi:clock'
+    icon_template: mdi:calendar-clock
     value_template: >
       {% set clean_stop = 
       (as_timestamp(now()) - as_timestamp(state_attr('vacuum.rocky', 'clean_stop') | default(0))) %}

@@ -30,6 +30,7 @@ from .const import (
     CONF_DEVICE_MODEL,
     CONF_DEVICE_OS,
     CONF_POWER_ON_DELAY,
+    CONF_POWER_ON_METHOD,
     CONF_USE_ST_CHANNEL_INFO,
     CONF_USE_ST_STATUS_INFO,
     CONF_USE_MUTE_CHECK,
@@ -39,6 +40,7 @@ from .const import (
     CONF_WOL_REPEAT,
     CONF_WS_NAME,
     DEFAULT_POWER_ON_DELAY,
+    MAX_WOL_REPEAT,
     RESULT_NOT_SUCCESSFUL,
     RESULT_ST_DEVICE_NOT_FOUND,
     RESULT_ST_DEVICE_USED,
@@ -47,6 +49,7 @@ from .const import (
     RESULT_WRONG_APIKEY,
     AppLaunchMethod,
     AppLoadMethod,
+    PowerOnMethod,
 )
 
 APP_LAUNCH_METHODS = {
@@ -59,6 +62,11 @@ APP_LOAD_METHODS = {
     AppLoadMethod.All.value: "All Apps",
     AppLoadMethod.Default.value: "Default Apps",
     AppLoadMethod.NotLoad.value: "Not Load",
+}
+
+POWER_ON_METHODS = {
+    PowerOnMethod.WOL.value: "WOL Packet (better for wired connection)",
+    PowerOnMethod.SmartThings.value: "SmartThings (better for wireless connection)",
 }
 
 CONFIG_RESULTS = {
@@ -342,6 +350,10 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 
+        api_key = self.config_entry.data.get(CONF_API_KEY)
+        st_dev = self.config_entry.data.get(CONF_DEVICE_ID)
+        use_st = api_key and st_dev
+
         data_schema = vol.Schema(
             {
                 vol.Optional(
@@ -356,30 +368,48 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                         CONF_APP_LAUNCH_METHOD, AppLaunchMethod.Standard.value
                     ),
                 ): vol.In(APP_LAUNCH_METHODS),
+            }
+        )
+
+        if use_st:
+            data_schema = data_schema.extend(
+                {
+                    vol.Optional(
+                        CONF_USE_ST_STATUS_INFO,
+                        default=self.config_entry.options.get(
+                            CONF_USE_ST_STATUS_INFO, True
+                        ),
+                    ): bool,
+                    vol.Optional(
+                        CONF_USE_ST_CHANNEL_INFO,
+                        default=self.config_entry.options.get(
+                            CONF_USE_ST_CHANNEL_INFO, True
+                        ),
+                    ): bool,
+                    vol.Optional(
+                        CONF_SHOW_CHANNEL_NR,
+                        default=self.config_entry.options.get(
+                            CONF_SHOW_CHANNEL_NR, False
+                        ),
+                    ): bool,
+                    vol.Optional(
+                        CONF_POWER_ON_METHOD,
+                        default=self.config_entry.options.get(
+                            CONF_POWER_ON_METHOD, PowerOnMethod.WOL.value
+                        ),
+                    ): vol.In(POWER_ON_METHODS),
+                }
+            )
+
+        data_schema = data_schema.extend(
+            {
                 vol.Optional(
-                    CONF_USE_ST_STATUS_INFO,
-                    default=self.config_entry.options.get(
-                        CONF_USE_ST_STATUS_INFO, True
+                    CONF_WOL_REPEAT,
+                    default=min(
+                        self.config_entry.options.get(CONF_WOL_REPEAT, 1),
+                        MAX_WOL_REPEAT,
                     ),
-                ): bool,
-                vol.Optional(
-                    CONF_USE_ST_CHANNEL_INFO,
-                    default=self.config_entry.options.get(
-                        CONF_USE_ST_CHANNEL_INFO, True
-                    ),
-                ): bool,
-                vol.Optional(
-                    CONF_SHOW_CHANNEL_NR,
-                    default=self.config_entry.options.get(
-                        CONF_SHOW_CHANNEL_NR, False
-                    ),
-                ): bool,
-                vol.Optional(
-                    CONF_USE_MUTE_CHECK,
-                    default=self.config_entry.options.get(
-                        CONF_USE_MUTE_CHECK, True
-                    ),
-                ): bool,
+                ): vol.All(vol.Coerce(int), vol.Clamp(min=1, max=MAX_WOL_REPEAT)),
                 vol.Optional(
                     CONF_POWER_ON_DELAY,
                     default=self.config_entry.options.get(
@@ -387,9 +417,11 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                     ),
                 ): vol.All(vol.Coerce(int), vol.Clamp(min=0, max=60)),
                 vol.Optional(
-                    CONF_WOL_REPEAT,
-                    default=self.config_entry.options.get(CONF_WOL_REPEAT, 1),
-                ): vol.All(vol.Coerce(int), vol.Clamp(min=1, max=20)),
+                    CONF_USE_MUTE_CHECK,
+                    default=self.config_entry.options.get(
+                        CONF_USE_MUTE_CHECK, True
+                    ),
+                ): bool,
                 vol.Optional(
                     CONF_SYNC_TURN_OFF,
                     default=self.config_entry.options.get(

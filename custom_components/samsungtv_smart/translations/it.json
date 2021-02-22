@@ -63,9 +63,10 @@
                     "use_st_status_info": "Usa informazioni Stato TV da SmartThings",
                     "use_st_channel_info": "Usa informazioni Canale TV da SmartThings",
                     "show_channel_number": "Usa informazioni Numero Canale TV da SmartThings",
+                    "power_on_method": "Metodo usato per accendere la TV",
+                    "wol_repeat": "Numero di volte che il pacchetto WOL viene inviato per accendere la TV",
+                    "power_on_delay": "Secondi di ritardo per passaggio allo stato ON",
                     "use_mute_check": "Utilizza lo stato di volume muto per identificare false accensioni",
-                    "power_on_delay": "Secondi di ritardo per passaggio allo stato ON (0-60)",
-                    "wol_repeat": "Numero di volte che il pacchetto WOL viene inviato per accendere la TV (1-20)",
                     "sync_turn_off": "Elenco entit\u00e0 da Spegnere con la TV (separate da virgola)",
                     "sync_turn_on": "Elenco entit\u00e0 da Accendere con la TV (separate da virgola)"
                 }

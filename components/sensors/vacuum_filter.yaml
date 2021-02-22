@@ -3,6 +3,6 @@ platform: template
 sensors:
   vacuum_filter:
     friendly_name: "Filter"
-    unit_of_measurement: 'h'
+    unit_of_measurement: "h"
     value_template: "{{ state_attr('vacuum.rocky', 'filter_left') }}"
-    icon_template: 'mdi:screwdriver'
+    icon_template: custom:roborock-filter

@@ -49,6 +49,7 @@ PING_MATCHER_BUSYBOX = re.compile(
 
 WIN32_PING_MATCHER = re.compile(r"(?P<min>\d+)ms.+(?P<max>\d+)ms.+(?P<avg>\d+)ms")
 
+DEFAULT_POWER_ON_DELAY = 120
 MIN_APP_SCAN_INTERVAL = 10
 MAX_WS_PING_INTERVAL = 10
 TYPE_DEEP_LINK = "DEEP_LINK"
@@ -141,7 +142,7 @@ class SamsungTVWS:
         token_file=None,
         port=8001,
         timeout=None,
-        key_press_delay=1,
+        key_press_delay=1.0,
         name="SamsungTvRemote",
         app_list=None,
     ):
@@ -157,6 +158,8 @@ class SamsungTVWS:
         self._artmode_status = ArtModeStatus.Unsupported
         self._power_on_requested = False
         self._power_on_requested_time = datetime.min
+        self._power_on_delay = DEFAULT_POWER_ON_DELAY
+        self._power_on_artmode = False
 
         self._installed_app = {}
         self._running_app = None
@@ -251,7 +254,7 @@ class SamsungTVWS:
             connection = ws_socket
         else:
             self.start_client(start_all=True)
-            return
+            return False
 
         payload = json.dumps(command)
         try:
@@ -261,16 +264,19 @@ class SamsungTVWS:
             if using_remote or use_control:
                 _LOGGING.info("_ws_send: try to restart communication threads")
                 self.start_client(start_all=use_control)
-            return
+            return False
 
         if using_remote:
             # we consider a message sent valid as a ping
             self._last_ping = datetime.now()
 
         if key_press_delay is None:
-            time.sleep(self.key_press_delay)
+            if self.key_press_delay > 0:
+                time.sleep(self.key_press_delay)
         elif key_press_delay > 0:
             time.sleep(key_press_delay)
+
+        return True
 
     def _rest_request(self, target, method="GET"):
         url = self._format_rest_url(target)
@@ -604,7 +610,9 @@ class SamsungTVWS:
             return
 
         if self._power_on_requested and artmode_status != ArtModeStatus.Unavailable:
-            if artmode_status == ArtModeStatus.On:
+            if artmode_status == ArtModeStatus.On and not self._power_on_artmode:
+                self.send_key("KEY_POWER", key_press_delay=0)
+            elif artmode_status == ArtModeStatus.Off and self._power_on_artmode:
                 self.send_key("KEY_POWER", key_press_delay=0)
             self._power_on_requested = False
 
@@ -641,14 +649,19 @@ class SamsungTVWS:
 
         if self._power_on_requested:
             difference = (call_time - self._power_on_requested_time).total_seconds()
-            if difference > 20:
+            if difference > self._power_on_delay:
                 self._power_on_requested = False
 
         return result
 
-    def set_power_on_request(self):
+    def set_power_on_request(self, set_art_mode=False, power_on_delay=0):
         self._power_on_requested = True
         self._power_on_requested_time = datetime.now()
+        self._power_on_artmode = set_art_mode
+        self._power_on_delay = max(power_on_delay, 0) or DEFAULT_POWER_ON_DELAY
+
+    def set_power_off_request(self):
+        self._power_on_requested = False
 
     def get_running_app(self, *, force_scan=False):
 
@@ -759,7 +772,7 @@ class SamsungTVWS:
 
     def send_key(self, key, key_press_delay=None, cmd="Click"):
         _LOGGING.debug("Sending key %s", key)
-        self._ws_send(
+        return self._ws_send(
             {
                 "method": "ms.remote.control",
                 "params": {
@@ -773,9 +786,39 @@ class SamsungTVWS:
         )
 
     def hold_key(self, key, seconds):
-        self.send_key(key, key_press_delay=0, cmd="Press")
-        time.sleep(seconds)
-        self.send_key(key, key_press_delay=0, cmd="Release")
+        if self.send_key(key, key_press_delay=0, cmd="Press"):
+            time.sleep(seconds)
+            return self.send_key(key, key_press_delay=0, cmd="Release")
+        return False
+
+    def send_text(self, text, send_delay=None):
+        if not text:
+            return False
+
+        base64_text = self._serialize_string(text)
+        if self._ws_send(
+            {
+                "method": "ms.remote.control",
+                "params": {
+                    "Cmd": f"{base64_text}",
+                    "DataOfCmd": "base64",
+                    "TypeOfRemote": "SendInputString",
+                },
+            },
+            key_press_delay=send_delay,
+        ):
+            self._ws_send(
+                {
+                    "method": "ms.remote.control",
+                    "params": {
+                        "TypeOfRemote": "SendInputEnd",
+                    },
+                },
+                key_press_delay=0,
+            )
+            return True
+
+        return False
 
     def move_cursor(self, x, y, duration=0):
         self._ws_send(
@@ -810,7 +853,7 @@ class SamsungTVWS:
         )
 
         if self._ws_control and action_type == TYPE_DEEP_LINK and not use_remote:
-            self._ws_send(
+            return self._ws_send(
                 {
                     "id": app_id,
                     "method": "ms.application.start",
@@ -820,9 +863,8 @@ class SamsungTVWS:
                 use_control=True,
                 ws_socket=self._ws_control,
             )
-            return
 
-        self._ws_send(
+        return self._ws_send(
             {
                 "method": "ms.channel.emit",
                 "params": {
@@ -842,7 +884,7 @@ class SamsungTVWS:
 
     def open_browser(self, url):
         _LOGGING.debug("Opening url in browser %s", url)
-        self.run_app("org.tizen.browser", TYPE_NATIVE_LAUNCH, url)
+        return self.run_app("org.tizen.browser", TYPE_NATIVE_LAUNCH, url)
 
     def rest_device_info(self):
         _LOGGING.debug("Get device info via rest api")

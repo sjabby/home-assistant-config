@@ -10,6 +10,7 @@ title: Mobile UI
 resources: !include_dir_list lovelace/resources
 # custom_header: !include lovelace/ch/settings.yaml
 views:
-  - !include lovelace/views/mobile_default.yaml
-  - !include lovelace/views/mobile_lights.yaml
-  - !include lovelace/views/mobile_media.yaml
+    - !include lovelace/views/mobile_default.yaml
+    - !include lovelace/views/mobile_lights.yaml
+    - !include lovelace/views/mobile_media.yaml
+    - !include lovelace/views/mobile_vacuum.yaml

@@ -9,5 +9,6 @@
   "dependencies": [],
   "codeowners": ["@ollo69"],
   "homeassistant": "0.99.3",
-  "config_flow": true
+  "config_flow": true,
+  "version": "0.3.28"
 }

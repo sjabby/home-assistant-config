@@ -1,0 +1,11 @@
+---
+alias: ios_notify_hass_update_action
+initial_state: true
+trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+          actionName: START_WATCHTOWER
+action:
+    - service: switch.turn_on
+      entity_id: switch.docker_watchtower

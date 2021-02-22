@@ -98,7 +98,7 @@
                       tap_action:
                         services: |
                           [[[ hass.callService('browser_mod', 'toast', {message: 'Starter watchtower...'});
-                          hass.callService('switch', 'turn_on', {entity_id: 'switch.watchtower'}); ]]]
+                          hass.callService('switch', 'turn_on', {entity_id: 'switch.docker_watchtower'}); ]]]
                       template: name_action
 
                     - type: custom:hui-element

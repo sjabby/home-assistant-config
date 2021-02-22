@@ -1,0 +1,23 @@
+---
+alias: ios_notify_hass_update
+initial_state: true
+trigger:
+    - platform: state
+      entity_id: sensor.hass_version
+condition:
+    condition: not
+    conditions:
+        - condition: state
+          entity_id: sensor.hass_version
+          state: ["Siste", "unknown"]
+action:
+    - service: notify.mobile_app_person1_sin_iphone_11_pro
+      data:
+          title: >
+              {{ states(trigger.entity_id) }} tilgjengelig {{ '\U0001F389' }}
+          message: Hold inne for å oppdatere
+          data:
+              data:
+                  url: https://www.home-assistant.io/latest-release-notes/
+              push:
+                  category: ios_hass

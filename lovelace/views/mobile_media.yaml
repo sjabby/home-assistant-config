@@ -1,0 +1,203 @@
+---
+path: mobile_media
+title: Media
+# background: center / cover no-repeat url("/local/Fluid-20s-100px.svg") fixed
+badges: []
+cards:
+  - type: vertical-stack
+    cards:  
+    - type: custom:hui-element
+      card_type: markdown
+      style: >
+        ha-card {
+          box-shadow: none;
+          height: 100%;
+          background: none;
+          font-weight: 700;
+          font-size: 2em;
+          line-height: 1em;
+          text-rendering: optimizeLegibility;
+          margin-left: -15px;
+        }
+      content: |
+        {{ states("sensor.sidebar_greeting") }}
+    - type: custom:hui-element
+      card_type: markdown
+      style: >
+        ha-card {
+          box-shadow: none;
+          height: 100%;
+          background: none;
+          font-weight: 700;
+          font-size: 1em;
+          line-height: 1em;
+          text-rendering: optimizeLegibility;
+          margin-left: -15px;
+          margin-top: -20px;
+          margin-bottom: -20px;
+        }
+      content: |
+        {{ states("sensor.sidebar_active") }}
+
+    - type: custom:hui-element
+      card_type: markdown
+      style: >
+        ha-card {
+          box-shadow: none;
+          height: 100%;
+          background: none;
+          font-weight: 700;
+          font-size: 1em;
+          line-height: 1em;
+          text-rendering: optimizeLegibility;
+        }
+      content: |
+        ## <center> SONOS </center>
+    - type: entities
+      # title: Sonos
+      show_header_toggle: false
+      entities:
+        - type: 'custom:mini-media-player'
+          entity: media_player.stue_2
+          group: true
+          hide:
+            power: true
+            icon: true
+            progress: true
+          sonos:
+            show_group_count: true
+            # sync_volume: true
+            entities:
+              - entity_id: media_player.stue_2
+                name: Stue
+              - entity_id: media_player.kjkken
+                name: Kjøkken
+              - entity_id: media_player.kontor
+                name: Kontor
+              - entity_id: media_player.bad
+                name: Bad
+              - entity_id: media_player.soverom
+                name: Soverom
+  
+        - type: 'custom:mini-media-player'
+          entity: media_player.kjkken
+          group: true
+          hide:
+            power: true
+            icon: true
+            progress: true
+          sonos:
+            show_group_count: true
+            # sync_volume: true
+            entities:
+              - entity_id: media_player.stue_2
+                name: Stue
+              - entity_id: media_player.kjkken
+                name: Kjøkken
+              - entity_id: media_player.kontor
+                name: Kontor
+              - entity_id: media_player.bad
+                name: Bad
+              - entity_id: media_player.soverom
+                name: Soverom
+  
+        - type: 'custom:mini-media-player'
+          entity: media_player.kontor
+          group: true
+          hide:
+            power: true
+            icon: true
+            progress: true
+          sonos:
+            show_group_count: true
+            sync_volume: true
+            entities:
+              - entity_id: media_player.stue_2
+                name: Stue
+              - entity_id: media_player.kjkken
+                name: Kjøkken
+              - entity_id: media_player.kontor
+                name: Kontor
+              - entity_id: media_player.bad
+                name: Bad
+              - entity_id: media_player.soverom
+                name: Soverom
+  
+        - type: 'custom:mini-media-player'
+          entity: media_player.bad
+          group: true
+          hide:
+            power: true
+            icon: true
+            progress: true
+          sonos:
+            show_group_count: true
+            # sync_volume: true
+            entities:
+              - entity_id: media_player.stue_2
+                name: Stue
+              - entity_id: media_player.kjkken
+                name: Kjøkken
+              - entity_id: media_player.kontor
+                name: Kontor
+              - entity_id: media_player.bad
+                name: Bad
+              - entity_id: media_player.soverom
+                name: Soverom
+  
+        - type: 'custom:mini-media-player'
+          entity: media_player.soverom
+          group: true
+          hide:
+            power: true
+            icon: true
+            progress: true
+          sonos:
+            show_group_count: true
+            # sync_volume: true
+            entities:
+              - entity_id: media_player.stue_2
+                name: Stue
+              - entity_id: media_player.kjkken
+                name: Kjøkken
+              - entity_id: media_player.kontor
+                name: Kontor
+              - entity_id: media_player.bad
+                name: Bad
+              - entity_id: media_player.soverom
+                name: Soverom
+
+  - type: markdown
+    content: |
+      ## <center> PLEX </center>
+    style:
+      .: |
+        ha-card {
+          background-color: transparent !important;
+          box-shadow: none !important;
+        }
+    ha-markdown:
+      $: |
+        h1 {
+          font-size: 25px;
+          # font-weight: bold;
+          text-align: center;
+          letter-spacing: '-0.01em';
+        }
+  - type: 'custom:upcoming-media-card'
+    accent_color: '#2b374e'
+    border_color: '#13274b'
+    date: ddmm
+    entity: sensor.plex_recently_added
+    flag: false
+    flag_color: '#13274b'
+    image_style: fanart
+    line1_text: $empty
+    line2_size: small
+    line2_text: $episode
+    line3_text: $number
+    line4_text: 'Varighet: $runtime'
+    max: 2
+    title: false
+    title_size: large
+    title_text: $title

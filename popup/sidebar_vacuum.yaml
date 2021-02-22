@@ -140,8 +140,22 @@
                       image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 49.57' /%3E"
                       class: add_header
                       style: |
+                        #root {
+                          animation: fade 1s both;
+                        }
                         .card-header {
                           margin: -0.05em 0 0 0.75em;
+                        }
+                        @keyframes fade {
+                          0% {
+                            opacity: 0;
+                          }
+                          50% {
+                            opacity: 0;
+                          }
+                          100% {
+                            opacity: 1;
+                          }
                         }
                       elements:
                         - type: custom:xiaomi-vacuum-map-card

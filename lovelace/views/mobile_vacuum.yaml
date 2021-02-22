@@ -1,0 +1,63 @@
+---
+path: mobile_vacuum
+title: Vacuum
+# background: center / cover no-repeat url("/local/Fluid-20s-100px.svg") fixed
+badges: []
+cards:
+  - type: custom:xiaomi-vacuum-map-card
+    entity: vacuum.rocky
+    map_camera: camera.xiaomi_cloud_map_extractor
+    camera_calibration: true
+    debug: false
+    zones:
+      - [[24658, 20610, 31223, 26837]]
+      - [[31078, 21044, 34361, 24327]]
+      - [[32478, 24133, 34409, 28333]]
+      - [[34313, 25147, 37933, 28188]]
+      - [[34361, 19934, 37788, 25823]]
+
+  - type: horizontal-stack
+    # title: Status
+    cards:
+      - type: custom:button-card
+        icon: mdi:play-pause
+        triggers_update: ["vacuum.rocky"]
+        tap_action:
+          action: call-service
+        service: >
+          [[[ if (states['vacuum.rocky'].state === 'docked' ||
+          states['vacuum.rocky'].state === 'paused')
+          return 'vacuum.start';
+          else return 'vacuum.pause'; ]]]
+        service_data:
+          entity_id: vacuum.rocky
+
+      - type: custom:button-card
+        icon: mdi:flash
+        color: "#9da0a2"
+        tap_action:
+          action: call-service
+        service: vacuum.return_to_base
+        service_data:
+          entity_id: vacuum.rocky
+
+      - type: custom:button-card
+        icon: mdi:map-marker-question
+        color: "#9da0a2"
+        tap_action:
+          action: call-service
+        service: vacuum.locate
+        service_data:
+          entity_id: vacuum.rocky
+
+  - type: vertical-stack
+    # title: Status
+    cards:
+      - type: entities
+        entities:
+          - entity: sensor.rocky_status
+            name: Status
+          #   - entity: sensor.rocky_battery
+          #     name: Batteri
+          - entity: sensor.vacuum_last_clean
+          - entity: input_select.vacuum_fan_speed

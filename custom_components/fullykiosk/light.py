@@ -3,50 +3,57 @@ import logging
 
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
-    LightEntity,
     SUPPORT_BRIGHTNESS,
+    LightEntity,
 )
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN, COORDINATOR, CONTROLLER
+from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up the Fully Kiosk Browser light."""
-    coordinator = hass.data[DOMAIN][config_entry.entry_id][COORDINATOR]
-    controller = hass.data[DOMAIN][config_entry.entry_id][CONTROLLER]
-
-    async_add_entities([FullyLight(coordinator, controller)], False)
+    coordinator = hass.data[DOMAIN][config_entry.entry_id]
+    async_add_entities([FullyLight(coordinator)], False)
 
 
-class FullyLight(LightEntity):
+class FullyLight(CoordinatorEntity, LightEntity):
     """Representation of a Fully Kiosk Browser light."""
 
-    def __init__(self, coordinator, controller):
+    def __init__(self, coordinator):
+        """Initialize the light (screen) entity."""
         self._name = f"{coordinator.data['deviceName']} Screen"
         self.coordinator = coordinator
-        self.controller = controller
         self._unique_id = f"{coordinator.data['deviceID']}-screen"
 
     @property
     def name(self):
+        """Return the name of the entity."""
         return self._name
 
     @property
     def is_on(self):
-        return self.coordinator.data["isScreenOn"]
+        """Return if the screen is on."""
+        if self.coordinator.data:
+            if self.coordinator.data["appVersionCode"] < 784:
+                return self.coordinator.data["isScreenOn"]
+            return self.coordinator.data["screenOn"]
 
     @property
     def brightness(self):
+        """Return the screen brightness."""
         return self.coordinator.data["screenBrightness"]
 
     @property
     def supported_features(self):
+        """Return the supported features."""
         return SUPPORT_BRIGHTNESS
 
     @property
     def device_info(self):
+        """Return the device info."""
         return {
             "identifiers": {(DOMAIN, self.coordinator.data["deviceID"])},
             "name": self.coordinator.data["deviceName"],
@@ -57,20 +64,23 @@ class FullyLight(LightEntity):
 
     @property
     def unique_id(self):
+        """Return the unique id."""
         return self._unique_id
 
     async def async_turn_on(self, **kwargs):
-        await self.hass.async_add_executor_job(self.controller.screenOn)
+        """Turn on the screen."""
+        await self.coordinator.fully.screenOn()
         brightness = kwargs.get(ATTR_BRIGHTNESS)
         if brightness is None:
             await self.coordinator.async_refresh()
             return
         if brightness != self.coordinator.data["screenBrightness"]:
-            self.controller.setScreenBrightness(brightness)
+            await self.coordinator.fully.setScreenBrightness(brightness)
         await self.coordinator.async_refresh()
 
     async def async_turn_off(self, **kwargs):
-        await self.hass.async_add_executor_job(self.controller.screenOff)
+        """Turn off the screen."""
+        await self.coordinator.fully.screenOff()
         await self.coordinator.async_refresh()
 
     async def async_added_to_hass(self):

@@ -1,5 +1,10 @@
 """Data handler for HACS."""
-from custom_components.hacs.const import VERSION
+import os
+
+from queueman import QueueManager
+
+from custom_components.hacs.const import INTEGRATION_VERSION
+from custom_components.hacs.helpers.classes.manifest import HacsManifest
 from custom_components.hacs.helpers.functions.logger import getLogger
 from custom_components.hacs.helpers.functions.register_repository import (
     register_repository,
@@ -7,10 +12,9 @@ from custom_components.hacs.helpers.functions.register_repository import (
 from custom_components.hacs.helpers.functions.store import (
     async_load_from_store,
     async_save_to_store,
+    get_store_for_key,
 )
-from custom_components.hacs.helpers.classes.manifest import HacsManifest
 from custom_components.hacs.share import get_hacs
-from queueman import QueueManager
 
 
 class HacsData:
@@ -18,14 +22,14 @@ class HacsData:
 
     def __init__(self):
         """Initialize."""
-        self.logger = getLogger("data")
+        self.logger = getLogger()
         self.hacs = get_hacs()
         self.queue = QueueManager()
         self.content = {}
 
     async def async_write(self):
         """Write content to the store files."""
-        if self.hacs.system.status.background_task or self.hacs.system.disabled:
+        if self.hacs.status.background_task or self.hacs.system.disabled:
             return
 
         self.logger.debug("Saving data")
@@ -46,7 +50,12 @@ class HacsData:
         for repository in self.hacs.repositories or []:
             self.queue.add(self.async_store_repository_data(repository))
 
-        await self.queue.execute()
+        if not self.queue.has_pending_tasks:
+            self.logger.debug("Nothing in the queue")
+        elif self.queue.running:
+            self.logger.debug("Queue is already running")
+        else:
+            await self.queue.execute()
         await async_save_to_store(self.hacs.hass, "repositories", self.content)
         self.hacs.hass.bus.async_fire("hacs/repository", {})
         self.hacs.hass.bus.fire("hacs/config", {})
@@ -59,6 +68,7 @@ class HacsData:
             "description": repository.data.description,
             "domain": repository.data.domain,
             "downloads": repository.data.downloads,
+            "etag_repository": repository.data.etag_repository,
             "full_name": repository.data.full_name,
             "first_install": repository.status.first_install,
             "installed_commit": repository.data.installed_commit,
@@ -93,10 +103,10 @@ class HacsData:
         try:
             if not hacs and not repositories:
                 # Assume new install
-                self.hacs.system.status.new = True
+                self.hacs.status.new = True
                 return True
             self.logger.info("Restore started")
-            self.hacs.system.status.new = False
+            self.hacs.status.new = False
 
             # Hacs
             self.hacs.configuration.frontend_mode = hacs.get("view", "Grid")
@@ -104,9 +114,24 @@ class HacsData:
             self.hacs.configuration.onboarding_done = hacs.get("onboarding_done", False)
 
             # Repositories
+            stores = {}
+            for entry in repositories or []:
+                stores[entry] = get_store_for_key(self.hacs.hass, f"hacs/{entry}.hacs")
+
+            stores_exist = {}
+
+            def _populate_stores():
+                for entry in repositories or []:
+                    stores_exist[entry] = os.path.exists(stores[entry].path)
+
+            await self.hacs.hass.async_add_executor_job(_populate_stores)
+
+            # Repositories
             for entry in repositories or []:
                 self.queue.add(
-                    self.async_restore_repository(entry, repositories[entry])
+                    self.async_restore_repository(
+                        entry, repositories[entry], stores[entry], stores_exist[entry]
+                    )
                 )
 
             await self.queue.execute()
@@ -117,7 +142,9 @@ class HacsData:
             return False
         return True
 
-    async def async_restore_repository(self, entry, repository_data):
+    async def async_restore_repository(
+        self, entry, repository_data, store, store_exists
+    ):
         if not self.hacs.is_known(entry):
             await register_repository(
                 repository_data["full_name"], repository_data["category"], False
@@ -142,6 +169,7 @@ class HacsData:
             "downloads"
         )
         repository.data.last_updated = repository_data.get("last_updated")
+        repository.data.etag_repository = repository_data.get("etag_repository")
         repository.data.topics = repository_data.get("topics", [])
         repository.data.domain = repository_data.get("domain", None)
         repository.data.stargazers_count = repository_data.get("stars", 0)
@@ -164,10 +192,10 @@ class HacsData:
             repository.status.first_install = False
 
         if repository_data["full_name"] == "hacs/integration":
-            repository.data.installed_version = VERSION
+            repository.data.installed_version = INTEGRATION_VERSION
             repository.data.installed = True
 
-        restored = await async_load_from_store(self.hacs.hass, f"hacs/{entry}.hacs")
+        restored = store_exists and await store.async_load() or {}
 
         if restored:
             repository.data.update_data(restored)

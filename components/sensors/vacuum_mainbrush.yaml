@@ -3,6 +3,6 @@ platform: template
 sensors:
   vacuum_mainbrush:
     friendly_name: "Hovedbørste"
-    unit_of_measurement: 'h'
+    unit_of_measurement: "h"
     value_template: "{{ state_attr('vacuum.rocky', 'main_brush_left') }}"
-    icon_template: 'mdi:screwdriver'
+    icon_template: custom:roborock-mainbrush
