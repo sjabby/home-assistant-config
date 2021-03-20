@@ -21,7 +21,7 @@ action:
   - service: light.turn_on
     data_template:
       entity_id:
-        - light.soverom
+        - light.bedroom
         - light.taklampe_1
         - light.taklampe_2
         - light.taklampe_3

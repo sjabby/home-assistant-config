@@ -18,9 +18,9 @@ indoor_lights:
     - light.kitchen_dimmer_2_instance_1_level_3
     - light.kitchen_dimmer_2_instance_1_level_3_2
     - light.kjokken
-    - light.kontoret
+    - light.office
     - light.kontoret_taklampe
-    - light.soverom
+    - light.bedroom
     - light.spisebord
     - light.stue
     - light.tv_2

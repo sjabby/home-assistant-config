@@ -3,3 +3,10 @@ platform: template
 sensors:
   placeholder:
     value_template: " "
+    attribute_templates:
+      vardagsrum: Stue
+      studio: Kontor
+      sovrum: Soverom
+      media: Media
+      ovrigt: Annet
+      hemma: Hjemme

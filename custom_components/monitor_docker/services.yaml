@@ -1,0 +1,6 @@
+restart:
+  description: "Restart a container, the container must be configured in person2itor_docker."
+  fields:
+    name:
+      description: Name of the container
+      example: "nodered"

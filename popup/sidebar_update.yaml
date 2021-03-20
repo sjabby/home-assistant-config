@@ -1,59 +1,61 @@
-              action: call-service
-              service: browser_mod.popup
-              service_data:
+              action: fire-dom-event
+              browser_mod:
+                command: popup
                 title: Oppdateringer
-                deviceID: this
                 style: |
                   :host .content {
                     width: 60em;
                   }
                 card:
                   type: entities
-                  style:
-                    .: |
-                      #states {
-                        margin-top: -0.5em;
-                      }
-                      #states>div>button-card {
-                        margin: -0.5em 0 1.4em 1.05em;
-                      }
+                  card_mod:
+                    style:
+                      .: |
+                        #states {
+                          margin-top: -0.5em;
+                        }
+                        #states > div > button-card {
+                          margin: -0.5em 0 1.4em 1.05em;
+                        }
 
-                    "#states>div>hui-element>hui-markdown-card":
-                      $:
-                        "ha-card>ha-markdown":
-                          $: |
-                            ha-markdown-element {
-                              cursor: default;
-                            }
-                            ha-markdown-element>p>span {
-                              font-family: SF Text;
-                              font-size: 1.5em;
-                              font-weight: 500;
-                              vertical-align: 30%;
-                            }
-                            ha-markdown-element>p>span>ha-icon {
-                              vertical-align: 10%;
-                              opacity: 0.5;
-                            }
-                            ha-markdown-element>p>b {
-                              font-family: SF Text;
-                              font-size: 1.2em;
-                              font-weight: 500;
-                              line-height: 1.9em;
-                              opacity: 0.5;
-                            }
-                            ha-markdown-element>ul {
-                              font-family: SF Display;
-                              font-size: 1.1em;
-                              padding-left: 2.5em;
-                            }
-                            ha-markdown-element>ul>li {
-                              margin-bottom: 0.4em;
-                            }
-                            ha-markdown-element>ul>li:last-child {
-                              margin-bottom: 0px;
-                            }
+                      "#states>div>hui-element>hui-markdown-card":
+                        $:
+                          "ha-card>ha-markdown":
+                            $: |
+                              ha-markdown-element {
+                                cursor: default;
+                              }
+                              ha-markdown-element>p>span {
+                                font-family: SF Text;
+                                font-size: 1.5em;
+                                font-weight: 500;
+                                vertical-align: 30%;
+                              }
+                              ha-markdown-element>p>span>ha-icon {
+                                vertical-align: 10%;
+                                opacity: 0.5;
+                              }
+                              ha-markdown-element>p>b {
+                                font-family: SF Text;
+                                font-size: 1.2em;
+                                font-weight: 500;
+                                line-height: 1.9em;
+                                opacity: 0.5;
+                              }
+                              ha-markdown-element>ul {
+                                font-family: SF Display;
+                                font-size: 1.1em;
+                                padding-left: 2.5em;
+                              }
+                              ha-markdown-element>ul>li {
+                                margin-bottom: 0.4em;
+                              }
+                              ha-markdown-element>ul>li:last-child {
+                                margin-bottom: 0px;
+                              }
                   entities:
+
+                    ### home assistant
 
                     - type: custom:hui-element
                       card_type: markdown
@@ -61,9 +63,9 @@
                         {% if states('sensor.hass_version_installed') | regex_search('b') %}
                         <span><ha-icon icon="mdi:home-assistant"></ha-icon> Home Assistant {{ states('sensor.hass_version_installed') }}</span><br>
                         {% if states('sensor.hass_version_installed') == states('sensor.hass_version_latest_beta') %}
-                        <b>Ingen oppdateringer - {{ state_attr('sensor.hass_dev_release', 'friendly_name') }} {{ states('sensor.hass_dev_release') | lower }}</b>
+                        <b>Ingen oppdateringer</b>
                         {% else %}
-                        <b>{{ states('sensor.hass_version_latest_beta') }} tilgjengelig</b> {{ '\U0001f389' }}
+                        <b>{{ states('sensor.hass_version_latest_beta') }} tillgänglig</b> {{ '\U0001f389' }}
                     
                         {% if states('sensor.hass_version_latest_beta') == states('sensor.hass_release_notes_rc') %}
                         {{- state_attr('sensor.hass_release_notes_rc', 'body') }}
@@ -72,9 +74,9 @@
                         {% else %}
                         <span><ha-icon icon="mdi:home-assistant"></ha-icon> Home Assistant {{ states('sensor.hass_version_installed') }}</span><br>
                         {% if states('sensor.hass_version_installed') == states('sensor.hass_version_latest') %}
-                        <b>Ingen oppdatering - {{ state_attr('sensor.hass_dev_release', 'friendly_name') }} {{ states('sensor.hass_dev_release') | lower }}</b>
+                        <b>Ingen oppdateringer</b>
                         {% else %}
-                        <b>{{ states('sensor.hass_version_latest') }} tilgjengelig</b> {{ '\U0001f389' }}
+                        <b>{{ states('sensor.hass_version_latest') }} tillgänglig</b> {{ '\U0001f389' }}
                     
                         {% if states('sensor.hass_version_latest') == states('sensor.hass_release_notes') %}
                         {{- state_attr('sensor.hass_release_notes', 'body') }}
@@ -85,21 +87,30 @@
                     - type: custom:button-card
                       entity: sensor.hass_version_installed
                       triggers_update:
-                        ['sensor.hass_version_installed', 'sensor.hass_version_latest', 'sensor.hass_version_latest_beta']
-                      show_icon: false
-                      name: '<ha-icon icon="mdi:update"></ha-icon> Oppdater HA'
+                        - sensor.hass_version_latest
+                        - sensor.hass_version_latest_beta
+                      name: Oppdatere HASS
+                      icon: mdi:update
                       styles:
                         card:
                           - filter: >
-                              [[[ if (entity.state.indexOf('b') > -1) {
-                              return entity.state === states['sensor.hass_version_latest_beta'].state  ? 'opacity(30%)' : 'drop-shadow(3px 3px 5px #00000050)'; }
-                              else {
-                              return entity.state === states['sensor.hass_version_latest'].state  ? 'opacity(30%)' : 'drop-shadow(3px 3px 5px #00000050)'; } ]]]
+                              [[[
+                                return entity.state === (states['sensor.hass_version_latest'].state || 
+                                states['sensor.hass_version_latest_beta'].state) ? 'opacity(30%)' : 'drop-shadow(3px 3px 5px #00000050)';
+                              ]]]
                       tap_action:
                         services: |
-                          [[[ hass.callService('browser_mod', 'toast', {message: 'Starter watchtower...'});
-                          hass.callService('switch', 'turn_on', {entity_id: 'switch.docker_watchtower'}); ]]]
-                      template: name_action
+                          [[[
+                            hass.callService('browser_mod', 'toast', {
+                              message: 'Starter watchtower...'
+                            });
+                            hass.callService('switch', 'turn_on', {
+                              entity_id: 'switch.watchtower'
+                            });
+                          ]]]
+                      template: icon_name
+
+                    ### hacs
 
                     - type: custom:hui-element
                       card_type: markdown
@@ -119,22 +130,46 @@
 
                     - type: custom:button-card
                       entity: sensor.hacs
-                      show_icon: false
-                      name: '<ha-icon icon="mdi:open-in-new"></ha-icon> Åpne HACS'
+                      name: Åpne HACS
+                      icon: mdi:open-in-new
                       styles:
                         card:
                           [filter: "[[[ return entity.state === '0' ? 'opacity(30%)' : 'drop-shadow(3px 3px 5px #00000050)'; ]]]"]
                       tap_action:
-                        action: call-service
-                        service: browser_mod.popup
-                        service_data:
+                        action: fire-dom-event
+                        browser_mod:
+                          command: popup
                           title: Home Assistant Community Store
-                          deviceID: this
-                          style: ':host .content {width: 75em;}'
+                          style: >
+                            :host .content {
+                              width: 75em;
+                            }
                           card:
                             type: custom:hui-element
                             card_type: iframe
                             url: /hacs
                             aspect_ratio: 65%
-                            style: 'ha-card { border-radius: 0 0 1em 1em;}'
-                      template: name_action
+                            card_mod:
+                              style: >
+                                ha-card {
+                                  border-radius: 0 0 1em 1em;
+                                }
+                      template: icon_name
+
+                    ### other
+
+                    - type: custom:hui-element
+                      card_type: markdown
+                      content: >
+                        {% set tasmota_installed = states('sensor.tasmota_version_installed') %}
+                        {% set tasmota_latest = states('sensor.tasmota_version_latest') %}
+                        {% set valetudo_installed = states('sensor.valetudo_version_installed') %}
+                        {% set valetudo_latest = states('sensor.valetudo_version_latest') %}
+                        <span><ha-icon icon="mdi:update"></ha-icon> Øvrig</span><br>
+                        {% if tasmota_installed == tasmota_latest and valetudo_installed == valetudo_latest %}
+                        <b>Ingen oppdateringer</b>
+                        {% else %}
+                        {{ '[<b>Tasmota ' + tasmota_latest + '](https://github.com/arendst/Tasmota/releases/latest) tillgänglig</b> ' + '\U0001f389' if tasmota_installed != tasmota_latest }}
+
+                        {{ '[<b>Valetudo ' + valetudo_latest + '](https://github.com/Hypfer/Valetudo/releases/latest) tillgänglig</b> ' + '\U0001f389' if valetudo_installed != valetudo_latest }}
+                        {% endif %}

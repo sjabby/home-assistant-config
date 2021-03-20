@@ -190,7 +190,7 @@ cards:
   - type: horizontal-stack
     cards:
       - type: custom:button-card
-        entity: light.soverom
+        entity: light.bedroom
         name: Taklampe
         color_type: card
         icon: "mdi:wall-sconce-flat"

@@ -11,7 +11,7 @@ condition:
       entity_id: "sensor.office_multisensor_illuminance"
       below: "50"
     - condition: state
-      entity_id: light.kontoret
+      entity_id: light.office
       state: "off"
 
 action:

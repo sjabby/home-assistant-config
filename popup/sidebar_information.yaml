@@ -1,6 +1,6 @@
-              action: call-service
-              service: browser_mod.popup
-              service_data:
+              action: fire-dom-event
+              browser_mod:
+                command: popup
                 title: Informasjon
                 hide_header: true
                 deviceID: this
@@ -9,20 +9,20 @@
                     :host .content {
                       width: calc(385px + 385px + 385px);
                       max-width: 90vw;
+                      height: 569px;
                     }
                   $: |
                     .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
-                      background: none !important;
+                      background: none;
                     }
                 card:
-                  type: custom:layout-card
-                  column_num: 3
-                  column_width: [385, 385, 385]
-                  layout: vertical
+                  type: grid
+                  columns: 3
                   cards:
                     - type: entities
                       title: Home Assistant
-                      class: add_header
+                      card_mod:
+                        class: add-header
                       show_header_toggle: false
                       entities:
 
@@ -73,35 +73,43 @@
 
                         - type: custom:hui-element
                           card_type: horizontal-stack
-                          style: &horizontal-style |
-                            #root {
-                              justify-content: space-evenly;
-                              margin: 1.4em -0.7em 0.7em 0;
-                            }
+                          card_mod:
+                            style: &horizontal-style |
+                              #root {
+                                justify-content: space-evenly;
+                                margin: 1.7em -0.7em 0 0;
+                              }
                           cards:
 
                           - type: custom:button-card
-                            name: '<ha-icon icon="mdi:reload"></ha-icon> Home Assistant'
+                            name: Home Assistant
+                            icon: mdi:reload
                             tap_action:
                               services: |
-                                [[[ hass.callService('browser_mod', 'toast', {message: 'Restarter om Home Assistant...'});
-                                hass.callService('homeassistant', 'restart'); ]]]
-                            template: name_action
+                                [[[
+                                  hass.callService('browser_mod', 'toast', {
+                                    message: 'Restarter Home Assistant...'
+                                  });
+                                  hass.callService('homeassistant', 'restart');
+                                ]]]
+                            template: icon_name
 
                           - type: custom:button-card
-                            name: '<ha-icon icon="mdi:reload"></ha-icon> Container'
+                            name: Container
+                            icon: mdi:reload
                             tap_action:
                               action: call-service
                               service: script.turn_on
                               service_data:
                                 entity_id: script.homeassistant_restart
-                            template: name_action
+                            template: icon_name
 
-                    - break
+                    ################################################################
 
                     - type: entities
                       title: Tablet
-                      class: add_header
+                      card_mod:
+                        class: add-header
                       show_header_toggle: false
                       entities:
 
@@ -149,35 +157,52 @@
 
                         - type: custom:hui-element
                           card_type: horizontal-stack
-                          style: *horizontal-style
+                          card_mod:
+                            style: *horizontal-style
                           cards:
 
                           - type: custom:button-card
-                            name: '<ha-icon icon="mdi:reload"></ha-icon> Startsiden'
+                            name: Startsiden
+                            icon: mdi:reload
                             tap_action:
                               services: |
-                                [[[ hass.callService('browser_mod', 'toast', {message: 'Laster inn startsiden...'});
-                                hass.callService('shell_command', 'fullykiosk_load_start_url'); ]]]
-                            template: name_action
+                                [[[
+                                  hass.callService('browser_mod', 'toast', {
+                                    message: 'Laster inn startsiden...'
+                                  });
+                                  hass.callService('fullykiosk', 'load_start_url', {
+                                    entity_id: 'media_player.fullykiosk'
+                                  });
+                                ]]]
+                            template: icon_name
 
                           - type: custom:button-card
-                            name: '<ha-icon icon="mdi:reload"></ha-icon> Appen'
+                            name: Hela appen
+                            icon: mdi:reload
                             tap_action:
                               services: |
-                                [[[ hass.callService('browser_mod', 'toast', {message: 'Restarter Fully Kiosk Browser...'});
-                                hass.callService('shell_command', 'fullykiosk_restart_app'); ]]]
-                            template: name_action
-
-                    - break
+                                [[[
+                                  hass.callService('browser_mod', 'toast', {
+                                    message: 'Restarter Fully Kiosk Browser...'
+                                  });
+                                  hass.callService('fullykiosk', 'restart', {
+                                    entity_id: 'media_player.fullykiosk'
+                                  });
+                                ]]]
+                            template: icon_name
 
                     - type: entities
                       title: Unraid
-                      class: add_header
                       show_header_toggle: false
-                      style: |
-                        #states > div > mini-graph-card {
-                          margin: -22.7px -34px -21px -23px;
-                        }
+                      card_mod:
+                        class: add-header
+                        style: |
+                          mini-graph-card {
+                            margin: -22.7px -18px -6px -7px;
+                          }
+                          .footer {
+                            overflow: visible !important;
+                          }
                       entities:
 
                         - entity: sensor.nas_status
@@ -187,10 +212,11 @@
                         - entity: sensor.drifttid
 
                         - entity: sensor.nas_vpn
-                          style: |
-                            :host {
-                              --paper-item-icon-color: {{ '#9e9e9e' if is_state(config.entity, 'Ansluten') else 'red' }};
-                              }
+                          card_mod:
+                            style: |
+                              :host {
+                                --paper-item-icon-color: {{ '#9e9e9e' if is_state(config.entity, 'Ansluten') else 'red' }};
+                                }
 
                         - type: custom:bar-card
                           width: 55%
@@ -234,10 +260,15 @@
                               class: information_network
                               entities:
                                 - entity: sensor.speedtest_download
-                                  style: ':host {--paper-item-icon-color: green;}'
+                                  card_mod:
+                                    style: >
+                                      :host {
+                                        --paper-item-icon-color: green;
+                                      }
 
                             - type: entities
-                              class: information_network
+                              card_mod:
+                                class: information_network
                               entities:
                                 - entity: sensor.speedtest_upload
                                   style: ':host {--paper-item-icon-color: #385581;}'

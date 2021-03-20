@@ -1,15 +1,18 @@
 ---
 influxdb:
+  api_version: 2
+  ssl: false
   host: 192.168.2.9
   port: 8086
-  database: homeassistant
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-  max_retries: 3
+  token: !secret influxdb_token
+  organization: fb60a923bc456e53
+  bucket: Home Assistant
+  tags:
+    source: HA
   tags_attributes:
-    - "device_class"
-    - "node_id"
-    - "friendly_name"
+    - device_class
+    - node_id
+    - friendly_name
   default_measurement: state
   include:
     entities: !include_dir_merge_list ../influxdb

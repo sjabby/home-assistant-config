@@ -2,7 +2,7 @@ auto_turn_off:
   sequence:
     - service: light.turn_off
       entity_id:
-        - light.kontoret
+        - light.office
         - light.gang
         - light.kitchen
         - light.bathroom

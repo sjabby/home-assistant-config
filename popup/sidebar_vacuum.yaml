@@ -1,164 +1,158 @@
-              action: call-service
-              service: browser_mod.popup
-              service_data:
-                title: Støvsuger
-                hide_header: true
-                deviceID: this
-                style:
-                  .: |
-                    :host .content {
-                      width: calc(400px + 555px);
-                    }
-                  $: |
-                    .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
-                      background: none !important;
-                    }
+            action: fire-dom-event
+            browser_mod:
+              command: popup
+              title: Støvsuger
+              hide_header: true
+              style:
+                .: |
+                  :host .content {
+                    width: auto;
+                  }
+                $: |
+                  .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+                    background: none;
+                  }
+              card:
+                type: custom:mod-card
+                card_mod:
+                  style:
+                    ha-card>hui-grid-card$: |
+                      #root {
+                        grid-template-columns: 400px 555px !important;
+                      }
                 card:
-                  type: custom:layout-card
-                  column_num: 2
-                  column_width: [400, 555]
-                  layout: vertical
+                  type: grid
+                  columns: 2
+                  square: false
                   cards:
-                    - type: custom:hui-element
-                      card_type: vertical-stack
-                      cards:
-                        - type: entities
-                          title: Støvsuger
-                          class: add_header
-                          entities:
+                    - type: entities
+                      title: Støvsuger
+                      card_mod:
+                        class: add-header
+                        style: |
+                          ha-card {
+                            height: 596px !important;
+                          }
+                      entities:
 
-                          - entity: sensor.rocky_status
-                            name: Status
+                      - entity: vacuum.rocky
+                        name: Roborock
+                        icon: custom:roborock-vacuum
 
-                          - entity: sensor.rocky_battery
+                      - entity: sensor.vacuum_last_clean
+
+                      - type: custom:bar-card
+                        width: 55%
+                        height: 2em
+                        decimal: 0
+                        unit_of_measurement: '%'
+                        positions:
+                          icon: outside
+                          indicator: 'off'
+                          name: outside
+                        severity:
+                          - color: '#303435'
+                            from: 11
+                            to: 100
+                          - color: '#6d2525'
+                            from: 0
+                            to: 10
+                        entity_row: true
+                        entities:
+
+                          - entity: vacuum.rocky
+                            attribute: battery_level
                             name: Batteri
+                            icon: mdi:battery
 
-                          - entity: sensor.vacuum_last_clean
+                          - entity: sensor.vacuum_filter
 
-                          - type: custom:bar-card
-                            width: 55%
-                            height: 2em
-                            decimal: 0
-                            unit_of_measurement: '%'
-                            positions:
-                              icon: outside
-                              indicator: 'off'
-                              name: outside
-                            severity:
-                              - color: '#303435'
-                                from: 11
-                                to: 100
-                              - color: '#6d2525'
-                                from: 0
-                                to: 10
-                            entity_row: true
-                            entities:
+                          - entity: sensor.vacuum_mainbrush
 
-                              - entity: sensor.vacuum_filter
-                                tap_action:
-                                  action: call-service
-                                  service: homeassistant.update_entity
-                                  service_data:
-                                    entity_id: sensor.vacuum_filter
+                          - entity: sensor.vacuum_sidebrush
 
-                              - entity: sensor.vacuum_mainbrush
-                                tap_action:
-                                  action: call-service
-                                  service: homeassistant.update_entity
-                                  service_data:
-                                    entity_id: sensor.vacuum_mainbrush
+                          - entity: sensor.vacuum_sensor
 
-                              - entity: sensor.vacuum_sidebrush
-                                tap_action:
-                                  action: call-service
-                                  service: homeassistant.update_entity
-                                  service_data:
-                                    entity_id: sensor.vacuum_sidebrush
+                      - entity: input_select.vacuum_fan_speed
 
-                              - entity: sensor.vacuum_sensor
-                                tap_action:
-                                  action: call-service
-                                  service: homeassistant.update_entity
-                                  service_data:
-                                    entity_id: sensor.vacuum_sensor
+                      - type: custom:hui-element
+                        card_type: horizontal-stack
+                        card_mod:
+                          style: |
+                            #root {
+                              justify-content: space-evenly;
+                              margin-top: 2.2em;
+                            }
+                        cards:
 
-                          - entity: input_select.vacuum_fan_speed
-
-                          - type: custom:hui-element
-                            card_type: horizontal-stack
-                            style: |
-                              #root {
-                                justify-content: space-evenly;
-                                margin: 2.9em -0.7em 0.7em 0;
-                              }
-                            cards:
-
-                            - type: custom:button-card
-                              icon: mdi:play-pause
-                              triggers_update:
-                                ['vacuum.rocky']
-                              tap_action:
-                                action: call-service
-                                service: >
-                                  [[[ if (states['vacuum.rocky'].state === 'docked' || 
-                                  states['vacuum.rocky'].state === 'paused') 
+                        - type: custom:button-card
+                          icon: mdi:play-pause
+                          triggers_update:
+                            ['vacuum.rocky']
+                          tap_action:
+                            action: call-service
+                            service: >
+                              [[[
+                                if (states['vacuum.rocky'].state === 'docked' ||
+                                  states['vacuum.rocky'].state === 'paused')
                                   return 'vacuum.start';
-                                  else return 'vacuum.pause'; ]]]
-                                service_data:
-                                  entity_id: vacuum.rocky
-                              styles:
-                                icon:
-                                  [width: 1.8em]
-                                card:
-                                  [width: 6em]
-                              template: icon_action
+                                else return 'vacuum.pause';
+                              ]]]
+                            service_data:
+                              entity_id: vacuum.rocky
+                          styles:
+                            icon:
+                              - width: 1.8em
+                            card:
+                              - width: 6em
+                          template: icon_only
 
-                            - type: custom:button-card
-                              icon: mdi:flash
-                              color: '#9da0a2'
-                              tap_action:
-                                action: call-service
-                                service: vacuum.return_to_base
-                                service_data:
-                                  entity_id: vacuum.rocky
-                              template: icon_action
+                        - type: custom:button-card
+                          icon: mdi:flash
+                          tap_action:
+                            action: call-service
+                            service: vacuum.return_to_base
+                            service_data:
+                              entity_id: vacuum.rocky
+                          template: icon_only
 
-                            - type: custom:button-card
-                              icon: mdi:map-marker-question
-                              color: '#9da0a2'
-                              tap_action:
-                                action: call-service
-                                service: vacuum.locate
-                                service_data:
-                                  entity_id: vacuum.rocky
-                              template: icon_action
+                        - type: custom:button-card
+                          icon: mdi:map-marker-question
+                          tap_action:
+                            action: call-service
+                            service: vacuum.locate
+                            service_data:
+                              entity_id: vacuum.rocky
+                          template: icon_only                           
 
-                    - break
+                    ################################################################
 
                     - type: picture-elements
                       title: Kart
-                      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 49.57' /%3E"
-                      class: add_header
-                      style: |
-                        #root {
-                          animation: fade 1s both;
-                        }
-                        .card-header {
-                          margin: -0.05em 0 0 0.75em;
-                        }
-                        @keyframes fade {
-                          0% {
-                            opacity: 0;
-                          }
-                          50% {
-                            opacity: 0;
-                          }
-                          100% {
-                            opacity: 1;
-                          }
-                        }
+                      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 47' /%3E"
+                      # card_mod:
+                      #   class: add-header
+                      #   style: |
+                      #     #root {
+                      #       animation: fade 1s both;
+                      #     }
+                      #     .card-header {
+                      #       margin: -0.05em 0 0 0.75em;
+                      #     }
+                      #     @keyframes fade {
+                      #       0% {
+                      #         opacity: 0;
+                      #       }
+                      #       50% {
+                      #         opacity: 0;
+                      #       }
+                      #       100% {
+                      #         opacity: 1;
+                      #       }
+                      #     }
                       elements:
                         - type: custom:xiaomi-vacuum-map-card
+                          title: null
                           entity: vacuum.rocky
                           map_camera: camera.xiaomi_cloud_map_extractor
                           camera_calibration: true

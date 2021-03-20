@@ -1,0 +1,12 @@
+---
+path: mobile_climate
+title: Klima
+background: var(--background-image)
+badges: []
+cards:
+  - type: custom:simple-thermostat
+    entity: climate.netatmo_stue
+    name: Stue
+
+  - type: thermostat
+    entity: climate.netatmo_stue

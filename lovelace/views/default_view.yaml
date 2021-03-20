@@ -159,11 +159,11 @@ cards:
       - input_select.home_mode
 
   - type: custom:simple-thermostat
-    entity: climate.radiator
+    entity: climate.netatmo_stue
     name: Stue
 
   - type: custom:simple-thermostat
-    entity: climate.kontoret
+    entity: climate.office
     name: Kontor
     step_size: 1
 

@@ -1,8 +1,9 @@
 {
   "domain": "person2itor_docker",
   "name": "person2itor Docker",
+  "version": "1.8",
   "documentation": "https://github.com/ualex73/person2itor_docker",
   "issue_tracker": "https://github.com/ualex73/person2itor_docker/issues",
-  "requirements": ["aiodocker==0.18.8", "python-dateutil==2.8.1"],
+  "requirements": ["aiodocker==0.19.1", "python-dateutil==2.8.1"],
   "codeowners": ["@ualex73"]
 }

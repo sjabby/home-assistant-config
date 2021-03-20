@@ -436,11 +436,13 @@ class SmartThingsTV:
 
     async def async_turn_off(self):
         """Turn off TV via SmartThings"""
-        await self._async_send_command(COMMAND_POWER_OFF)
+        data_cmd = _command(COMMAND_POWER_OFF)
+        await self._async_send_command(data_cmd)
 
     async def async_turn_on(self):
         """Turn on TV via SmartThings"""
-        await self._async_send_command(COMMAND_POWER_ON)
+        data_cmd = _command(COMMAND_POWER_ON)
+        await self._async_send_command(data_cmd)
 
     async def async_send_command(self, cmd_type, command=""):
         """Send a command to the device"""

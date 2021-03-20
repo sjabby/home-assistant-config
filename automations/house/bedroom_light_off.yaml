@@ -10,7 +10,7 @@ action:
   - service: light.turn_off
     entity_id:
       - light.bedroom_bed_led
-      - light.soverom
+      - light.bedroom
       - light.taklampe_1
       - light.taklampe_2
       - light.taklampe_3
